@@ -32,7 +32,7 @@ common_theme <- theme(
 ::: {style="text-align: justify"}
 The methods adopted in this study are delineated in sequential steps, following the framework proposed by @debray2017. Additionally, all procedures and reporting were conducted in compliance with the Preferred Reporting Items for Systematic Reviews and Meta-Analyses (PRISMA) guidelines [@page2021]. For the statistical analyses `metafor` [@viechtbauer2010] and `dmetar` [@dmetar] packages the were used.
 
-## Step 1: Formulating the review question and protocol
+## Formulating the review question and protocol
 
 The PICOTS (population, intervention, comparison, outcome, timing, and setting) system was used to frame the review aims for this analysis [@debray2017]. Based on this framework, the question was formulated as follows: In studies focused on SDGs, how heterogeneous is the performance of ML applied to various remote sensing applications, and what study features account for any observed differences in model performance?
 :::
@@ -89,7 +89,7 @@ Publication increase between 2018 and 2022.
 :::
 
 ::: {style="text-align: justify"}
-## Step 3: Specific inclusion and exclusion criteria
+## Specific inclusion and exclusion criteria
 
 Due to the large number of papers remaining, a random sample of 200 articles was drawn for title and abstract screening. These potentially relevant articles were screened independently by three reviewers (the author and two internal supervisors) using the R package `metagear` [@metagear-2]. The papers were selected according to the following criteria: a) publications utilizing remote sensing and ML techniques, (b) indication of a quality assessment for example overall accuracy. @tbl-keywords shows the words highlighted in the abstract screening phase to aid the reviewers and @fig-metagearGUI shows the user interface highlighting these keywords.
 :::
@@ -137,7 +137,7 @@ PRISMA_save(plot, "figures/fig_PRISMA2020.png")
 ![PRIMSA flow diagram of manuscript selection. The records were identified from databases including Web of Science (WOS), ScienceDirect, PubMed, Journal Storage (JSTOR), American Geophysical Union Publications (Agupubs), EBSCO, IEEE Xplore, Multidisciplinary Digital Publishing Institute (MDPI), ProQuest, and Taylor & Francis Online (Tandfonline), no papers were gathered from official registers. Note: number of records removed four where not journal articles and 27 were omitted for being reviews. A random sample of 200 of the total 884 was drawn and reviewed by three independent reviewers. A total of 57 records were left, 40 of which were deemed to be classification papers and the full text screened.](figures/fig_PRISMA2020.png){#fig-prisma fig-align="center"}
 
 ::: {style="text-align: justify"}
-## Step 4: Feature collection
+## Feature collection
 
 Using the first 10 papers and previous systematic reviews, a list of potential study features was made and structured in a table for data collection. @tbl-exf outlines all the extracted features, including including study identification information, as well as the number of citations, which was gathered using the Local Citation Network web app. This tool collects the articles' metadata from OpenAlex---a bibliographic catalog of scientific papers [@openalex][^methods-1]. The methodology and data characteristics includes information regarding the complexity of the classification tasks (e.g., the number of output classes), and the proportion of the majority class indicating potential class imbalance issues, which can affect the performance of classification models. Remote sensing specific information focuses on the type of devices, spectral bands, and spatial resolution, to assess how the data collection impacts the performance. Several potential useful features were excluded including temporal resolution (the frequency of the data collection) and pre-processing steps which also impact the performance of the model. These where excluded as the differences between papers were to large to make meaningful groups.
 :::
@@ -172,7 +172,7 @@ Extracted features
 :::
 
 ::: {style="text-align: justify"}
-## Step 5: Statistical analysis
+## Statistical analysis
 
 A meta-analysis is a statistical method that aggregates results from several primary studies to assess and interpret the collective evidence on a specific topic or research question. Specifically, the aim is to (a) determine the average (summary) effect, (b) establish the degree of heterogeneity, and (c) access if study characteristics can explain any variability of the effect sizes [@cheung2014]. In this case the effect size (dependent variable) of interest is the overall accuracy. Let $\hat{\theta}_{ij}$ be the $i-$th observed effect size in study $j$. From @eq-OA, the overall accuracy is the proportion of correctly classified instances, therefore, the effect size is:
 
