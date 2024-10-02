@@ -13,12 +13,10 @@ tbl-cap-location: top
 library(tidyverse)
 library(readxl)
 
-# plot and table packages 
+# plot and table packages
+library(kableExtra)
 library(jtools)
 theme_set(theme_apa()) 
-library(kableExtra)
-# prisma chart 
-library(PRISMA2020)
 # common theme specification  
 common_theme <- theme(
   plot.title = element_text(size = 10),
@@ -117,24 +115,7 @@ Keywords used
 As shown in @fig-prisma, of the 200 abstracts screened only 57 were deemed potentially relevant by all three reviewers. To have comparable performance metrics it decided to focus on papers related to classification. The titles and abstracts of the 57 articles were screened using `metagear` dividing them to classification (40) and regression (17) papers. In the 40 papers, overall accuracy was the most commonly reported outcome metric and therefore it was decided to include all papers that report overall accuracy.
 :::
 
-```{r, eval=FALSE}
-library(PRISMA2020)
-prisma<- read.csv("figures/prisma/PRISMA.csv")
-
-data <- PRISMA_data(prisma)
-
-plot <- PRISMA_flowdiagram(data,
-                fontsize = 12.5,
-                 interactive = TRUE, 
-                detail_databases = TRUE, 
-                previous = FALSE,
-                other = FALSE)
-
-plot
-PRISMA_save(plot, "figures/fig_PRISMA2020.png")
-```
-
-![PRIMSA flow diagram of manuscript selection. The records were identified from databases including Web of Science (WOS), ScienceDirect, PubMed, Journal Storage (JSTOR), American Geophysical Union Publications (Agupubs), EBSCO, IEEE Xplore, Multidisciplinary Digital Publishing Institute (MDPI), ProQuest, and Taylor & Francis Online (Tandfonline), no papers were gathered from official registers. Note: number of records removed four where not journal articles and 27 were omitted for being reviews. A random sample of 200 of the total 884 was drawn and reviewed by three independent reviewers. A total of 57 records were left, 40 of which were deemed to be classification papers and the full text screened.](figures/fig_PRISMA2020.png){#fig-prisma fig-align="center"}
+![PRIMSA flow diagram of manuscript selection. The records were identified from databases including Web of Science (WOS), ScienceDirect, PubMed, Journal Storage (JSTOR), American Geophysical Union Publications (Agupubs), EBSCO, IEEE Xplore, Multidisciplinary Digital Publishing Institute (MDPI), ProQuest, and Taylor & Francis Online (Tandfonline), no papers were gathered from official registers. Note: number of records removed four where not journal articles and 27 were omitted for being reviews. A random sample of 200 of the total 884 was drawn and reviewed by three independent reviewers. A total of 57 records were left, 40 of which were deemed to be classification papers and the full text screened.](figures/fig_PRISMA2020.png){#fig-prisma fig-align="center" width="539"}
 
 ::: {style="text-align: justify"}
 ## Feature collection

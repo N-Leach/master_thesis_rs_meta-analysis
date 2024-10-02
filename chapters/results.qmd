@@ -554,6 +554,11 @@ row.names(results) <-"RE_lvl3"
 ```
 
 ```{r lvl3_mod_test}
+#profile likelihood plots of the variance components of the model
+#par(mfrow=c(2,1))
+#profile(pes.da.lvl3, sigma2=1)
+#profile(pes.da.lvl3, sigma2=2)
+
 # METHOD 1.2:  
 # multivariate parameterization model 
 # this is a multilvl rather than a nested model (if since the samples could be different data or countries this might be the better approch?)
@@ -573,7 +578,7 @@ pes.da.lvl3.mv <- rma.mv(yi,
 #logLik(pes.da.lvl3.mv)
 
 
-# future research look into the variance-covariance matrix structures
+# future research look into different variance-covariance matrix structures
 
 ```
 
@@ -605,7 +610,6 @@ agg.pes.da <- rma(yi, vi, method="EE", data=agg, digits=3)
 agg.pes <- predict(agg.pes.da , transf = transf.ipft.hm, targ =list(ni=1/(pes.da.lvl3$se)^2))
 
 # forest plot:
-
 model_summary <- bquote(paste("RE (3-Level) Model ",
                  "(Q = ",
                  .(fmtx(results$Q[1], digits=0)),
