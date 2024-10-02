@@ -1,0 +1,16 @@
+---
+linestretch: 1.25
+---
+# Acknowledgements {.unnumbered .unlisted}
+
+I am very grateful to everyone that has helped me through the process and completion of this thesis. First, my thesis supervisors at the CBS, Dr. Joep Burger and Dr. Jonas Klingwort. I would like to thank (and berate) them for giving me the freedom in choosing my topic. What a journey it lead us through: I never thought I would refer to back and forth papers on the limitations and misconceptions of double arcsine back-transformations as drama, but here I am, waiting for the next episode (no spoilers please). In all seriousness, I truly appreciate the time they invested and they're feedback. I would also like to thank my internal supervisor Prof. Mark de Rooij, for his feedback and support. Perhaps unconventionally, I would also like to Dr. Wolfgang Viechtbauer--- the statistician behind the `metafor` package --- when I grow up I want to write documentation like that.
+
+To my friends and family, I can never thank them enough for responding to my self doubt and frustration with endless encouragement. Specifically, Bo for all the support and pretending to be interested in double arcsine drama. Lastly, a special thank you to Capo for almost never leaving my side and reminding me of the importance of taking breaks, which, of course, are essential because he needs my undivided attention.
+
+::: {layout-ncol="2"}
+![](images/helper2.png){width="305"}
+
+![](images/helper1.png){width="326"}
+:::
+
+To the reader, thank you for taking the time to read my thesis ---there is still time not to I won't know any different. If you are still here (supervisors, independent reader, mum?) I would like to appologise in advance for continuing the convention of inconsistent notation across meta-analysis research. I can only apologies for this behaviour and hope I have been consistent within my own work as its best not to change notations $\mu$-dstream.

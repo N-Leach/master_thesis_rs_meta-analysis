@@ -1,0 +1,388 @@
+---
+execute:
+  echo: false
+  enabled: true
+tbl-cap-location: top
+---
+
+# Methods {#sec-methods style="text-align: justify"}
+
+```{r setup_methods}
+
+#packages used for this chapter 
+library(tidyverse)
+library(readxl)
+
+# plot and table packages 
+library(jtools)
+theme_set(theme_apa()) 
+library(kableExtra)
+# prisma chart 
+library(PRISMA2020)
+# common theme specification  
+common_theme <- theme(
+  plot.title = element_text(size = 10),
+  axis.title.x = element_text(size = 8),
+  axis.title.y = element_text(size = 8),
+  axis.text = element_text(size = 8)
+)
+
+```
+
+::: {style="text-align: justify"}
+The methods adopted in this study are delineated in sequential steps, following the framework proposed by @debray2017. Additionally, all procedures and reporting were conducted in compliance with the Preferred Reporting Items for Systematic Reviews and Meta-Analyses (PRISMA) guidelines [@page2021]. For the statistical analyses `metafor` [@viechtbauer2010] and `dmetar` [@dmetar] packages the were used.
+
+## Step 1: Formulating the review question and protocol
+
+The PICOTS (population, intervention, comparison, outcome, timing, and setting) system was used to frame the review aims for this analysis [@debray2017]. Based on this framework, the question was formulated as follows: In studies focused on SDGs, how heterogeneous is the performance of ML applied to various remote sensing applications, and what study features account for any observed differences in model performance?
+:::
+
+::: {#tbl-PICOTS}
+```{r}
+read_excel("figures/summary_tables.xlsx", sheet = "PICOTS")|>
+  kable(booktabs = TRUE, linesep = "") |>
+  kable_styling(font_size = 10, 
+                full_width = FALSE)|>
+  column_spec(1, width = "2cm")|>
+  column_spec(2, width = "12cm")|>
+  footnote(threeparttable=T)
+```
+
+*Note:* Key items of the PICOTS framework used to determine the framing of the review.
+
+PICOTS framework
+:::
+
+::: {style="text-align: justify"}
+```{r}
+citations<- read.csv("../appendix/data/citations.csv")
+```
+
+The data collected for this report was extracted from peer-reviewed articles published between January 2018 and December 2023. These articles were gathered (on January 15 and 16, 2024) from several academic databases, including ScienceDirect and Taylor & Francis Online, as shown in @fig-prisma. To reduce potential bias from database coverage [@hansen_how_2022; @tawfik_step_2019], several academic databases were used. The search terms were "remote sensing" AND "machine learning" AND "sustainable development goals." The search results from these databases were downloaded in RIS format and imported into Zotero for further processing.
+
+While Google Scholar can be useful for supplementary searches and grey literature, it is generally considered unsuitable as the primary sourse for systematic reviews [@gusenbauer_which_2020]. Furthermore, Google Scholar searches results are not fully reproducible [@gusenbauer_which_2020] and search result references that cannot be downloaded in batches.
+
+Duplicate articles were handled using Zotero's "merge duplicates" function. After removing review articles and non-research papers, a total of 811 relevant articles remained. Of these potentially relevant papers, `r round(sum(citations$Publication.Year == 2023, na.rm = TRUE)*100/ nrow(citations))`% were published in 2023, highlighting the growth of research in this field. The trend, as illustrated in @fig-pubs, is consistent with other similar research, for example, @ekmen2024, which reported a sharp increase in publications related to ML and RS for SDG monitoring.
+:::
+
+::: {style="text-align: justify"}
+::: {#fig-pubs}
+```{r no_pubs}
+#| fig-width: 4
+#| fig-height: 4
+
+ggplot(subset(citations, !is.na(Publication.Year)))+
+      geom_bar(mapping = aes(x = as.factor(Publication.Year)), 
+                     fill = "#001158", alpha = .8) +
+    labs(x = "Publication Year", 
+       y = "Number of Reports", 
+       title = "Number of Publications in ML for RS.") +
+    theme(plot.title = element_text(size=10),
+        axis.title.x = element_text(size=8),
+        axis.title.y = element_text(size=8), 
+        axis.text = element_text(size=8))
+
+```
+
+Publication increase between 2018 and 2022.
+:::
+:::
+
+::: {style="text-align: justify"}
+## Step 3: Specific inclusion and exclusion criteria
+
+Due to the large number of papers remaining, a random sample of 200 articles was drawn for title and abstract screening. These potentially relevant articles were screened independently by three reviewers (the author and two internal supervisors) using the R package `metagear` [@metagear-2]. The papers were selected according to the following criteria: a) publications utilizing remote sensing and ML techniques, (b) indication of a quality assessment for example overall accuracy. @tbl-keywords shows the words highlighted in the abstract screening phase to aid the reviewers and @fig-metagearGUI shows the user interface highlighting these keywords.
+:::
+
+::: {#tbl-keywords}
+```{r}
+read_excel("figures/summary_tables.xlsx", sheet = "keywords")|>
+  kable(booktabs = TRUE, linesep = "") |>
+  kable_styling(font_size = 10, 
+                full_width = FALSE)|>
+  column_spec(1, width = "3cm")|>
+  column_spec(2, width = "11cm")|>
+  
+  footnote(threeparttable=T)
+```
+
+*Note:* Keywords highlighted by the `metagear` user interface during abstract screening phase as a visual cue to speed up the screening process.
+
+Keywords used
+:::
+
+![Metagear graphical user interface: Example of the metagear abstract screener interface, with key words highlighted. On the bottom left the reviewer can select whether the paper is relevant.](figures/metagear_gui.png){#fig-metagearGUI fig-align="center"}
+
+::: {style="text-align: justify"}
+As shown in @fig-prisma, of the 200 abstracts screened only 57 were deemed potentially relevant by all three reviewers. To have comparable performance metrics it decided to focus on papers related to classification. The titles and abstracts of the 57 articles were screened using `metagear` dividing them to classification (40) and regression (17) papers. In the 40 papers, overall accuracy was the most commonly reported outcome metric and therefore it was decided to include all papers that report overall accuracy.
+:::
+
+```{r, eval=FALSE}
+library(PRISMA2020)
+prisma<- read.csv("figures/prisma/PRISMA.csv")
+
+data <- PRISMA_data(prisma)
+
+plot <- PRISMA_flowdiagram(data,
+                fontsize = 12.5,
+                 interactive = TRUE, 
+                detail_databases = TRUE, 
+                previous = FALSE,
+                other = FALSE)
+
+plot
+PRISMA_save(plot, "figures/fig_PRISMA2020.png")
+```
+
+![PRIMSA flow diagram of manuscript selection. The records were identified from databases including Web of Science (WOS), ScienceDirect, PubMed, Journal Storage (JSTOR), American Geophysical Union Publications (Agupubs), EBSCO, IEEE Xplore, Multidisciplinary Digital Publishing Institute (MDPI), ProQuest, and Taylor & Francis Online (Tandfonline), no papers were gathered from official registers. Note: number of records removed four where not journal articles and 27 were omitted for being reviews. A random sample of 200 of the total 884 was drawn and reviewed by three independent reviewers. A total of 57 records were left, 40 of which were deemed to be classification papers and the full text screened.](figures/fig_PRISMA2020.png){#fig-prisma fig-align="center"}
+
+::: {style="text-align: justify"}
+## Step 4: Feature collection
+
+Using the first 10 papers and previous systematic reviews, a list of potential study features was made and structured in a table for data collection. @tbl-exf outlines all the extracted features, including including study identification information, as well as the number of citations, which was gathered using the Local Citation Network web app. This tool collects the articles' metadata from OpenAlex---a bibliographic catalog of scientific papers [@openalex][^methods-1]. The methodology and data characteristics includes information regarding the complexity of the classification tasks (e.g., the number of output classes), and the proportion of the majority class indicating potential class imbalance issues, which can affect the performance of classification models. Remote sensing specific information focuses on the type of devices, spectral bands, and spatial resolution, to assess how the data collection impacts the performance. Several potential useful features were excluded including temporal resolution (the frequency of the data collection) and pre-processing steps which also impact the performance of the model. These where excluded as the differences between papers were to large to make meaningful groups.
+:::
+
+[^methods-1]: The idea to add the number of citations was added after the analysis was mostly completed. This suggestion was made during a discussion of the project after the preliminary results were presented to the methodology team at the CBS.
+
+::: {#tbl-exf}
+```{r}
+tbl_ex <- read_excel("../data/extracted_features.xlsx", sheet = "study_features")
+  
+tbl_ex[is.na(tbl_ex)]<- ""
+tbl_ex |>
+  kable(booktabs = TRUE, linesep = "") |>
+  kable_styling(font_size = 10, 
+                full_width = FALSE)|>
+  column_spec(1, width = "4cm")|>
+  column_spec(2, width = "6cm")|>
+  column_spec(3, width = "6cm")|>
+  
+  # Add group titles
+  pack_rows("Study Identification and Information", start_row = 1, end_row = 5) |>
+  pack_rows("Research Context", start_row = 6, end_row = 7) |>
+  pack_rows("Methodology and data characteristics", start_row = 8, end_row = 14) |>
+  pack_rows("Remote Sensing (RS) Specific Information", start_row = 15, end_row = 18) |>
+  pack_rows("Performance Metrics", start_row = 19, end_row = 19) |>
+  
+  footnote(threeparttable=T)
+  
+```
+
+Extracted features
+:::
+
+::: {style="text-align: justify"}
+## Step 5: Statistical analysis
+
+A meta-analysis is a statistical method that aggregates results from several primary studies to assess and interpret the collective evidence on a specific topic or research question. Specifically, the aim is to (a) determine the average (summary) effect, (b) establish the degree of heterogeneity, and (c) access if study characteristics can explain any variability of the effect sizes [@cheung2014]. In this case the effect size (dependent variable) of interest is the overall accuracy. Let $\hat{\theta}_{ij}$ be the $i-$th observed effect size in study $j$. From @eq-OA, the overall accuracy is the proportion of correctly classified instances, therefore, the effect size is:
+
+$$
+\begin{aligned} 
+&\ \hat{\theta}_{ij} = \frac{s_{ij}}{n_{ij}}\\
+&\ \text{with Var}(\hat{\theta}_{ij}) = \frac{\hat{\theta}_{ij}(1-\hat{\theta}_{ij})}{n_{ij}}
+\end{aligned} 
+$$ {#eq-theta}
+
+where $s_{ij}$ is the number of successful predictions and $n_{ij}$ is total number of instances (i.e. sample size).
+
+#### Weighted Approach
+
+Before conducting the meta-analysis, first the structure of the collected data and assumption of independence of effect sizes needs to be addressed. In the context of this research, dependencies are introduced since all reported effect sizes from each study are included. The degree of dependence between effect sizes can be categorized as either known or unknown [@cheung2014]. Multivariate meta analytic techniques use known dependencies reported in the primary studies, such as reported correlation coefficients [@cheung2014]. However, dependency estimates between outcomes are rarely reported [@assink2016]. Therefore, to model these unknown dependencies a 3-level random-effects meta-analytic model is used. The three-level meta analysis approach models three different variance components distributed over three-levels:
+
+At level 1, the sampling variance of the effect sizes:
+
+$$
+\begin{aligned} 
+&\ \text{Level 1:  } \hat{\theta}_{ij} = \theta_{ij} + \epsilon_{ij}, \\
+&\  \epsilon_{ij} \sim \mathcal{N}(0, v_{ij})\\
+\end{aligned}
+$$ {#eq-lvl1}
+
+The observed overall accuracy $\hat{\theta}_{ij}$ is an estimate of overall accuracy from experiment $i$ in study $j$ is modelled as the true overall accuracy, $\theta_{ij}$ and error component $\epsilon_{ij}$ which is normally distributed with mean $0$ and known variance $v_{ij}$ .[^methods-2]
+
+At level 2, within-study variance ($\sigma^2_{\zeta}$):
+
+$$
+\begin{aligned} 
+&\ \text{Level 2:  } \theta_{ij} = \kappa_j + \zeta_{ij}, \\
+&\  \zeta_{ij} \sim \mathcal{N}(0, \sigma^2_{\zeta})\\
+\end{aligned}
+$$ {#eq-lvl2}
+
+The true overall accuracy $\theta_{ij}$ is modelled as the average overall accuracy, $\kappa_{j}$ of study $j$ and study-specific heterogeneity $\zeta_{ij}$, which is normally distributed with mean $0$ and variance $\sigma^2_{\zeta}$.
+
+Lastly, level 3, the variance between studies ($\sigma^2_{\xi}$):
+
+$$
+\begin{aligned} 
+&\ \text{Level 3:  } \kappa_j = \mu + \xi_{j} \\
+&\  \xi_{ij} \sim \mathcal{N}(0, \sigma^2_{\xi})\\
+\end{aligned}
+$$ {#eq-lvl3}
+
+The average overall accuracy $\kappa_{j}$ of study $j$ is modelled as the average population effect $\mu$ and between-study heterogeneity $\xi_{j}$, which is normally distributed with mean $0$ and variance $\sigma^2_{\xi}$. Combined, the three-level meta-analyses models the observed effect size modelled as the sum of the average population effect $\mu$ and these three error components:
+
+$$
+\hat{\theta}_{ij} = \mu + \xi_j + \zeta_{ij} + \epsilon_{ij}
+$$ {#eq-combined_lvls}
+
+For the expected value of the observed effect size to be the population average, $\mathbb{E}(\hat{\theta}_{ij}) = \mu$, the random effects at the different levels and the sampling variance are assumed independent: $\text{Cov}(\xi_j, \zeta_{ij}) = \text{Cov}(\xi_j, \epsilon_{ij}) = \text{Cov}(\zeta_{ij}, \epsilon_{ij}) = 0$. Therefore, (1) unconditional sampling variance of the effect size is the sum of Level 3 and Level 2 heterogeneity, and the known sampling variance: $\text{Var}(\hat{\theta}_{ij}) = \sigma^2_{\xi} +\sigma^2_{\zeta} + v_{ij}$, (2) the effect sizes within the same study share the same covariance $\text{Cov}(\hat{\theta}_{ij}, \hat{\theta}_{kj}) = \sigma^2_{\xi}$, and (3) the effect sizes in different studies are independent $\text{Cov}(\hat{\theta}_{ij}, \hat{\theta}_{mn}) = 0$ [@cheung2014].[^methods-3] In other words, observations are organized as a series of independent groups, where the marginal variance-covariance matrix ($\mathbf{M}$) of the estimates account for the variance structure of the data. Since the effect sizes from different studies are assumed to be independent, the matrix takes a block-diagonal form. Where each block corresponds to a single study, with the diagonal elements representing the total variance for each outcome, and the off-diagonal elements within each block representing the shared between-study variance. The blocks themselves are independent, reflecting the assumption that there is no covariance between outcomes from different studies.
+
+Let each study $j$ have two reported outcomes ($N_j = 2$) and $\text{J}$ represent the total number of studies, then $\mathbf{M}$ is structured as:
+
+$$
+\mathbf{M} = \begin{pmatrix}
+\hat{\sigma}^2_{\xi} + \hat{\sigma}^2_{\zeta} + v_{11} &
+\hat{\sigma}^2_{\xi} & 0 & 0 &... & 0   \\ 
+\hat{\sigma}^2_{\xi} & 
+\hat{\sigma}^2_{\xi} + \hat{\sigma}^2_{\zeta} + v_{21} &   
+ 0 & 0 &...&0 \\
+\vdots & \vdots  & \vdots   & \vdots & \ddots & \vdots \\
+0 & 0 & 0 & 0 & \hat{\sigma}^2_{\xi} + \hat{\sigma}^2_{\zeta} + v_{1 \text{J}} &
+ \hat{\sigma}^2_{\xi} \\
+0 & 0 & 0 & 0 & \hat{\sigma}^2_{\xi} &
+\hat{\sigma}^2_{\xi} + \hat{\sigma}^2_{\zeta} + v_{2 \text{J}}
+\end{pmatrix}
+$$ {#eq-varcovar}
+
+The random-effects model can be extended to a mixed-effects model (also referred to as a meta-regression) by including study characteristics as covariates (predictors). Let $x$ denote the value covariate, where $p'$ refers to the number of covariates included in the model. These covariates can be either be $x_{ij}$ for a Level 2 covariate, or Level 3 covariate $x_j$ if the same for all effect sizes in study $j$ . The mixed-effect model is
+
+$$
+\hat{\theta}_{ij} = \mu + \beta_1 x_{ij1} + .... + \beta_{p'} x_{jp'} + \xi_j + \zeta_{ij} + \epsilon_{ij}
+$$ {#eq-meta_reg}
+
+The assumptions here remain the same as @eq-combined_lvls, but the heterogeneity ($\sigma^2_{\xi}, \sigma^2_{\zeta}$) is the variability among the true effects which is not explained by the included covariates [@cheung2014; @viechtbauer2010]. The aim of the mixed-effects model is to examine the extent to which the included covariates in the model influence the overall population average $\mu$ and the heterogeneity $\sigma^2_{\xi}$ and $\sigma^2_{\zeta}$ [@viechtbauer2010].
+:::
+
+[^methods-2]:
+    ::: {style="text-align: justify"}
+    A model accounting only for sampling variance is referred to as a fixed-effects model, where it is assumed that all studies included in the meta-analysis share a single true effect size, and therefore, the only source of variation between effect sizes is the sampling variance. The fixed-effects model assumes homogeneity across studies and allows for conditional inference about the specific set of studies included in the analysis, without accounting for variability that might arise from differences between studies. The inclusion of the random effects (at Level 2 and 3) means that as well as sampling variance, the heterogeneity due to differing between and within study features are also taken into account [@schwarzer_meta-analysis_2015, pp. 34; @wang2023; @harrer2022]. The addition random effect components allows one to make unconditional inferences about the population from which the included studies are a random sample.
+    :::
+
+[^methods-3]: where $k$ indexes the effect size study $j$ and $m$ effect size in study $n$ where $n \neq j$
+
+::: {style="text-align: justify"}
+![(Place holder) Illustration of the 3 level random effects meta analysis model. At Level 1: The observed effects $\hat{\theta}_{ij}$ are modelled as random draws from a normal distribution centred around the true effect size $\theta_{ij}$, with known sampling variance $v_{ij}$. Observations from larger sample sizes $n_{ij}$​ have smaller sampling variances, which are represented by the narrower distribution around $\hat{\theta}_{1j}$ compared to $\hat{\theta}_{2j}$. At Level 2: The true effects $\theta_{ij}$, from each study are modelled as normally distributed with mean $\kappa_{j}$ and within-study variance $\sigma^2_{\zeta}$. Large deviations of $\theta_{ij}$ from $\kappa_{j}$ indicate substantial within-study differences. In the mixed-effects model, the inclusion of Level 2 covariates $x_{ij}$ aiims to reduce within-study heterogeneity $\sigma^2_{\zeta}$ by explaining part of this variability. Lastly, at Level 3, study average effects are modelled as normally distributed with mean $\mu$ and between-study variance $\sigma^2_{\xi}$. A large $\sigma^2_{\xi}$ suggests substantial differences across studies, and the inclusion of Level 3 covariates $x_{j}$ aims to explain this heterogeneity.](figures/fig_levels.png){#fig-lvls alt="Illustration of the parameters for a 3 level random effects meta analysis model" width="493"}
+:::
+
+::: {style="text-align: justify"}
+In this way, meta-analytic models are essentially, special cases of the general linear (mixed effects) model with heteroscedastic sampling variances which are assumed to be known [@viechtbauer2010]. Therefore, the random- and mixed-effects models are fit by first by estimating the amount of (residual) heterogeneity ($\sigma^2_{\zeta}$ and $\sigma^2_{\xi}$), and then, the parameters defined above are estimated via weighted least squares with weights. There are several methods[^methods-4] to estimate $\sigma^2_{\zeta}$ and $\sigma^2_{\xi}$ heterogeneity. This study uses the restricted maximum likelihood (REML) method. The estimated heterogeneity terms are then used to aggregate the primary study results using inverse-variance weighting [@borenstein_book2009]. In inverse-variance weighting, the effect size estimates with the lowest variance (higher sample sizes) are given more weight (because they are more precise) [@viechtbauer2010]. If the model was only taking into account the sampling variance then the weights are equal to $w_{ij} = 1/v_{ij}$. In this case there are three sources of heterogeneity the sum of which the is the model implied variances of the estimates, therefore $w_{ij} = 1/(\hat{\sigma}^2_{\xi}+\hat{\sigma}^2_{\zeta}+v_{ij})$. However covariance between the effects needs to be taken into account, therefore the marginal variance-covariance matrix of the estimates is used (see @eq-varcovar). Let $\mathbf{W} = \mathbf{M^{-1}}$ be the weight matrix, and, $w_{ij}$ correspond to the $i$-th row and the $j$-th column of $\mathbf{W}$, and let $\hat{\theta}_i$ be the $i-$th estimate (with $i = 1, ..., N$[^methods-5]). Then the estimate of overall population average (summary effect) $\hat{\mu}$ for the random-effects model (without covariances, i.e. intercept-only model), is given by [@pustejovsky; @viechtbauer_weights]
+
+$$
+\begin{aligned}
+&\ \hat{\mu} = \frac{ \sum_{i= 1}^{N} (\sum_{j=1}^{N} w_{ij}) \hat{\theta}_{ij}}
+{\sum_{j=1}^{N}\sum_{i= 1}^{N} w_{ij}}\\
+&\ \text{with } \\
+&\ \overline{\sigma}^2 = \text{Var}(\hat{\mu}) = \frac{1}{\sum_{i= 1}^{N} (\sum_{j=1}^{N}) w_{ij}} \\
+\end{aligned}
+$$ {#eq-mu}
+
+This is equivalent to the generalized least squares estimate for the fixed effects, given by [@viechtbauer_weights];
+
+$$
+\mathbf{b}= (\mathbf{X'WX})^{-1}\mathbf{X'W}\mathbf{y}
+$$ {#eq-GLS}
+
+Where $\mathbf{y}$ is the vector of observed effects ($\hat{\theta}_{ij}$), $\mathbf{X}$ is the design matrix corresponding to the fixed effects, in the random-effects model case this is a single column of 1's as there are no predictors, but in the mixed effects model, $\mathbf{X}$ has $p'+1$ columns. In the mixed effects case the estimated parameters are $\mu$ and $\beta_{p'}$'s ($\mathbf{b}$). Following the recommendation of @assink2016, t-distribution was applied to assess the significance of individual regression coefficients in meta-analytic models, as well as to construct confidence intervals.
+
+To assess the significance of heterogeneity in the true effect sizes, the Cochran's Q statistic is used, with the null hypothesis assuming homogeneity of effect sizes. As defined by @cheung2014:
+
+$$
+\begin{aligned}
+&\ H_0: \theta_{ij} = \theta \\
+&\ Q = \sum^{n}_{ij=1}w_{ij}(\hat{\theta}_{ij} - \hat{\mu}_{\text{fixed}})^2 \\
+&\ \text{where}\\
+&\ w_{ij} = \frac{1}{v_{ij}}, \\
+&\ \hat{\mu}_{\text{fixed}} =  \frac{\sum w_{ij} \hat{\theta}_{ij}}{\sum w_{ij}} 
+\end{aligned} 
+$$ {#eq-Qstat}
+
+Here $N$ is the total number of effect sizes. Under the null hypothesis Cochran's $Q$ has an approximate chi-squared distribution with $N -1$ degrees of freedom. Note, under the null hypothesis there are no cluster effects (no effect of the dependence) therefore the random effect terms are not considered for $w_{ij}$ [@cheung2014]. The magnitude heterogeneity can be assessed using Higgins and Thompson's $I^2$, which reflects the proportion of total variation that is not attributable to sampling error (i.e. due to within- and between- study heterogeneity). Therefore $I^2_{(\text{Level 2})}$ and Level 3 $I^2_{(\text{Level 3})}$ are defined as follows [@cheung2014]:
+
+$$
+\begin{aligned}
+&\ I^2_{(2)} = \frac{\hat{\sigma}^2_{\zeta}}{\hat{\sigma}^2_{\zeta} + \hat{\sigma}^2_{\xi} + \tilde{v}} \\
+&\ \\
+&\ I^2_{(3)} = \frac{\hat{\sigma}^2_{\xi}}{\hat{\sigma}^2_{\zeta} + \hat{\sigma}^2_{\xi} + \tilde{v}}
+\end{aligned}
+$$ {#eq-Istat}
+
+Since the sampling variance varies across studies there are different ways to define the total variation [@cheung2014]. Here $\tilde{v}$ is the typical sampling variance, defined as:
+
+$$
+\tilde{v} = \frac{(N - 1) \sum w_{ij}}{(\sum w_{ij})^2 - \sum w_{ij}^2}, \\
+$$ {#eq-typical_var}
+
+Lastly, the percentage of variance explained by the mixed-effects can be quantified using $R^2$, where $R^2_{(2)}$ and $R^2_{(3)}$ are the variance explained at Level 2 and Level 3 [@cheung2014]; $$
+\begin{aligned}
+&\ R^2_{(2)} = 1 - \frac{\hat{\sigma}^2_{\zeta(1)}}{\hat{\sigma}^2_{\zeta (0)}} \\
+&\ \\
+&\ R^2_{(3)} = 1 - \frac{\hat{\sigma}^2_{\xi(1)}}{\hat{\sigma}^2_{\xi(0)}}
+\end{aligned}
+$$ {#eq-r2}
+
+where, $\hat{\sigma}^2_{\zeta(0)}$​ and $\hat{\sigma}^2_{\zeta(1)}$ represent Level 2 variances, and $\hat{\sigma}^2_{\xi(0)}$ and $\hat{\sigma}^2_{\xi(1)}$ represent Level 3 variances, before and after including predictors.
+
+The multi-model inference function from the `dmetar` package was used to select the best combination of covariates (i.e., the best model). This technique models all possible covariate combinations and compares them using an information-theoretic approach such as Akaike's Information Criterion (AIC) or Bayesian Information Criterion (BIC) [@harrer2022, chap. 8]. Additionally, it assesses the importance of each covariate. Covariate importance is calculated by summing the Akaike weights (or probabilities) of the models in which the covariate appears [@viechtbauer_modelselc]. Covariates that frequently appear in high-weight models are assigned higher importance values, indicating their consistent inclusion in the best-performing models[@viechtbauer_modelselc; @harrer2022, chap. 8][^methods-6].
+
+#### Unweighted Approach
+
+The unweighted least squares gives an estimate of the simple (unweighted) average of the population effect, given by [@laird1990] $$
+\hat{\mu}_{_\text{UW}} = \frac{\sum \hat{\theta}_{ij}}{N}
+$$ {#eq-unweighted}
+
+Unlike in the weighted approach methods, the observations from the primary studies, $\hat{\theta}_{ij}$ are not assumed to originate from a distribution. The study results are the unit of analysis rather than the sample components, therefore the Level 1 variance component is ignored. The unweighted effects model, focuses on between-study variance [@hall2018]. It achieves standard meta-analysis goals, such as describing central tendency, variance, and moderator effects, through an unconditional random effects approach[@hall2018]. A practical advantage of the unweighted model is that the effect sizes can be analyzed using standard descriptive and inferential statistics, t-tests, ANCOVA [see @khatami_meta-analysis_2016] and regression[see @hall2023].
+
+#### Assumption of normality
+
+The methods outlined assume that the distribution the effect size; if the number of studies collected is sufficiently large and the observed proportions are centred around 0.5, proportions follow an approximately symmetrical binomial distribution, making the normal distribution a good approximation [@wang2023]. However, in practice observed proportional data is rarely centred around 0.5 [@wang2023]. In this context in particular, the distribution of overall accuracy is likely skewed to the left as models are designed to maximize predictive power. Although the performance is dependent on the complexity and the quality of the data and some models could perform worse than random, their accuracies will not be much lower than 0.5, while well-performing models can achieve significantly higher accuracies, causing the center of accuracies to be pulled toward 1. In @khatami_meta-analysis_2016, the range of collected overall accuracy was between $14.0 \text{ to } 98.7\%$, with a median overall accuracy of $81.1 \% \text{ (IQR = } 68.9, 89.7 )$.
+
+To address skewed observed proportions, transformation methods are applied, most commonly the logit or log-odds transformation. However, this method may not be appropriate in cases where the observed proportions are extremely low (near 0) or extremely high (near 1), as the transformations and their sampling variances can become undefined. In such cases, the Freeman-Tukey Transformation (FTT) is more appropriate, providing a more robust approach to dealing with skewed distributions of overall accuracy, especially when dealing with extreme values [@wang2023; @borgesmigliavaca2020]. The FTT is calculated as follows [@freeman1950; @viechtbauer_web]:
+
+$$
+\hat{\theta}^{\text{FT}}_{ij}=g(\hat{\theta}_{ij}) = \frac{1}{2} \cdot \left( \text{arcsin} \sqrt{\frac{s_{ij}}{n_{ij}+1}} + \text{arcsin} \sqrt{\frac{s_{ij}+1}{n_{ij}+1}} \right) 
+$$ {#eq-FTT}
+
+where $\hat{\theta}^{\text{FT}}_{ij}$ denotes the transformed $\hat{\theta}_{ij}$, with variance: $$
+\text{Var}(\hat{\theta}^{\text{FT}}_{ij}) = v_{ij} = \frac{1}{4n_{ij} +2}
+$$ {#eq-FTT_var}
+
+To return to the pooled effect sizes natural scale, the @barendregt2013 back transformation is used, as instructed by @wang2023:
+
+```{r eval=FALSE, echo=FALSE}
+# from https://github.com/wviechtb/metafor/blob/master/R/transf.r#L198
+# shorted version of how the back transformation function is defined 
+#"
+transf.ipft.hm <- function(xi, targs) {            # inverse of Freeman-Tukey transformation for a collection of proportions
+   #.....
+   nhm <- 1/(mean(1/ni, na.rm=TRUE))               # calculate harmonic mean of the ni's
+   zi <- suppressWarnings(1/2 * (1 - sign(cos(2*xi)) * sqrt(1 - (sin(2*xi)+(sin(2*xi)-1/sin(2*xi))/nhm)^2)))
+  #.....
+}
+# as suggested by Wang (2023) in the targ argument assigned: 
+targ = list(ni=1/(pes.da.lvl3$se)^2)
+#"
+# therefore the backtransformation is:
+```
+
+$$
+\hat{\mu}^{\text{B-FT}} = \frac{1}{2}
+\left( 1- \text{sign(cos}(2\hat{\mu}^{\text{FT}})) \cdot
+\sqrt{1 - \left(
+\text{sin}(2\hat{\mu}^\text{FT}) + 
+\frac{\text{sin}(2\hat{\mu}^\text{FT})- 1 / \text{sin}(2\hat{\mu}^\text{FT})}
+{1/\overline{\sigma}^2_{\text{FT}}} 
+ \right) ^2} \right)
+$$ {#eq-FTT_back}
+
+where $\hat{\mu}^{\text{FT}}$ is the (pooled) overall population average and $\overline{\sigma}^2_{\text{FT}}$ is the pooled variance in the transformed scale [@wang2023].
+:::
+
+[^methods-4]:
+    ::: {style="text-align: justify"}
+    For the different methods and specifics see [@veroniki2015]
+    :::
+
+[^methods-5]: Note $N = \sum^J_{j=1}N_j$ i.e. the total number of included effect sizes.
+
+[^methods-6]: Important to note that the models will be refit from an REML to ML to make these comparisons [see @harrer2022, chap. 8]

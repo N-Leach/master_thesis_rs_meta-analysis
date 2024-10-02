@@ -1,0 +1,28 @@
+## Table of Notation {.unnumbered .unlisted}
+
+The following table....
+
+| Notation             | Section         | Definition                                                                                                                                                                                                                  |
+|-------------|-------------|--------------------------------------------|
+| $$ m_{rc} $$         | @sec-background | The number of instances where the actual class is $r$ and the predicted class is $c$. Where $r$, is the row index, representing the actual class (reference) and $c$ is the column index, representing the predicted class. |
+| $$ m_{r.}, m_{.c} $$ | @sec-background | The total number of instances of class $r$ (sum of row $r$). The total number of instances predicted as class $c$ (sum of column $c$).                                                                                      |
+| $$ n $$              | @sec-background | The total number of instances in the dataset (sum of all cells).                                                                                                                                                            |
+| $$ s $$              | @sec-background | Correctly classified instances                                                                                                                                                                                              |
+| $$i, j$$             | @sec-methods    |                                                                                                                                                                                                                             |
+| $$ n $$              |                 |                                                                                                                                                                                                                             |
+|                      |                 |                                                                                                                                                                                                                             |
+
+# Table of Abbreviation  {.unnumbered .unlisted}
+
+| Abbreviation  | Section    | Definition?                    |
+|---------------|------------|--------------------------------|
+| SDGs          | @sec-intro | Sustainable Development Goals  |
+| NSI           |            | National Statistical Institute |
+|               |            |                                |
+|               |            |                                |
+|               |            |                                |
+|               |            |                                |
+|               |            |                                |
+|               |            |                                |
+|               |            |                                |
+|               |            |                                |

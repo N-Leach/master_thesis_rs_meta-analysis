@@ -1,0 +1,82 @@
+% Using title page template from Leiden Uni. 
+\newlength{\drop}             
+\drop=0.1\textheight            % Set drop to 10% of text height
+
+
+$if(has-frontmatter)$
+\frontmatter
+$endif$
+
+
+
+$if(title)$
+\cleardoublepage
+\thispagestyle{empty}
+% Logo
+\includegraphics[width=\textwidth, height = 3cm]{images/ul.logo.png} 
+
+\vspace{2pt}\vspace{-\baselineskip} % Whitespace between lines
+	\rule{\textwidth}{0.4pt}\par % Thin horizontal line
+	
+\vspace{0.8\drop} % Whitespace between the top lines and title
+
+{\centering
+
+{\Huge\bfseries $title$ \par}
+$if(subtitle)$
+\vspace{3ex}
+{\Large\bfseries $subtitle$ \par}
+$endif$
+
+\vspace{0.65\drop} % Whitespace 
+
+% Author name
+
+$for(by-author)$
+{\Huge $by-author.name.literal$ \par}
+
+\vspace{0.5\drop}
+
+% Supervisor selection : (To do: add to design)
+	\large {Thesis advisor: Dr. J. Burger\textsuperscript{1} \\
+		Thesis advisor: Dr. J. Klingwort\textsuperscript{1}\\ 
+		Thesis advisor: Prof. Dr. Mark de Rooij\textsuperscript{2}
+	}\par
+	\vfill
+$if(thesis.supervisor.url)$%
+\href{$thesis.supervisor.url$} % Supervisor name - remove the \href bracket to remove the link  
+$else$%
+
+$endif$
+
+
+
+{\large Defended on $date$ \par}
+
+\vspace{0.5\baselineskip}
+\vspace*{0.05\drop}
+
+
+
+{\bfseries\large MASTER THESIS \par}
+\vspace*{0.05\drop}
+$for(by-author.affiliations)$%
+$if(it.department)$%
+{\bfseries\large $it.department$ \par}
+\vspace*{0.05\drop}
+$endif$%
+{\bfseries\large $it.name$ \par}
+$endfor$$endfor$%
+}
+%\rule{\textwidth}{0.4pt}\par % Thin horizontal line
+	\vspace{2pt}\vspace{-\baselineskip} % Whitespace between lines
+	\rule{\textwidth}{1pt}\par % Thick horizontal line
+	
+
+% supervior affication 
+
+{\footnotesize \textsuperscript{1}Department of Research and Development, Statistics Netherlands (CBS), Heerlen, The Netherlands \\
+\textsuperscript{2}Department of Methodology and Statistics, Leiden University, Leiden, The Netherlands} 
+$endif$
+
+

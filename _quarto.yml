@@ -1,0 +1,104 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Evaluating the Performance of Machine Learning Models in Remote Sensing for Sustainable Development Goals: A Meta-Analysis"
+  author: 
+  - name: "Nina Maria Leach"
+    affiliations:
+        - name: "UNIVERSITEIT LEIDEN"
+          department: "STATISTICS AND DATA SCIENCE"
+  sidebar: 
+    background: "#F5F5F5"
+    logo: images/ul.logo.png
+    search: true
+  date: " 2024"
+ 
+  chapters:
+    - index.qmd
+    #- frontmatter/acknowledgement.qmd
+    - frontmatter/abstract.qmd
+    - frontmatter/abbreviations_notation.qmd
+    - chapters/intro.qmd
+    - chapters/background.qmd
+    - chapters/methods.qmd
+    - chapters/results.qmd
+    - chapters/discussion.qmd
+    - references.qmd
+  #appendices: 
+  # - appendix/app1-paper_selection.qmd
+
+  
+  search:
+    location: navbar
+    type: overlay
+  output-file: leach
+  downloads:
+    -  pdf
+
+
+# table of content and depth of numbering set at chapter level  
+toc: true
+number-depth: 1
+
+execute:
+  warning: false
+  massage: false
+
+
+
+bibliography: references.bib
+csl: apa7.csl
+
+format-links: true
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    include-in-header: 
+      text: |
+        \usepackage{booktabs}
+        \usepackage{setspace}
+        \usepackage{longtable}
+        \usepackage{lscape}
+        \newcommand{\blandscape}{\begin{landscape}}
+        \newcommand{\elandscape}{\end{landscape}}
+        \usepackage{float}
+        \floatplacement{table}{H}
+        \pagenumbering{gobble}
+        
+    fig-pos: 'H'
+    template-partials:
+      - frontmatter/before-body.tex
+    documentclass: report
+    classoption: ["open=any"]
+    latex_engine: xelatex
+    extra_dependencies: ["setspace", "geometry"]
+    latex-max-runs: 3
+   
+    keep-tex: false
+    link-citations: true
+    colorlinks: false
+    papersize: a4
+    fontsize: 11pt
+    
+    linestretch: 1.5
+    geometry:
+      - inner=1.9cm
+      - outer=1.9cm
+      - top=1.9cm
+      - bottom=3cm
+      - headsep=10pt
+      - headheight=11pt
+      - footskip=33pt
+      - ignorehead
+      - ignorefoot
+      - heightrounded
+    
+
+
+
+editor: visual
+
