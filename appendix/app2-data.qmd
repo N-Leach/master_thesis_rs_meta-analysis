@@ -1,84 +1,167 @@
-# Data wrangling 
+# Data wrangling
+
+The following code shows how I combined the data from different sources and grouped the variables. For the final that see [Github repository.](https://github.com/N-Leach/master_thesis_rs_meta-analysis/tree/main/data)
 
 ```{r}
-## Features extracted from the relevant papers
-extracted_features <- read_excel("data/extracted_features.xlsx", sheet = "Include",  na = "NA")
-extracted_features <- extracted_features|>
-  mutate(DOI = tolower(DOI)) 
+source("../appendix/packages.R")
 
-## total set of papers after duplicates removed
-citations<- read.csv("data/citations.csv")
-citations <- citations|>
-  mutate(DOI = tolower(DOI))
-# citation number data
+# Manualy extracted features from poteniatly relevant papers
+extracted_features <- read_excel("data/extracted_features.xlsx", sheet = "Include", na = "NA")
+extracted_features <- extracted_features |> mutate(DOI = tolower(DOI))
+
+# Citation data from zeotero
+citations <- read.csv("data/citations.csv")
+citations <- citations |> mutate(DOI = tolower(DOI))
+
+# Citation number data from OpenAlex
 open_alex <- read.csv("data/OpenAlex.csv")
 open_alex <- open_alex[, c("DOI", "globalCitationsCount")]
-open_alex <- open_alex|>
-  mutate(DOI = tolower(DOI)) 
+open_alex <- open_alex |> mutate(DOI = tolower(DOI))
 
-## murging first author and year for study label
+# For study label/study ID: merging first author and year 
 citations$AuthorYear <- paste(sapply(strsplit(citations$Author, ", "), 
                                      `[`, 1), "et al.", 
                               citations$Publication.Year)
 
-## Joining the reference data with the extracted feature data
-citations_needed<- subset(citations, DOI %in% extracted_features$DOI, 
-                          select = c(DOI, AuthorYear, Publication.Title, Publication.Year))
+# Join the publication details with the extracted features
+citations_needed <- subset(citations, DOI %in% extracted_features$DOI, 
+                           select = c(DOI, AuthorYear, 
+                                      Publication.Title, 
+                                      Publication.Year))
 
 dat <- inner_join(citations_needed, extracted_features, by = "DOI")
 
-# adding global citation number 
-dat <- left_join(dat,open_alex, by = "DOI")
+# Add global citation number from OpenAlex
+dat <- left_join(dat, open_alex, by = "DOI")
 
-### columns that are factors 
-cols_to_factor<- c("SDG_theme", "classification_type", "model_group", "ancillary", 
-                   "indices", "RS_device_type", "RS_device_group",  
-                   "RS_spectral_bands_no","RS_spatital_resolution_m",  
-                   "Confusion_matrix")
+# Study features: factors
+cols_to_factor <- c("SDG_theme", "classification_type", "model_group", "ancillary",
+                    "indices", "RS_device_type", "RS_devices", "RS_device_group",
+                    "RS_spectral_bands_no", "RS_spatital_resolution_m",
+                    "Confusion_matrix")
 
+# Select and clean the final dataset for analysis
+my_data <- subset(dat, !is.na(total), # Omit studies without totals
+                  select = c("DOI", "AuthorYear", "Publication.Year", 
+                             "globalCitationsCount", "location", cols_to_factor,
+                             "OA_reported", "number_classes", 
+                             "fraction_majority_class", "total"))
 
-my_data <- subset(dat, !(is.na(total)), # omitting studies without totals 
-               # needed columns 
-               select = c("DOI", "AuthorYear", "Publication.Year", 
-                          "globalCitationsCount", "location", cols_to_factor,
-                          "OA_reported", "number_classes", 
-                          "fraction_majority_class", "total" ))
+# Regroup the extracted features: at least 5 for each group
 
-
-
-
-## Regrouping the extracted features: at least 5 for each group  
-### ML models
 my_data$model_group <- ifelse((my_data$model_group == "Neural Networks" | 
-                                 my_data$model_group == "Tree-Based Models"), 
-                          my_data$model_group,"Other") # other is SVM and KNN 
+                               my_data$model_group == "Tree-Based Models"), 
+                              my_data$model_group, "Other")
+
 my_data$model_group <- factor(my_data$model_group, 
-                             levels = c("Neural Networks", "Tree-Based Models",
-                                        "Other"))
-my_data$no_band_group <- with(my_data, ifelse(RS_spectral_bands_no == "Not Reported", "Not Reported",
-                        ifelse(RS_spectral_bands_no %in% c(1, 4, 5), "Low",
-                        ifelse(RS_spectral_bands_no %in% c(7, 8, 9, 10, 11, 13, 14), "Mid", NA))))
+                              levels = c("Neural Networks", "Tree-Based Models", "Other"))
 
 
-## Remote Sensing Spatial resolution
-my_data$RS_spatital_res_grouped <- ifelse(my_data$RS_spatital_resolution_m<1, ">1", 
-                                      ifelse(my_data$RS_spatital_resolution_m>10 &
-                                               my_data$RS_spatital_resolution_m<30,
-                                             "15-25", my_data$RS_spatital_resolution_m))
-## reorder RS_device group
+## Group the number of bands (low, mid, not reported)
+my_data$no_band_group <- with(my_data, 
+                              ifelse(RS_spectral_bands_no == "Not Reported", 
+                                     "Not Reported", 
+                             ifelse(RS_spectral_bands_no %in% c(1, 4, 5), 
+                                    "Low", 
+                             ifelse(RS_spectral_bands_no %in% 
+                                      c(7, 8, 9, 10, 11, 13, 14), 
+                                    "Mid", NA)))
+                             )
+
+# Group remote sensing spatial resolution
+my_data$RS_spatital_res_grouped <- ifelse(my_data$RS_spatital_resolution_m < 1, 
+                                          ">1 metres",
+                                  ifelse(my_data$RS_spatital_resolution_m >= 10 & 
+                                         my_data$RS_spatital_resolution_m <= 30, 
+                                         "10-30 metres", 
+                                         my_data$RS_spatital_resolution_m))
+
+#  ## maybe this is better: 
+# my_data$RS_spatital_res_grouped <- ifelse(my_data$RS_spatital_resolution_m !=
+#                                             "Not Reported", "Reported",  
+#                                           my_data$RS_spatital_resolution_m)
+
+# Reorder RS_device_group
 my_data$RS_device_group <- factor(my_data$RS_device_group, 
-                             levels = c("Sentinel", "Landsat", "Other", "Not Reported"))
+                                  levels = c("Sentinel", "Landsat", 
+                                             "Other", "Not Reported"))
 
-my_data[cols_to_factor] <- lapply(my_data[cols_to_factor], as.factor)
+# SDG
+my_data$SDG_theme <- factor(my_data$SDG_theme, levels = c("SDG2: Zero Hunger", 
+                                                          "SDG11: Sustainable Cities", 
+                                                          "SDG15: Life on Land"))
 
+# Label for ancillary
+my_data$ancillary <- factor(my_data$ancillary, 
+                            levels = c(0, 1), 
+                            labels = c("Remote Sensing Only", "Ancillary Data Included"))
 
-# making by paper estimate id 
+# Label for indices
+my_data$indices <- factor(my_data$indices, 
+                          levels = c(0, 1), 
+                          labels = c("Not Used", "Used"))
+my_data$Confusion_matrix <- factor(my_data$Confusion_matrix, 
+                            levels = c(0, 1), 
+                            labels = c("Not Reported", "Reported"))
+
+# Estimate ID (esid) based on each study (AuthorYear)
 my_data <- my_data |> group_by(AuthorYear) |> mutate(esid = row_number())
 
+# Event (s_ij) variable for analysis of proportions
+my_data$event <- my_data$total * my_data$OA_reported
 
-### analysis of proportions done as event/sample size so making an event variable
-my_data$event <- my_data$total*my_data$OA_reported
-
-### saving data for analysis 
+# Save the final dataset for analysis
 write.csv(my_data, "../data/analysis_df.csv")
+
+
+```
+
+The following assesses whether any categorical variables in the dataset had values that are unique to a single study. First, the relevant categorical variables, including features like remote sensing device type and spatial resolution are selected. A function is defined to group each variable by its values and count the number of distinct papers associated with each value. The tables show the number of papers, effect sizes, and highlights the specific study name if that category is only represented by a single source. The number of effect sizes is always greater than 5, however there are a few instances that only one study contributed to a category.
+
+```{r}
+categorical_cols <- c("SDG_theme", "classification_type", "model_group", "ancillary", 
+                      "indices", "RS_device_group", "RS_devices", "RS_device_type",
+                      "RS_device_group", "no_band_group", 
+                      "RS_spatital_res_grouped", "Confusion_matrix")
+
+check_single_study <- function(df, var_name) {
+  df %>%
+    group_by_at(var_name) %>% 
+    summarise(unique_studies = n_distinct(AuthorYear)) %>% 
+    filter(unique_studies == 1) %>% 
+    summarise(total_entries = n()) %>% 
+    pull(total_entries) > 0
+}
+
+single_study_vars <- categorical_cols[sapply(categorical_cols, 
+                                             function(v) check_single_study(my_data, v))]
+
+count_studies_effect_sizes_and_study <- function(df, var_name) {
+  df %>%
+    group_by_at(var_name) %>%
+    summarise(count_papers = n_distinct(AuthorYear),  # Count distinct papers
+              count_effect_sizes = n(),  # Count total number of effect sizes
+              study = ifelse(count_papers == 1, first(AuthorYear), NA)) %>%  #name if count is 1
+    arrange(desc(count_papers))
+}
+
+# Loop through the categorical variables and count the number of papers,
+    ## effect sizes, study name given if unique
+count_values_list <- list()
+for (var in single_study_vars) {
+  count_values <- count_studies_effect_sizes_and_study(my_data, var)
+  count_values_list[[var]] <- count_values
+}
+
+
+for (var in names(count_values_list)) {
+  print(count_values_list[[var]])
+}
+
+```
+
+For tables and figures labels for the variable names
+
+```{r}
+names(my_data)
 ```
