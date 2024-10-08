@@ -1,28 +1,9 @@
----
-execute:
-  echo: false
-  message: false
-  warning: false
-  enabled: true
----
-
-```{r setup}
-#packages used for this chapter 
-library(tidyverse)
-library(readxl)
-library(jtools)
-library(kableExtra)
-theme_set(theme_apa())
-# common theme specification  
-common_theme <- theme(
-  plot.title = element_text(size = 10),
-  axis.title.x = element_text(size = 8),
-  axis.title.y = element_text(size = 8),
-  axis.text = element_text(size = 8)
-)
-```
-
 # Background {#sec-background style="text-align: justify"}
+
+```{r set-up}
+source("../appendix/packages.R")
+source("../appendix/feature_labels.R")
+```
 
 ## Remote Sensing
 

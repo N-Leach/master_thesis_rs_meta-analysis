@@ -1,9 +1,6 @@
-::: {format=pdf}
 # Forward {.unnumbered .unlisted}
-
 The following research is a meta-analysis on performace of machine learning models remote sensing monitoring of Sustainable Development Goals. This was an expository research assessing if study feastures can explain variation in study results. To my knowledge there is currently no published research using weighted meta-analysis techniques in this context. The research tried to follow the PRISMA guidlines where possible, but because of exposporitory nature of this research, both in terms of the research itself but also my own understanding and exporation into meta-analysis methods pre-registration was not done.
 
 This thesis was predominatly redered directly from Quarto into PDF format, with only minor stylistic adjustments made at the end. Therefore, the code to rereder the entre project is avaliable on [github](https://github.com/N-Leach/master_thesis_rs_meta-analysis). A HTML (link) version is also available, where code chunks are displayed in-line with the corresponding sections, offering a seamless integration of the analysis and narrative. The data analysis and appendixes are also available in this format This interactive format allows readers to engage with the code directly in the context of the research findings.
 
 In addition, the official Leiden University template has been fully integrated into the Quarto book format used for this thesis. Future students and researchers can easily reuse this template, streamlining the formatting and presentation process for their own work.
-:::

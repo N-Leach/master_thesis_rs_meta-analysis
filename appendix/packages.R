@@ -55,3 +55,19 @@ library(gt)
 ############# MAP
 library(sf)
 library(rnaturalearth)
+
+
+############ backrgound 
+#packages used for this chapter 
+library(tidyverse)
+library(readxl)
+library(jtools)
+library(kableExtra)
+theme_set(theme_apa())
+# common theme specification  
+common_theme <- theme(
+  plot.title = element_text(size = 10),
+  axis.title.x = element_text(size = 8),
+  axis.title.y = element_text(size = 8),
+  axis.text = element_text(size = 8)
+)
