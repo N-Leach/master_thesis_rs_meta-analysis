@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>3&nbsp; Methods – Evaluating the Performance of Machine Learning Models in Remote Sensing for Sustainable Development Goals: A Meta-Analysis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/results.html" rel="next">
+<link href="../chapters/background.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/methods.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Methods</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../images/ul.logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Evaluating the Performance of Machine Learning Models in Remote Sensing for Sustainable Development Goals: A Meta-Analysis</a> 
+        <div class="sidebar-tools-main">
+    <a href="../leach.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Forward</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../frontmatter/abstract.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Abstract</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../frontmatter/abbreviations_notation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Table of Notation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/background.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">common theme specification</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/methods.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Methods</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/results.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Results</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/discussion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Discussion</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#specific-inclusion-and-exclusion-criteria" id="toc-specific-inclusion-and-exclusion-criteria" class="nav-link active" data-scroll-target="#specific-inclusion-and-exclusion-criteria">Specific inclusion and exclusion criteria</a></li>
+  <li><a href="#feature-collection" id="toc-feature-collection" class="nav-link" data-scroll-target="#feature-collection">Feature collection</a></li>
+  <li><a href="#statistical-analysis" id="toc-statistical-analysis" class="nav-link" data-scroll-target="#statistical-analysis">Statistical analysis</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-methods" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Methods</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div style="text-align: justify">
+<p>The methods adopted in this study are delineated in sequential steps, following the framework proposed by <span class="citation" data-cites="debray2017">Debray et al. (<a href="../references.html#ref-debray2017" role="doc-biblioref">2017</a>)</span>. Additionally, all procedures and reporting were conducted in compliance with the Preferred Reporting Items for Systematic Reviews and Meta-Analyses (PRISMA) guidelines <span class="citation" data-cites="page2021">(<a href="../references.html#ref-page2021" role="doc-biblioref">Page et al., 2021</a>)</span>. For the statistical analyses <code>metafor</code> <span class="citation" data-cites="viechtbauer2010">(<a href="../references.html#ref-viechtbauer2010" role="doc-biblioref">Viechtbauer, 2010</a>)</span> and <code>dmetar</code> <span class="citation" data-cites="dmetar">(<a href="../references.html#ref-dmetar" role="doc-biblioref">Harrer et al., 2019</a>)</span> packages the were used.</p>
+<section id="formulating-the-review-question-and-protocol" class="level2">
+<h2 class="anchored" data-anchor-id="formulating-the-review-question-and-protocol">Formulating the review question and protocol</h2>
+<p>The PICOTS (population, intervention, comparison, outcome, timing, and setting) system was used to frame the review aims for this analysis <span class="citation" data-cites="debray2017">(<a href="../references.html#ref-debray2017" role="doc-biblioref">Debray et al., 2017</a>)</span>. Based on this framework, the question was formulated as follows: In studies focused on SDGs, how heterogeneous is the performance of ML applied to various remote sensing applications, and what study features account for any observed differences in model performance?</p>
+</section>
+</div>
+<div id="tbl-PICOTS" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-PICOTS-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.1: PICOTS framework
+</figcaption>
+<div aria-describedby="tbl-PICOTS-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Item</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left; width: 2cm;">Population</td>
+<td style="text-align: left; width: 12cm;">Studies monitoring SDGs.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 2cm;">Intervention</td>
+<td style="text-align: left; width: 12cm;">Application of ML models to remote sensing data.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 2cm;">Comparison</td>
+<td style="text-align: left; width: 12cm;">Comparison of different ML models and methodologies used in remote sensing applications.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 2cm;">Outcomes</td>
+<td style="text-align: left; width: 12cm;">Variability in the OA of ML models in monitoring SDGs.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 2cm;">Timing</td>
+<td style="text-align: left; width: 12cm;">Studies that focused on predicting current conditions rather than predicting future changes</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 2cm;">Setting</td>
+<td style="text-align: left; width: 12cm;">Various geographic locations and environmental settings where remote sensing data is applied for SDG monitoring.</td>
+</tr>
+</tbody><tfoot>
+<tr class="odd">
+<td style="text-align: left; padding: 0;"><span style="font-style: italic;">Note: </span></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0;"><sup></sup> PICOTS framework items and corresponding role in structuring this review.</td>
+<td style="text-align: left;"></td>
+</tr>
+</tfoot>
+
+</table>
+
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+<div style="text-align: justify">
+<p>The data collected for this report was extracted from peer-reviewed articles published between January 2018 and December 2023. These articles were gathered (on January 15 and 16, 2024) from several academic databases, including ScienceDirect and Taylor &amp; Francis Online, as shown in <a href="#fig-prisma" class="quarto-xref">Figure&nbsp;<span>3.3</span></a>. To reduce potential bias from database coverage <span class="citation" data-cites="hansen_how_2022 tawfik_step_2019">(<a href="../references.html#ref-hansen_how_2022" role="doc-biblioref">Hansen et al., 2022</a>; <a href="../references.html#ref-tawfik_step_2019" role="doc-biblioref">Tawfik et al., 2019</a>)</span>, several academic databases were used. While Google Scholar can be useful for supplementary searches and grey literature, it is generally considered unsuitable as the primary sourse for systematic reviews <span class="citation" data-cites="gusenbauer_which_2020">(<a href="../references.html#ref-gusenbauer_which_2020" role="doc-biblioref">Gusenbauer &amp; Haddaway, 2020</a>)</span>. Furthermore, Google Scholar searches results are not fully reproducible <span class="citation" data-cites="gusenbauer_which_2020">(<a href="../references.html#ref-gusenbauer_which_2020" role="doc-biblioref">Gusenbauer &amp; Haddaway, 2020</a>)</span> and search result references that cannot be downloaded in batches.The search terms were “remote sensing” AND “machine learning” AND “sustainable development goals.” The search results from these databases were downloaded in RIS format and imported into Zotero for further processing.Duplicate articles were handled using Zotero’s “merge duplicates” function.</p>
+</div>
+<section id="specific-inclusion-and-exclusion-criteria" class="level2">
+<h2 class="anchored" data-anchor-id="specific-inclusion-and-exclusion-criteria">Specific inclusion and exclusion criteria</h2>
+<p>After removing review articles and non-research papers, a total of 811 relevant articles remained. Of these potentially relevant papers, 35% were published in 2023, highlighting the growth of research in this field. The trend, as illustrated in <a href="#fig-pubs" class="quarto-xref">Figure&nbsp;<span>3.1</span></a>, is consistent with other similar research, for example, <span class="citation" data-cites="ekmen2024">Ekmen &amp; Kocaman (<a href="../references.html#ref-ekmen2024" role="doc-biblioref">2024</a>)</span>, which reported a sharp increase in publications related to ML and RS for SDG monitoring.</p>
+<div id="fig-pubs" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pubs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="methods_files/figure-html/no_pubs-1.png" class="img-fluid figure-img" width="384"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pubs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.1: Publication increase between 2018 and 2022.
+</figcaption>
+</figure>
+</div>
+<p>Due to the large number of papers remaining, a random sample of 200 articles was drawn for title and abstract screening. These potentially relevant articles were screened independently by three reviewers (the author and two internal supervisors) using the R package <code>metagear</code> <span class="citation" data-cites="metagear">(<a href="../references.html#ref-metagear" role="doc-biblioref">Lajeunesse, 2016</a>)</span>. The papers were selected according to the following criteria: a) publications utilizing remote sensing and ML techniques, (b) indication of a quality assessment for example overall accuracy. <a href="#tbl-keywords" class="quarto-xref">Table&nbsp;<span>3.2</span></a> shows the words highlighted in the abstract screening phase to aid the reviewers and <a href="#fig-metagearGUI" class="quarto-xref">Figure&nbsp;<span>3.2</span></a> shows the user interface highlighting these keywords.</p>
+<div id="tbl-keywords" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-keywords-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.2: Keywords
+</figcaption>
+<div aria-describedby="tbl-keywords-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Category</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Keywords</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left; width: 3cm;">General</td>
+<td style="text-align: left; width: 11cm;">empirical, result, predictive, analysis, sustainable development goal, sustainable development</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 3cm;">Data related</td>
+<td style="text-align: left; width: 11cm;">remotely sensed, remote sensing, satellite, earth observation</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 3cm;">Models</td>
+<td style="text-align: left; width: 11cm;">deep learning, machine learning, classification, classifier, regression, supervised, test set, training set, cart, svm, rf, ann, random forest, support vector machine, regression tree, decision tree, neural network, boosting, bagging, gradient, bayes</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 3cm;">Quality metrics</td>
+<td style="text-align: left; width: 11cm;">overall accuracy, accuracy, coefficient of determination, rmse, mse, f1, precision, auc, roc, recall, sensitivity, specificity, mean absolute error, error, mae</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 3cm;">To omit</td>
+<td style="text-align: left; width: 11cm;">systematic review, meta-analysis, review</td>
+</tr>
+</tbody><tfoot>
+<tr class="even">
+<td style="text-align: left; padding: 0;"><span style="font-style: italic;">Note: </span></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0;"><sup></sup> Keywords highlighted by the `metagear` user interface during abstract screening phase as a visual cue to speed up the screening process.</td>
+<td style="text-align: left;"></td>
+</tr>
+</tfoot>
+
+</table>
+
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+<div id="fig-metagearGUI" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-metagearGUI-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/metagear_gui.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="517">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-metagearGUI-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.2: Metagear graphical user interface: Example of the metagear abstract screener interface, with key words highlighted. On the bottom left the reviewer can select whether the paper is relevant.
+</figcaption>
+</figure>
+</div>
+<div style="text-align: justify">
+<p>As shown in <a href="#fig-prisma" class="quarto-xref">Figure&nbsp;<span>3.3</span></a>, of the 200 abstracts screened only 57 were deemed potentially relevant by all three reviewers. To have comparable performance metrics it decided to focus on papers related to classification. The titles and abstracts of the 57 articles were screened using <code>metagear</code> dividing them to classification (40) and regression (17) papers. In the 40 papers, overall accuracy was the most commonly reported outcome metric and therefore it was decided to include all papers that report overall accuracy.</p>
+</div>
+<div id="fig-prisma" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-prisma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/fig_PRISMA2020.png" class="quarto-figure quarto-figure-center figure-img" width="487" height="700">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-prisma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.3: PRIMSA flow diagram of manuscript selection. The records were identified from databases including Web of Science (WOS), ScienceDirect, PubMed, Journal Storage (JSTOR), American Geophysical Union Publications (Agupubs), EBSCO, IEEE Xplore, Multidisciplinary Digital Publishing Institute (MDPI), ProQuest, and Taylor &amp; Francis Online (Tandfonline), no papers were gathered from official registers. Note: number of records removed four where not journal articles and 27 were omitted for being reviews. A random sample of 200 of the total 884 was drawn and reviewed by three independent reviewers. A total of 57 records were left, 40 of which were deemed to be classification papers and the full text screened.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="feature-collection" class="level2" style="text-align: justify">
+<h2 class="anchored" data-anchor-id="feature-collection">Feature collection</h2>
+<p>Using the first 10 papers and previous systematic reviews, a list of potential study features was created and structured in a table for data collection. <a href="#tbl-exf" class="quarto-xref">Table&nbsp;<span>3.3</span></a> outlines all the extracted features and study identification information. The features in the table are grouped according to their use in the analysis. These features include methodology and data characteristics, which provide information about the complexity of the classification tasks (e.g., the number of output classes) and the proportion of the majority class, indicating potential class imbalance issues that can affect the performance of classification models. Remote sensing-specific information was also gathered, including the type of devices, spectral bands, and spatial resolution to assess how data collection impacts performance. The reported overall accuracy is the effect size of interest, and the sample size is important for the weighted meta-analysis. The other features are used to help explain some variation in effect sizes. The sample size is also used as a feature, as larger sample sizes might influence overall accuracy. Of the extracted features, the number of spectral bands and spatial resolution were categorized due to high levels of non-reporting. The type of remote sensing device was excluded because only one study did not use satellite data, and the specifics of the spectral bands used were too different to make meaningful groups. Several potentially useful features were not recorded, including temporal resolution (the frequency of data collection) and pre-processing steps, which also impact the performance of the model. These were excluded as the differences between papers were too large to make groups. The number of citations was gathered using the Local Citation Network web app, which collects article metadata from OpenAlex—a bibliographic catalog of scientific papers <span class="citation" data-cites="openalex">(<a href="../references.html#ref-openalex" role="doc-biblioref">Priem et al., 2022</a>)</span><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+</section>
+<div id="tbl-exf" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-exf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.3: Extracted features
+</figcaption>
+<div aria-describedby="tbl-exf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-condensed caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">Feature</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">Definition</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">Ranges/Categories Adopted</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd" data-grouplength="5">
+<td colspan="3" style="border-bottom: 1px solid"><strong>Study Identification and Information</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5cm; padding-left: 2em;" data-indentlevel="1">DOI</td>
+<td style="text-align: left; width: 8cm;">Paper ID</td>
+<td style="text-align: left; width: 8cm;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5cm; padding-left: 2em;" data-indentlevel="1">Authors</td>
+<td style="text-align: left; width: 8cm;">Name(s) of authors</td>
+<td style="text-align: left; width: 8cm;">First auther and publication year used as study label.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5cm; padding-left: 2em;" data-indentlevel="1">Title</td>
+<td style="text-align: left; width: 8cm;">Title of the article</td>
+<td style="text-align: left; width: 8cm;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5cm; padding-left: 2em;" data-indentlevel="1">Publication Name</td>
+<td style="text-align: left; width: 8cm;">Name of journal that published the paper</td>
+<td style="text-align: left; width: 8cm;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5cm; padding-left: 2em;" data-indentlevel="1">Location</td>
+<td style="text-align: left; width: 8cm;">Location of the data used (country level)</td>
+<td style="text-align: left; width: 8cm;">-</td>
+</tr>
+<tr class="odd" data-grouplength="2">
+<td colspan="3" style="border-bottom: 1px solid"><strong>Used in Incercepted Only Model</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5cm; padding-left: 2em;" data-indentlevel="1">Overall Accuracy</td>
+<td style="text-align: left; width: 8cm;">Effect size of interest</td>
+<td style="text-align: left; width: 8cm;">0.65 - 1.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5cm; padding-left: 2em;" data-indentlevel="1">Sample Size</td>
+<td style="text-align: left; width: 8cm;">The sample size (i.e.: number of pixels, or objects)</td>
+<td style="text-align: left; width: 8cm;">259 - 75,782,016</td>
+</tr>
+<tr class="even" data-grouplength="14">
+<td colspan="3" style="border-bottom: 1px solid"><strong>Features Added to Mixed Effect Model</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5cm; padding-left: 2em;" data-indentlevel="1">Publication Year</td>
+<td style="text-align: left; width: 8cm;">Year of publication</td>
+<td style="text-align: left; width: 8cm;">2018 - 2023</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5cm; padding-left: 2em;" data-indentlevel="1">SDG Theme</td>
+<td style="text-align: left; width: 8cm;">Area of research</td>
+<td style="text-align: left; width: 8cm;">SDG2: Zero Hunger, SDG11: Sustainable Cities, SDG15: Life on Land</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5cm; padding-left: 2em;" data-indentlevel="1">Classification Type</td>
+<td style="text-align: left; width: 8cm;">Unit of analysis in the primary study</td>
+<td style="text-align: left; width: 8cm;">Object-level, Pixel-level, Unclear</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5cm; padding-left: 2em;" data-indentlevel="1">Model Group</td>
+<td style="text-align: left; width: 8cm;">Exact algorithm recorded, grouped for analysis</td>
+<td style="text-align: left; width: 8cm;">Tree-Based Models, Neural Network, Other</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5cm; padding-left: 2em;" data-indentlevel="1">Ancillary Data</td>
+<td style="text-align: left; width: 8cm;">Use of non-RS data in the model</td>
+<td style="text-align: left; width: 8cm;">Remote Sensing Only, Ancillary Data Included</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5cm; padding-left: 2em;" data-indentlevel="1">Indices</td>
+<td style="text-align: left; width: 8cm;">Use of indices to enhance analysis</td>
+<td style="text-align: left; width: 8cm;">Used, Not Used</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5cm; padding-left: 2em;" data-indentlevel="1">Remote Sensing Type</td>
+<td style="text-align: left; width: 8cm;">Category of remote sensing</td>
+<td style="text-align: left; width: 8cm;">Active, Passive, Combined, Not Reported</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5cm; padding-left: 2em;" data-indentlevel="1">Device Group</td>
+<td style="text-align: left; width: 8cm;">Specific device extracted, then grouped</td>
+<td style="text-align: left; width: 8cm;">Landsat, Sentinel, Other, Not Reported</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5cm; padding-left: 2em;" data-indentlevel="1">Number of Spectral Bands</td>
+<td style="text-align: left; width: 8cm;">Number of spectral bands used</td>
+<td style="text-align: left; width: 8cm;">Low, Mid, Not Reported</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5cm; padding-left: 2em;" data-indentlevel="1">Spatial Resolution</td>
+<td style="text-align: left; width: 8cm;">Spatial resolution in meters</td>
+<td style="text-align: left; width: 8cm;">30, 15-25, 10, &lt;1, Not Reported</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5cm; padding-left: 2em;" data-indentlevel="1">Confusion Matrix</td>
+<td style="text-align: left; width: 8cm;">Whether a confusion matrix was present</td>
+<td style="text-align: left; width: 8cm;">Reported, Not Reported</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5cm; padding-left: 2em;" data-indentlevel="1">Number of Classes</td>
+<td style="text-align: left; width: 8cm;">The number of classes predicted</td>
+<td style="text-align: left; width: 8cm;">2 - 13</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5cm; padding-left: 2em;" data-indentlevel="1">Majority-class Proportion</td>
+<td style="text-align: left; width: 8cm;">The proportion of the largest class</td>
+<td style="text-align: left; width: 8cm;">0.142 - 0.995</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5cm; padding-left: 2em;" data-indentlevel="1">Number of Citations</td>
+<td style="text-align: left; width: 8cm;">Number of times the study has been cited</td>
+<td style="text-align: left; width: 8cm;">0 - 68</td>
+</tr>
+<tr class="odd" data-grouplength="2">
+<td colspan="3" style="border-bottom: 1px solid"><strong>Features Excluded</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5cm; padding-left: 2em;" data-indentlevel="1">Device</td>
+<td style="text-align: left; width: 8cm;">Type of remote sensing device</td>
+<td style="text-align: left; width: 8cm;">Satellite, Aerial Photographic Images</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5cm; padding-left: 2em;" data-indentlevel="1">Spectral Bands</td>
+<td style="text-align: left; width: 8cm;">Special bands used</td>
+<td style="text-align: left; width: 8cm;">-</td>
+</tr>
+</tbody><tfoot>
+<tr class="even">
+<td style="padding: 0"><span style="font-style: italic;">Note: </span></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td style="padding: 0"><sup></sup> The Intercept-only Model and Mixed Effect Model are described in the following section.</td>
+<td></td>
+<td></td>
+</tr>
+</tfoot>
+
+</table>
+
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+<section id="statistical-analysis" class="level2" style="text-align: justify">
+<h2 class="anchored" data-anchor-id="statistical-analysis">Statistical analysis</h2>
+<p>A meta-analysis is a statistical method that aggregates results from several primary studies to assess and interpret the collective evidence on a specific topic or research question. Specifically, the aim is to (a) determine the average (summary) effect, (b) establish the degree of heterogeneity between effect sizes, and (c) access if study characteristics can explain any of the heterogeneity of the effect sizes <span class="citation" data-cites="cheung2014">(<a href="../references.html#ref-cheung2014" role="doc-biblioref">Cheung, 2014</a>)</span>. In this case the effect size (dependent variable) of interest is the overall accuracy. Let <span class="math inline">\(\hat{\theta}_{ij}\)</span> be the <span class="math inline">\(i-\)</span>th observed effect size in study <span class="math inline">\(j\)</span> (where <span class="math inline">\(i = 1, ..., k_j\)</span>, <span class="math inline">\(j = 1, ..., n\)</span>). From <a href="background.html#eq-OA" class="quarto-xref">Equation&nbsp;<span>2.1</span></a>, the overall accuracy is the proportion of correctly classified instances, therefore, the effect size is:</p>
+<p><span id="eq-theta"><span class="math display">\[
+\begin{aligned}
+&amp;\ \hat{\theta}_{ij} = \frac{s_{ij}}{m_{ij}}\\
+&amp;\ v_{ij} = \frac{\hat{\theta}_{ij}(1-\hat{\theta}_{ij})}{m_{ij}}
+\end{aligned}
+\tag{3.1}\]</span></span> where <span class="math inline">\(s_{ij}\)</span> is the number of successful predictions and <span class="math inline">\(m_{ij}\)</span> is total number of pixels or objects classified.</p>
+<section id="weighted-approach" class="level4">
+<h4 class="anchored" data-anchor-id="weighted-approach">Weighted Approach</h4>
+<p>Before conducting the meta-analysis, first the structure of the collected data and assumption of independence of effect sizes need to be addressed. In the context of this research, dependencies are introduced since all reported effect sizes from each study are included. The degree of dependence between effect sizes can be categorized as either known or unknown <span class="citation" data-cites="cheung2014">(<a href="../references.html#ref-cheung2014" role="doc-biblioref">Cheung, 2014</a>)</span>. Multivariate meta-analytic techniques use known dependencies reported in the primary studies, such as reported correlation coefficients <span class="citation" data-cites="cheung2014">(<a href="../references.html#ref-cheung2014" role="doc-biblioref">Cheung, 2014</a>)</span>. However, dependency estimates between outcomes are rarely reported <span class="citation" data-cites="assink2016">(<a href="../references.html#ref-assink2016" role="doc-biblioref">Assink &amp; Wibbelink, 2016</a>)</span>. Therefore, to model these unknown dependencies a 3-level random-effects meta-analytic model is used. The three-level meta-analysis approach models three different variance components distributed over three levels:</p>
+<p>At level 1, the sampling variance of the effect sizes is modeled as: <span id="eq-lvl1"><span class="math display">\[
+\begin{aligned}
+&amp;\ \text{Level 1:  } \hat{\theta}_{ij} = \theta_{ij} + \epsilon_{ij}, \\
+&amp;\  \epsilon_{ij} \sim \mathcal{N}(0, v_{ij}).\\
+\end{aligned}
+\tag{3.2}\]</span></span></p>
+<p>The observed overall accuracy <span class="math inline">\(\hat{\theta}_{ij}\)</span> is an estimate of overall accuracy from experiment <span class="math inline">\(i\)</span> in study <span class="math inline">\(j\)</span> and is modelled as the true overall accuracy, <span class="math inline">\(\theta_{ij}\)</span> and error component <span class="math inline">\(\epsilon_{ij}\)</span> which is normally distributed with mean <span class="math inline">\(0\)</span> and known variance <span class="math inline">\(v_{ij}\)</span>. A model that only takes into account sampling variance is referred to as a fixed-effects model, where it is assumed that all studies included in the meta-analysis share a single true effect size, and therefore, the only source of variation between effect sizes is the sampling variance. The fixed-effects model assumes homogeneity across studies and allows for conditional inference about the specific set of studies included in the analysis, without accounting for variability that might arise from differences between studies. The inclusion of the random effects (at level 2 and 3) means that as well as sampling variance, the heterogeneity due to differing between and within study features are also taken into account <span class="citation" data-cites="schwarzer_meta-analysis_2015 wang2023 harrer2022">(<a href="../references.html#ref-harrer2022" role="doc-biblioref">Harrer et al., 2022</a>; <a href="../references.html#ref-schwarzer_meta-analysis_2015" role="doc-biblioref">Schwarzer et al., 2015, p. 34</a>; <a href="../references.html#ref-wang2023" role="doc-biblioref">Wang, 2023</a>)</span>. Therefore, the addition random effect components allow one to make unconditional inferences about the population from which the included studies are a random sample.</p>
+<p>At level 2, within-study heterogeneity (<span class="math inline">\(\sigma^2_{\text{level2}}\)</span>) is modelled as: <span id="eq-lvl2"><span class="math display">\[
+\begin{aligned}
+&amp;\ \text{Level 2:  } \theta_{ij} = \kappa_j + \zeta_{ij}, \\
+&amp;\  \zeta_{ij} \sim \mathcal{N}(0, \sigma^2_{\text{level2}}).\\
+\end{aligned}
+\tag{3.3}\]</span></span> The true overall accuracy <span class="math inline">\(\theta_{ij}\)</span> is modelled as the average overall accuracy, <span class="math inline">\(\kappa_{j}\)</span> of study <span class="math inline">\(j\)</span> and study-specific heterogeneity <span class="math inline">\(\zeta_{ij}\)</span>, which is normally distributed with mean <span class="math inline">\(0\)</span> and variance <span class="math inline">\(\sigma^2_{\text{level2}}\)</span>.</p>
+<p>Lastly, level 3, the variance between heterogeneity (<span class="math inline">\(\sigma^2_{\text{level3}}\)</span>) is modelled as: <span id="eq-lvl3"><span class="math display">\[
+\begin{aligned}
+&amp;\ \text{Level 3:  } \kappa_j = \mu + \xi_{j}, \\
+&amp;\  \xi_{j} \sim \mathcal{N}(0, \sigma^2_{\text{level3}}).\\
+\end{aligned}
+\tag{3.4}\]</span></span></p>
+<p>The average overall accuracy <span class="math inline">\(\kappa_{j}\)</span> of study <span class="math inline">\(j\)</span> is modelled as the average population effect <span class="math inline">\(\mu\)</span> and between-study heterogeneity <span class="math inline">\(\xi_{j}\)</span>, which is normally distributed with mean <span class="math inline">\(0\)</span> and variance <span class="math inline">\(\sigma^2_{\text{level3}}\)</span>. Combined, the three-level meta-analysis models the observed effect size modelled as the sum of the average population effect <span class="math inline">\(\mu\)</span> and these three error components: <span id="eq-combined_lvls"><span class="math display">\[
+\hat{\theta}_{ij} = \mu + \xi_j + \zeta_{ij} + \epsilon_{ij}.
+\tag{3.5}\]</span></span></p>
+<p>For the expected value of the observed effect size to be the population average, <span class="math inline">\(\mathbb{E}(\hat{\theta}_{ij}) = \mu\)</span>, the random effects at the different levels and the sampling variance are assumed independent: <span class="math inline">\(\text{Cov}(\xi_j, \zeta_{ij}) = \text{Cov}(\xi_j, \epsilon_{ij}) = \text{Cov}(\zeta_{ij}, \epsilon_{ij}) = 0\)</span>. Therefore, (1) unconditional sampling variance of the effect size is the sum of level 3 and level 2 heterogeneity, and the known sampling variance: <span class="math inline">\(\text{Var}(\hat{\theta}_{ij}) = \sigma^2_{\text{level3}} +\sigma^2_{\text{level2}} + v_{ij}\)</span>, (2) the effect sizes within the same study share the same covariance <span class="math inline">\(\text{Cov}(\hat{\theta}_{ij}, \hat{\theta}_{lj}) = \sigma^2_{\text{level3}}\)</span>, and (3) the effect sizes in different studies are independent <span class="math inline">\(\text{Cov}(\hat{\theta}_{ij}, \hat{\theta}_{zu}) = 0\)</span> <span class="citation" data-cites="cheung2014">(<a href="../references.html#ref-cheung2014" role="doc-biblioref">Cheung, 2014</a>)</span><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<p>The random-effects model can be extended to a mixed-effects model (also referred to as a meta-regression) by including study characteristics as covariates (predictors). Let <span class="math inline">\(x\)</span> denote the value covariate, where <span class="math inline">\(b'\)</span> refers to the number of covariates included in the model. These covariates can be either <span class="math inline">\(x_{ij}\)</span> for a level-2 covariate or <span class="math inline">\(x_j\)</span> for a level-3 covariate. The mixed-effect model defined as: <span id="eq-meta_reg"><span class="math display">\[
+\hat{\theta}_{ij} = \mu + \beta_1 x_{ij1} + .... + \beta_{b'} x_{jb'} + \xi_j + \zeta_{ij} + \epsilon_{ij}
+\tag{3.6}\]</span></span> The assumptions here remain the same as <a href="#eq-combined_lvls" class="quarto-xref">Equation&nbsp;<span>3.5</span></a>, but the heterogeneity (<span class="math inline">\(\sigma^2_{\text{level3}}, \sigma^2_{\text{level2}}\)</span>) is the variability among the true effects which is not explained by the included covariates <span class="citation" data-cites="cheung2014 viechtbauer2010">(<a href="../references.html#ref-cheung2014" role="doc-biblioref">Cheung, 2014</a>; <a href="../references.html#ref-viechtbauer2010" role="doc-biblioref">Viechtbauer, 2010</a>)</span>. The aim of the mixed-effects model is to examine the extent to which the included covariates in the model influence the overall population average <span class="math inline">\(\mu\)</span> and the heterogeneity <span class="math inline">\(\sigma^2_{\text{level3}}\)</span> and <span class="math inline">\(\sigma^2_{\text{level2}}\)</span> <span class="citation" data-cites="viechtbauer2010">(<a href="../references.html#ref-viechtbauer2010" role="doc-biblioref">Viechtbauer, 2010</a>)</span>.</p>
+<p>In this way, meta-analytic models are essentially, special cases of the general linear (mixed effects) model with heteroscedastic sampling variances which are assumed to be known <span class="citation" data-cites="viechtbauer2010">(<a href="../references.html#ref-viechtbauer2010" role="doc-biblioref">Viechtbauer, 2010</a>)</span>. Therefore, the random- and mixed-effects models are fit by first by estimating the amount of (residual) heterogeneity (<span class="math inline">\(\sigma^2_{\text{level2}}\)</span> and <span class="math inline">\(\sigma^2_{\text{level3}}\)</span>), and then, the parameters defined above are estimated via weighted least squares with weights. There are several methods to estimate <span class="math inline">\(\sigma^2_{\text{level2}}\)</span> and <span class="math inline">\(\sigma^2_{\text{level3}}\)</span> heterogeneity — see <span class="citation" data-cites="veroniki2015">Veroniki et al. (<a href="../references.html#ref-veroniki2015" role="doc-biblioref">2015</a>)</span> for different methods and specifics. This study uses the (restricted) maximum likelihood method (ML and REML). The estimated heterogeneity terms are then used to aggregate the primary study results using inverse-variance weighting <span class="citation" data-cites="borenstein_book2009">(<a href="../references.html#ref-borenstein_book2009" role="doc-biblioref">Borenstein et al., 2009</a>)</span>. In inverse-variance weighting, the effect size estimates with the lowest variance (higher sample sizes) are given more weight because they are more precise <span class="citation" data-cites="viechtbauer2010">(<a href="../references.html#ref-viechtbauer2010" role="doc-biblioref">Viechtbauer, 2010</a>)</span>. If the model was only taking into account the sampling variance then the weights are equal to <span class="math inline">\(w_{ij} = 1/v_{ij}\)</span>. In this case there are three sources of heterogeneity the sum of which the is the model implied variances of the estimates: <span class="math inline">\(w_{ij} = 1/(\hat{\sigma}^2_{\text{level3}}+\hat{\sigma}^2_{\text{level2}}+v_{ij})\)</span>. However, covariance between the effects needs to be taken into account, therefore the marginal variance-covariance matrix of the estimates.</p>
+<p>To calculate the weights, let <span class="math inline">\(\mathbf{y}\)</span> be a the vector of observed effects (<span class="math inline">\(\hat{\theta}_{ij}\)</span>) of length <span class="math inline">\(n\)</span> (<span class="math inline">\(\mathbf{y} = \hat{\theta}_1, ....., \hat{\theta}_n\)</span>). The observations are organized as a series of independent groups, where the marginal variance-covariance matrix (<span class="math inline">\(\mathbf{M}\)</span>) of the estimates account for the variance structure of the data. Since the effect sizes from different studies are assumed to be independent, the matrix takes a block-diagonal form. Where each block corresponds to a single study, with the diagonal elements representing the total variance for each outcome, and the off-diagonal elements within each block representing the shared between-study variance. The blocks themselves are independent, reflecting the assumption that there is no covariance between outcomes from different studies.</p>
+<p><span id="eq-varcovar"><span class="math display">\[
+\mathbf{M} = \begin{pmatrix}
+\hat{\sigma}^2_{\text{level3}} + \hat{\sigma}^2_{\text{level2}} + v{_{\text{1}}} &amp;
+\hat{\sigma}^2_{\text{level3}} &amp; 0 &amp; 0 &amp;... &amp; 0   \\
+\hat{\sigma}^2_{\text{level3}} &amp;
+\hat{\sigma}^2_{\text{level3}} + \hat{\sigma}^2_{\text{level2}} + v{_{\text{2}}} &amp;   
+0 &amp; 0 &amp;...&amp;0 \\
+\vdots &amp; \vdots  &amp; \vdots &amp; \ddots  &amp; \vdots  &amp; \vdots \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; \hat{\sigma}^2_{\text{level3}} + \hat{\sigma}^2_{\text{level2}}
++ v{_{\text{n-1}}} &amp;
+\hat{\sigma}^2_{\text{level3}} \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; \hat{\sigma}^2_{\text{level3}} &amp;
+\hat{\sigma}^2_{\text{level3}} + \hat{\sigma}^2_{\text{level2}} + v{_{\text{n}}}
+\end{pmatrix}
+\tag{3.7}\]</span></span></p>
+<p>Let <span class="math inline">\(\mathbf{W} = \mathbf{M^{-1}}\)</span> be the weight matrix, where, <span class="math inline">\(w_{rc}\)</span> correspond to the <span class="math inline">\(r\)</span>-th row and the <span class="math inline">\(c\)</span>-th column of <span class="math inline">\(\mathbf{W}\)</span> and let <span class="math inline">\(\hat{\theta_r}\)</span> denote the <span class="math inline">\(r\)</span>-th estimate, with <span class="math inline">\(r = 1, ...., k\)</span>. Then the estimate of summary effect size <span class="math inline">\(\hat{\mu}\)</span> for the random-effects model, without covariances, i.e., intercept-only model, is given by <span class="citation" data-cites="pustejovsky viechtbauer_weights">(<a href="../references.html#ref-pustejovsky" role="doc-biblioref">Pustejovsky, 2020</a>; <a href="../references.html#ref-viechtbauer_weights" role="doc-biblioref">Viechtbauer, 2020</a>)</span></p>
+<p><span id="eq-mu"><span class="math display">\[
+\begin{aligned}
+&amp;\ \hat{\mu} = \frac{ \sum_{r= 1}^{k} (\sum_{c=1}^{k} w_{rc}) \hat{\theta}_{r}}
+{\sum_{r=1}^{k}\sum_{c= 1}^{k} w_{rc}}\\
+&amp;\ \text{with } \\
+&amp;\ \overline{\sigma}^2 = \text{Var}(\hat{\mu}) = \frac{1}{\sum_{r=1}^{k}\sum_{c= 1}^{k} w_{rc}} \\
+\end{aligned}
+\tag{3.8}\]</span></span></p>
+<p>This is equivalent to the generalized least squares estimate for the fixed effects <span class="citation" data-cites="viechtbauer_weights">(<a href="../references.html#ref-viechtbauer_weights" role="doc-biblioref">Viechtbauer, 2020</a>)</span>; <span id="eq-GLS"><span class="math display">\[
+\mathbf{b}= (\mathbf{X'WX})^{-1}\mathbf{X'W}\mathbf{y}
+\tag{3.9}\]</span></span> Where <span class="math inline">\(\mathbf{X}\)</span> is the design matrix corresponding to the fixed effects, in the random-effects model case this is a single column of 1’s as there are no predictors, but in the mixed effects model, <span class="math inline">\(\mathbf{X}\)</span> has <span class="math inline">\(b'+1\)</span> columns. In the mixed effects case the estimated parameters are <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\beta_{b'}\)</span>’s (<span class="math inline">\(\mathbf{b}\)</span>). Following the recommendation of <span class="citation" data-cites="assink2016">Assink &amp; Wibbelink (<a href="../references.html#ref-assink2016" role="doc-biblioref">2016</a>)</span>, t-distribution was applied to assess the significance of individual regression coefficients in meta-analytic models, as well as to construct confidence intervals.</p>
+</section>
+</section>
+<div style="text-align: justify">
+<div id="fig-lvls" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lvls-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/fig_levels.png" class="img-fluid figure-img" width="371">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lvls-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.4: (Place holder) Illustration of the 3-level random effects meta-analysis model. At level-1: The observed effects <span class="math inline">\(\hat{\theta}_{ij}\)</span> are modelled as random draws from a normal distribution centred around the true effect size <span class="math inline">\(\theta_{ij}\)</span>, with known sampling variance <span class="math inline">\(v_{ij}\)</span>. Observations from larger sample sizes <span class="math inline">\(m_{ij}\)</span> have smaller sampling variances, which are represented by the narrower distribution around <span class="math inline">\(\hat{\theta}_{1j}\)</span> compared to <span class="math inline">\(\hat{\theta}_{2j}\)</span>. At Level 2: The true effects <span class="math inline">\(\theta_{ij}\)</span>, from each study are modelled as normally distributed with mean <span class="math inline">\(\kappa_{j}\)</span> and within-study variance <span class="math inline">\(\sigma^2_{\text{level2}}\)</span>. Large deviations of <span class="math inline">\(\theta_{ij}\)</span> from <span class="math inline">\(\kappa_{j}\)</span> indicate substantial within-study differences. In the mixed-effects model, the inclusion of Level 2 covariates <span class="math inline">\(x_{ij}\)</span> aiims to reduce within-study heterogeneity <span class="math inline">\(\sigma^2_{\text{level2}}\)</span> by explaining part of this variability. Lastly, at Level 3, study average effects are modelled as normally distributed with mean <span class="math inline">\(\mu\)</span> and between-study variance <span class="math inline">\(\sigma^2_{\text{level3}}\)</span>. A large <span class="math inline">\(\sigma^2_{\text{level3}}\)</span> suggests substantial differences across studies, and the inclusion of Level 3 covariates <span class="math inline">\(x_{j}\)</span> aims to explain this heterogeneity.
+</figcaption>
+</figure>
+</div>
+</div>
+<div style="text-align: justify">
+<section id="heterogeneity-tests" class="level4">
+<h4 class="anchored" data-anchor-id="heterogeneity-tests">Heterogeneity tests</h4>
+<p>To assess the significance of heterogeneity in the true effect sizes, the Cochran’s Q statistic is used, with the null hypothesis assuming homogeneity of effect sizes. As defined by <span class="citation" data-cites="cheung2014">Cheung (<a href="../references.html#ref-cheung2014" role="doc-biblioref">2014</a>)</span>: <span id="eq-Qstat"><span class="math display">\[
+\begin{aligned}
+&amp;\ H_0: \theta_{r} = \theta \\
+&amp;\ Q = \sum^{k}_{r=1}w_{r}(\hat{\theta}_{r} - \hat{\mu}_{\text{fixed}})^2 \\
+&amp;\ \text{where  } w_{r} = \frac{1}{v_{r}}, \\
+&amp;\ \hat{\mu}_{\text{fixed}} =  \frac{\sum^{k}_{r=1}w_{r} \hat{\theta}_{r}}{\sum^{k}_{r=1}w_{r}}
+\end{aligned}
+\tag{3.10}\]</span></span> Under the null hypothesis Cochran’s <span class="math inline">\(Q\)</span> has an approximate chi-squared distribution with <span class="math inline">\(k -1\)</span> degrees of freedom. Note, under the null hypothesis there are no cluster effects (no effect of the dependence) therefore the random effect terms are not considered for <span class="math inline">\(w_{r}\)</span> <span class="citation" data-cites="cheung2014">(<a href="../references.html#ref-cheung2014" role="doc-biblioref">Cheung, 2014</a>)</span>. The magnitude heterogeneity can be assessed using Higgins and Thompson <span class="citation" data-cites="higgins2002">(<a href="../references.html#ref-higgins2002" role="doc-biblioref">2002</a>)</span> <span class="math inline">\(I^2\)</span>, which reflects the proportion of total variation that is not attributable to sampling error (i.e., due to within- and between- study heterogeneity). Therefore <span class="math inline">\(I^2_{\text{level2}}\)</span> and Level 3 <span class="math inline">\(I^2_{\text{level3}}\)</span> are defined as follows <span class="citation" data-cites="cheung2014">(<a href="../references.html#ref-cheung2014" role="doc-biblioref">Cheung, 2014</a>)</span>:</p>
+<p><span id="eq-Istat"><span class="math display">\[
+\begin{aligned}
+&amp;\ I^2_{\text{ level2}} = \frac{\hat{\sigma}^2_{\text{ level2}}}{\hat{\sigma}^2_{\text{ level2}} + \hat{\sigma}^2_{\text{ level3}} + \tilde{v}} \\
+&amp;\ \\
+&amp;\ I^2_{\text{ level3}} = \frac{\hat{\sigma}^2_{\text{ level3}}}{\hat{\sigma}^2_{\text{ level2}} + \hat{\sigma}^2_{\text{ level3}} + \tilde{v}}
+\end{aligned}
+\tag{3.11}\]</span></span></p>
+<p>where <span class="math inline">\(\tilde{v}\)</span> is the typical sampling variance. Since the sampling variance differ across studies the typical variance is needed to estimate the magnitude. There are different ways to define the total variation <span class="citation" data-cites="cheung2014">(<a href="../references.html#ref-cheung2014" role="doc-biblioref">Cheung, 2014</a>)</span>. Here <span class="math inline">\(\tilde{v}\)</span> defined using Higgins and Thompson <span class="citation" data-cites="higgins2002">(<a href="../references.html#ref-higgins2002" role="doc-biblioref">2002</a>)</span>:</p>
+<p><span id="eq-typical_var"><span class="math display">\[
+\tilde{v} = \frac{(k - 1) \sum^k_{r = 1} \frac{1}{v_{r}}}
+{(\sum^k_{r = 1} \frac{1}{v_{r}})^2 - \sum^k_{r = 1} \frac{1}{v^2_{r}}} \\
+\tag{3.12}\]</span></span></p>
+<p>Lastly, the percentage of variance explained by the mixed-effects can be quantified using <span class="math inline">\(R^2\)</span> <span class="citation" data-cites="cheung2014">(<a href="../references.html#ref-cheung2014" role="doc-biblioref">Cheung, 2014</a>)</span>; <span id="eq-r2"><span class="math display">\[
+\begin{aligned}
+&amp;\ R^2_{\text{ level2}} = 1 - \frac{\hat{\sigma}^2_{\text{ level2}(1)}}{\hat{\sigma}^2_{\text{ level2}(0)}} \\
+&amp;\ \\
+&amp;\ R^2_{\text{ level3}} = 1 - \frac{\hat{\sigma}^2_{\text{ level3}(1)}}{\hat{\sigma}^2_{\text{ level3}(0)}}
+\end{aligned}
+\tag{3.13}\]</span></span></p>
+<p>where, the variance is compaired before<span class="math inline">\(_{(0)}\)</span> and after<span class="math inline">\(_{(1)}\)</span> including predictors.</p>
+</section>
+<section id="model-selection" class="level4">
+<h4 class="anchored" data-anchor-id="model-selection">Model Selection</h4>
+<p>The multi-model inference function from the R package<code>dmetar</code> was used to select the best combination of covariates (i.e., the best model). Instead of sequentially adding or removing covariates (stepwise regression methods) this technique models all possible covariate combinations and compares them using an information-theoretic approach such as Akaike’s Information Criterion (AIC) <span class="citation" data-cites="harrer2022">(<a href="../references.html#ref-harrer2022" role="doc-biblioref">Harrer et al., 2022, Chapter 8</a>)</span>. Additionally, it assesses the importance of each covariate, calculated by summing the Akaike weights (or probabilities) of the models in which the covariate appears <span class="citation" data-cites="viechtbauer_modelselc">(<a href="../references.html#ref-viechtbauer_modelselc" role="doc-biblioref">Viechtbauer, 2022</a>)</span>. Covariates that frequently appear in high-weight models are assigned higher importance values, indicating their consistent inclusion in the best-performing models<span class="citation" data-cites="viechtbauer_modelselc harrer2022">(<a href="../references.html#ref-harrer2022" role="doc-biblioref">Harrer et al., 2022, Chapter 8</a>; <a href="../references.html#ref-viechtbauer_modelselc" role="doc-biblioref">Viechtbauer, 2022</a>)</span>. It is important to note that the models will be refit from an REML to ML to make these comparisons <span class="citation" data-cites="harrer2022">(see <a href="../references.html#ref-harrer2022" role="doc-biblioref">Harrer et al., 2022, Chapter 8</a>)</span>.</p>
+</section>
+<section id="unweighted-approach" class="level4">
+<h4 class="anchored" data-anchor-id="unweighted-approach">Unweighted Approach</h4>
+<p>The unweighted least squares gives an estimate of the simple (unweighted) average of the population effect, given by <span class="citation" data-cites="laird1990">(<a href="../references.html#ref-laird1990" role="doc-biblioref">Laird &amp; Mosteller, 1990</a>)</span> <span id="eq-unweighted"><span class="math display">\[
+\hat{\mu}_{_\text{UW}} = \frac{\sum \hat{\theta}_{r}}{k}
+\tag{3.14}\]</span></span></p>
+<p>Unlike in the weighted approach methods, the observations from the primary studies, <span class="math inline">\(\hat{\theta}_{ij}\)</span> are not assumed to originate from a distribution. The study results are the unit of analysis rather than the sample components, therefore the Level 1 variance component is ignored. The unweighted effects model, focuses on between-study variance <span class="citation" data-cites="hall2018">(<a href="../references.html#ref-hall2018" role="doc-biblioref">J. A. Hall &amp; Rosenthal, 2018</a>)</span>. It achieves standard meta-analysis goals, such as describing central tendency, variance, and moderator effects, through an unconditional random effects approach<span class="citation" data-cites="hall2018">(<a href="../references.html#ref-hall2018" role="doc-biblioref">J. A. Hall &amp; Rosenthal, 2018</a>)</span>. A practical advantage of the unweighted model is that the effect sizes can be analyzed using standard descriptive and inferential statistics, t-tests, ANCOVA <span class="citation" data-cites="khatami_meta-analysis_2016">(see <a href="../references.html#ref-khatami_meta-analysis_2016" role="doc-biblioref">Khatami et al., 2016</a>)</span> and regression<span class="citation" data-cites="hall2023">(see <a href="../references.html#ref-hall2023" role="doc-biblioref">O. Hall et al., 2023</a>)</span>.</p>
+</section>
+<section id="assumption-of-normality" class="level4">
+<h4 class="anchored" data-anchor-id="assumption-of-normality">Assumption of normality</h4>
+<p>The methods outlined assume that the distribution the effect size; if the number of studies collected is sufficiently large and the observed proportions are centred around 0.5, proportions follow an approximately symmetrical binomial distribution, making the normal distribution a good approximation <span class="citation" data-cites="wang2023">(<a href="../references.html#ref-wang2023" role="doc-biblioref">Wang, 2023</a>)</span>. However, in practice observed proportional data is rarely centred around 0.5 <span class="citation" data-cites="wang2023">(<a href="../references.html#ref-wang2023" role="doc-biblioref">Wang, 2023</a>)</span>. In this context in particular, the distribution of overall accuracy is likely skewed to the left as models are designed to maximize predictive power. Although the performance is dependent on the complexity and the quality of the data and some models could perform worse than random, their accuracies will not be much lower than 0.5, while well-performing models can achieve significantly higher accuracies, causing the center of accuracies to be pulled toward 1. In <span class="citation" data-cites="khatami_meta-analysis_2016">Khatami et al. (<a href="../references.html#ref-khatami_meta-analysis_2016" role="doc-biblioref">2016</a>)</span>, the range of collected overall accuracy was between <span class="math inline">\(14.0 \text{ to } 98.7\%\)</span>, with a median overall accuracy of <span class="math inline">\(81.1 \% \text{ (IQR = } 68.9, 89.7 )\)</span>.</p>
+<p>To address skewed observed proportions, transformation methods are applied, most commonly the logit or log-odds transformation. However, this method may not be appropriate in cases where the observed proportions are extremely low (near 0) or extremely high (near 1), as the transformations and their sampling variances can become undefined. In such cases, the Freeman-Tukey (FT) transformation is more appropriate, providing a more robust approach to dealing with skewed distributions of overall accuracy, especially when dealing with extreme values <span class="citation" data-cites="wang2023 borgesmigliavaca2020">(<a href="../references.html#ref-borgesmigliavaca2020" role="doc-biblioref">Borges Migliavaca et al., 2020</a>; <a href="../references.html#ref-wang2023" role="doc-biblioref">Wang, 2023</a>)</span>. The FT is calculated as follows <span class="citation" data-cites="freeman1950 viechtbauer_web">(<a href="../references.html#ref-freeman1950" role="doc-biblioref">Freeman &amp; Tukey, 1950</a>; <a href="../references.html#ref-viechtbauer_web" role="doc-biblioref">Viechtbauer, 2024</a>)</span>:</p>
+<p><span id="eq-FTT"><span class="math display">\[
+\hat{\theta}^{\text{FT}}_{r}=g(\hat{\theta}_{r}) = \frac{1}{2} \cdot \left( \text{arcsin} \sqrt{\frac{s_{r}}{m_{r}+1}} + \text{arcsin} \sqrt{\frac{s_{r}+1}{m_{r}+1}} \right)
+\tag{3.15}\]</span></span></p>
+<p>where <span class="math inline">\(\hat{\theta}^{\text{FT}}_{r}\)</span> denotes the transformed <span class="math inline">\(\hat{\theta}_{r}\)</span>, with variance: <span id="eq-FTT_var"><span class="math display">\[
+\text{Var}(\hat{\theta}^{\text{FT}}_{r}) = v_{r} = \frac{1}{4m_{r} +2}
+\tag{3.16}\]</span></span></p>
+<p>To return to the pooled effect sizes natural scale, the <span class="citation" data-cites="barendregt2013">Barendregt et al. (<a href="../references.html#ref-barendregt2013" role="doc-biblioref">2013</a>)</span> back transformation is used, as instructed by <span class="citation" data-cites="wang2023">Wang (<a href="../references.html#ref-wang2023" role="doc-biblioref">2023</a>)</span>:</p>
+<p><span id="eq-FTT_back"><span class="math display">\[
+\hat{\mu}^{\text{B-FT}} = \frac{1}{2}
+\left( 1- \text{sign(cos}(2\hat{\mu}^{\text{FT}})) \cdot
+\sqrt{1 - \left(
+\text{sin}(2\hat{\mu}^\text{FT}) +
+\frac{\text{sin}(2\hat{\mu}^\text{FT})- 1 / \text{sin}(2\hat{\mu}^\text{FT})}
+{1/\overline{\sigma}^2_{\text{FT}}}
+\right) ^2} \right)
+\tag{3.17}\]</span></span></p>
+<p>where <span class="math inline">\(\hat{\mu}^{\text{FT}}\)</span> is the (pooled) overall population average and <span class="math inline">\(\overline{\sigma}^2_{\text{FT}}\)</span> is the pooled variance, from <a href="#eq-mu" class="quarto-xref">Equation&nbsp;<span>3.8</span></a> but in the transformed scale <span class="citation" data-cites="wang2023">(<a href="../references.html#ref-wang2023" role="doc-biblioref">Wang, 2023</a>)</span>.</p>
+</section>
+</div>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-assink2016" class="csl-entry" role="listitem">
+Assink, M., &amp; Wibbelink, C. J. M. (2016). Fitting three-level meta-analytic models in R: A step-by-step tutorial. <em>The Quantitative Methods for Psychology</em>, <em>12</em>(3), 154–174. <a href="https://doi.org/10.20982/tqmp.12.3.p154">https://doi.org/10.20982/tqmp.12.3.p154</a>
+</div>
+<div id="ref-barendregt2013" class="csl-entry" role="listitem">
+Barendregt, J. J., Doi, S. A., Lee, Y. Y., Norman, R. E., &amp; Vos, T. (2013). Meta-analysis of prevalence. <em>Journal of Epidemiology and Community Health (1979-)</em>, <em>67</em>(11), 974–978. <a href="https://doi.org/10.1136/jech-2013-203104">https://doi.org/10.1136/jech-2013-203104</a>
+</div>
+<div id="ref-borenstein_book2009" class="csl-entry" role="listitem">
+Borenstein, M., Hedges, L. V., Higgins, J. P. T., &amp; Rothstein, H. R. (2009). <em>Introduction to meta-analysis</em>. Wiley.
+</div>
+<div id="ref-borgesmigliavaca2020" class="csl-entry" role="listitem">
+Borges Migliavaca, C., Stein, C., Colpani, V., Barker, T. H., Munn, Z., Falavigna, M., &amp; on behalf of the Prevalence Estimates Reviews Systematic Review Methodology Group (PERSyst). (2020). How are systematic reviews of prevalence conducted? A methodological study. <em>BMC Medical Research Methodology</em>, <em>20</em>(1), 96. <a href="https://doi.org/10.1186/s12874-020-00975-3">https://doi.org/10.1186/s12874-020-00975-3</a>
+</div>
+<div id="ref-cheung2014" class="csl-entry" role="listitem">
+Cheung, M. W. L. (2014). Modeling dependent effect sizes with three-level meta-analyses: A structural equation modeling approach. <em>Psychological Methods</em>, <em>19</em>(2), 211–229. <a href="https://doi.org/10.1037/a0032968">https://doi.org/10.1037/a0032968</a>
+</div>
+<div id="ref-debray2017" class="csl-entry" role="listitem">
+Debray, T. P. A., Damen, J. A. A. G., Snell, K. I. E., Ensor, J., Hooft, L., Reitsma, J. B., Riley, R. D., &amp; Moons, K. G. M. (2017). A guide to systematic review and meta-analysis of prediction model performance. <em>BMJ</em>, i6460. <a href="https://doi.org/10.1136/bmj.i6460">https://doi.org/10.1136/bmj.i6460</a>
+</div>
+<div id="ref-ekmen2024" class="csl-entry" role="listitem">
+Ekmen, O., &amp; Kocaman, S. (2024). Remote sensing for UN SDGs: A global analysis of research and collaborations. <em>The Egyptian Journal of Remote Sensing and Space Sciences</em>, <em>27</em>(2), 329–341. <a href="https://doi.org/10.1016/j.ejrs.2024.04.002">https://doi.org/10.1016/j.ejrs.2024.04.002</a>
+</div>
+<div id="ref-freeman1950" class="csl-entry" role="listitem">
+Freeman, M. F., &amp; Tukey, J. W. (1950). Transformations Related to the Angular and the Square Root. <em>The Annals of Mathematical Statistics</em>, <em>21</em>(4), 607–611. <a href="https://doi.org/10.1214/aoms/1177729756">https://doi.org/10.1214/aoms/1177729756</a>
+</div>
+<div id="ref-gusenbauer_which_2020" class="csl-entry" role="listitem">
+Gusenbauer, M., &amp; Haddaway, N. R. (2020). Which academic search systems are suitable for systematic reviews or meta‐analyses? <span>Evaluating</span> retrieval qualities of <span>Google</span> <span>Scholar</span>, <span>PubMed</span>, and 26 other resources. <em>Research Synthesis Methods</em>, <em>11</em>(2), 181–217. <a href="https://doi.org/10.1002/jrsm.1378">https://doi.org/10.1002/jrsm.1378</a>
+</div>
+<div id="ref-hall2018" class="csl-entry" role="listitem">
+Hall, J. A., &amp; Rosenthal, R. (2018). Choosing between random effects models in meta-analysis: Units of analysis and the generalizability of obtained results. <em>Social and Personality Psychology Compass</em>, <em>12</em>(10), e12414. <a href="https://doi.org/10.1111/spc3.12414">https://doi.org/10.1111/spc3.12414</a>
+</div>
+<div id="ref-hall2023" class="csl-entry" role="listitem">
+Hall, O., Dompae, F., Wahab, I., &amp; Dzanku, F. M. (2023). A review of machine learning and satellite imagery for poverty prediction: Implications for development research and applications. <em>Journal of International Development</em>, <em>35</em>(7), 1753–1768. <a href="https://doi.org/10.1002/jid.3751">https://doi.org/10.1002/jid.3751</a>
+</div>
+<div id="ref-hansen_how_2022" class="csl-entry" role="listitem">
+Hansen, C., Steinmetz, H., &amp; Block, J. (2022). How to conduct a meta-analysis in eight steps: A practical guide. <em>Management Review Quarterly</em>, <em>72</em>(1), 1–19. <a href="https://doi.org/10.1007/s11301-021-00247-4">https://doi.org/10.1007/s11301-021-00247-4</a>
+</div>
+<div id="ref-harrer2022" class="csl-entry" role="listitem">
+Harrer, M., Cuijpers, P., Furukawa, T. A., &amp; Ebert, D. D. (2022). <em>Doing meta-analysis with r: A hands-on guide</em>. CRC Press/Taylor &amp; Francis Group. <a href="https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/">https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/</a>
+</div>
+<div id="ref-dmetar" class="csl-entry" role="listitem">
+Harrer, M., Cuijpers, P., Furukawa, T., &amp; Ebert, D. D. (2019). <em>Dmetar: Companion r package for the guide ’doing meta-analysis in r’</em>. <a href="http://dmetar.protectlab.org/">http://dmetar.protectlab.org/</a>
+</div>
+<div id="ref-higgins2002" class="csl-entry" role="listitem">
+Higgins, J. P. T., &amp; Thompson, S. G. (2002). Quantifying heterogeneity in a meta-analysis. <em>Statistics in Medicine</em>, <em>10</em>, 1539–1558. <a href="https://doi:10.1002/sim.1186">https://doi:10.1002/sim.1186</a>
+</div>
+<div id="ref-khatami_meta-analysis_2016" class="csl-entry" role="listitem">
+Khatami, R., Mountrakis, G., &amp; Stehman, S. V. (2016). A meta-analysis of remote sensing research on supervised pixel-based land-cover image classification processes: <span>General</span> guidelines for practitioners and future research. <em>Remote Sensing of Environment</em>, <em>177</em>, 89–100. <a href="https://doi.org/10.1016/j.rse.2016.02.028">https://doi.org/10.1016/j.rse.2016.02.028</a>
+</div>
+<div id="ref-laird1990" class="csl-entry" role="listitem">
+Laird, N. M., &amp; Mosteller, F. (1990). Some Statistical Methods for Combining Experimental Results. <em>International Journal of Technology Assessment in Health Care</em>, <em>6</em>(1), 5–30. <a href="https://doi.org/10.1017/s0266462300008916">https://doi.org/10.1017/s0266462300008916</a>
+</div>
+<div id="ref-metagear" class="csl-entry" role="listitem">
+Lajeunesse, M. J. (2016). <em>Facilitating systematic reviews, data extraction, and meta-analysis with the metagear package for r</em>. <em>7</em>, 323–330.
+</div>
+<div id="ref-page2021" class="csl-entry" role="listitem">
+Page, M. J., McKenzie, J. E., Bossuyt, P. M., Boutron, I., Hoffmann, T. C., Mulrow, C. D., Shamseer, L., Tetzlaff, J. M., Akl, E. A., Brennan, S. E., Chou, R., Glanville, J., Grimshaw, J. M., Hróbjartsson, A., Lalu, M. M., Li, T., Loder, E. W., Mayo-Wilson, E., McDonald, S., … Moher, D. (2021). The PRISMA 2020 statement: an updated guideline for reporting systematic reviews. <em>BMJ</em>, n71. <a href="https://doi.org/10.1136/bmj.n71">https://doi.org/10.1136/bmj.n71</a>
+</div>
+<div id="ref-openalex" class="csl-entry" role="listitem">
+Priem, J., Piwowar, H., &amp; Orr, R. (2022). <em>OpenAlex: A fully-open index of scholarly works, authors, venues, institutions, and concepts</em>. <a href="https://arxiv.org/abs/2205.01833">https://arxiv.org/abs/2205.01833</a>
+</div>
+<div id="ref-pustejovsky" class="csl-entry" role="listitem">
+Pustejovsky, J. E. (2020). <em>Weighting in multivariate meta-analysis</em>. <a href="https://jepusto.com/posts/weighting-in-multivariate-meta-analysis/" class="uri">https://jepusto.com/posts/weighting-in-multivariate-meta-analysis/</a>.
+</div>
+<div id="ref-schwarzer_meta-analysis_2015" class="csl-entry" role="listitem">
+Schwarzer, G., Carpenter, J. R., &amp; Rücker, G. (2015). <em>Meta-<span>Analysis</span> with <span>R</span></em>. Springer International Publishing. <a href="https://doi.org/10.1007/978-3-319-21416-0">https://doi.org/10.1007/978-3-319-21416-0</a>
+</div>
+<div id="ref-tawfik_step_2019" class="csl-entry" role="listitem">
+Tawfik, G. M., Dila, K. A. S., Mohamed, M. Y. F., Tam, D. N. H., Kien, N. D., Ahmed, A. M., &amp; Huy, N. T. (2019). A step by step guide for conducting a systematic review and meta-analysis with simulation data. <em>Tropical Medicine and Health</em>, <em>47</em>(1), 46. <a href="https://doi.org/10.1186/s41182-019-0165-6">https://doi.org/10.1186/s41182-019-0165-6</a>
+</div>
+<div id="ref-veroniki2015" class="csl-entry" role="listitem">
+Veroniki, A. A., Jackson, D., Viechtbauer, W., Bender, R., Bowden, J., Knapp, G., Kuss, O., Higgins, J. P., Langan, D., &amp; Salanti, G. (2015). Methods to estimate the between-study variance and its uncertainty in meta-analysis. <em>Research Synthesis Methods</em>, <em>7</em>(1), 55–79. <a href="https://doi.org/10.1002/jrsm.1164">https://doi.org/10.1002/jrsm.1164</a>
+</div>
+<div id="ref-viechtbauer2010" class="csl-entry" role="listitem">
+Viechtbauer, W. (2010). Conducting Meta-Analyses in R with the metafor Package. <em>Journal of Statistical Software</em>, <em>36</em>, 1–48. <a href="https://doi.org/10.18637/jss.v036.i03">https://doi.org/10.18637/jss.v036.i03</a>
+</div>
+<div id="ref-viechtbauer_weights" class="csl-entry" role="listitem">
+Viechtbauer, W. (2020). <em>Weights in models fitted with the rma.mv() function</em>. <a href="https://www.metafor-project.org/doku.php/tips:weights_in_rma.mv_models" class="uri">https://www.metafor-project.org/doku.php/tips:weights_in_rma.mv_models</a>.
+</div>
+<div id="ref-viechtbauer_modelselc" class="csl-entry" role="listitem">
+Viechtbauer, W. (2022). <em>Metafor: Model selection using the glmulti and MuMIn packages</em>. <a href="https://www.metafor-project.org/doku.php/tips:model_selection_with_glmulti_and_mumin#variable_importance" class="uri">https://www.metafor-project.org/doku.php/tips:model_selection_with_glmulti_and_mumin#variable_importance</a>.
+</div>
+<div id="ref-viechtbauer_web" class="csl-entry" role="listitem">
+Viechtbauer, W. (2024). <em>Frequently asked questions [the metafor package]: Freeman-tukey transformation of proportions</em>. <a href="https://www.metafor-project.org/doku.php/faq#how_is_the_freeman-tukey_trans" class="uri">https://www.metafor-project.org/doku.php/faq#how_is_the_freeman-tukey_trans</a>.
+</div>
+<div id="ref-wang2023" class="csl-entry" role="listitem">
+Wang, N. (2023). Conducting Meta-analyses of Proportions in R. <em>Journal of Behavioral Data Science</em>, <em>3</em>(2), 64–126. <a href="https://doi.org/10.35566/jbds/v3n2/wang">https://doi.org/10.35566/jbds/v3n2/wang</a>
+</div>
+</div>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>The idea to add the number of citations was added after the analysis was mostly completed. This suggestion was made during a discussion of the project after the preliminary results were presented to the methodology team at the CBS.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Like <span class="math inline">\(i\)</span>, <span class="math inline">\(l\)</span> refers to an effect size within the same study <span class="math inline">\(j\)</span>. <span class="math inline">\(z\)</span> and <span class="math inline">\(u\)</span> refer to effect sizes in different clusters, where <span class="math inline">\(u \neq j\)</span> effect sizes are independent.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/background.html" class="pagination-link" aria-label="common theme specification">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">common theme specification</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/results.html" class="pagination-link" aria-label="Results">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Results</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

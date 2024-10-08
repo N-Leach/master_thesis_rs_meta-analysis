@@ -1,0 +1,1787 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>4&nbsp; Results – Evaluating the Performance of Machine Learning Models in Remote Sensing for Sustainable Development Goals: A Meta-Analysis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/discussion.html" rel="next">
+<link href="../chapters/methods.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/results.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Results</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../images/ul.logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Evaluating the Performance of Machine Learning Models in Remote Sensing for Sustainable Development Goals: A Meta-Analysis</a> 
+        <div class="sidebar-tools-main">
+    <a href="../leach.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Forward</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../frontmatter/abstract.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Abstract</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../frontmatter/abbreviations_notation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Table of Notation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/background.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">common theme specification</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/methods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Methods</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/results.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Results</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/discussion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Discussion</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#descriptive-statistics" id="toc-descriptive-statistics" class="nav-link active" data-scroll-target="#descriptive-statistics">Descriptive Statistics</a></li>
+  <li><a href="#meta-analysis" id="toc-meta-analysis" class="nav-link" data-scroll-target="#meta-analysis">Meta-analysis</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Results</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="descriptive-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="descriptive-statistics">Descriptive Statistics</h2>
+<div style="text-align: justify">
+<p>A total of <span class="math inline">\(n = 20\)</span> studies with <span class="math inline">\(k = 86\)</span> effect sizes were included in this analysis, with each primary study reported between one and 27 results (<span class="math inline">\(1 \leq k_j \leq 27\)</span>). The research area of these studies span 18 countries, <a href="#fig-subfig-map" class="quarto-xref">Figure&nbsp;<span>4.1 (a)</span></a> shows a map indicating the location of each effect size. These primary studies were grouped into three different SDG goals: SDG 2 (Zero Hunger), SDG 11 (Sustainable Cities), and SDG 15 (Life on Land).</p>
+</div>
+<div id="fig-charts" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-charts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell fig-cap-location-top quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-charts" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div class="cell-output-display quarto-layout-cell-subref" data-ref-parent="fig-charts">
+<div id="fig-subfig-map" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="top">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-fig" id="fig-subfig-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Map of researched locations
+</figcaption>
+<div aria-describedby="fig-subfig-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results_files/figure-html/fig-subfig-map-1.png" class="img-fluid figure-img" data-ref-parent="fig-charts" width="480">
+</div>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell fig-cap-location-top quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-charts" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div class="cell-output-display quarto-layout-cell-subref" data-ref-parent="fig-charts">
+<div id="fig-subfig-oa" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="top">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-fig" id="fig-subfig-oa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Reported overall accuracy by study
+</figcaption>
+<div aria-describedby="fig-subfig-oa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results_files/figure-html/fig-subfig-oa-1.png" class="img-fluid figure-img" data-ref-parent="fig-charts" width="672">
+</div>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-charts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.1: Study location and range of reported overall accuracy, colour-coded by SDG goal. Individual outcomes shown as points and mean overall accuracy represented by triangles.
+</figcaption>
+</figure>
+</div>
+<div style="text-align: justify">
+<p><a href="#fig-subfig-oa" class="quarto-xref">Figure&nbsp;<span>4.1 (b)</span></a> and <a href="#tbl-sum" class="quarto-xref">Table&nbsp;<span>4.1</span></a> (bellow) show, the reported overall accuracies are not centered around 0.5. Therefore, a transformation is required. <a href="#fig-transfrom" class="quarto-xref">Figure&nbsp;<span>4.2</span></a> shows the distribution of observed overall accuracy as well as the logit and FT transformation values. FT visually performs better than the Logit transformation. However the Shapiro-Wilk Normality Test shows that the distribution of the FT transformed overall accuracy still departed significantly from normality (<span class="math inline">\(W =\)</span> 0.93, p-value &lt; 0.01). Nevertheless, conducting a meta-analysis remains justified, as these statistical models are generally robust against violations of normality <span class="citation" data-cites="mcculloch2012">(<a href="../references.html#ref-mcculloch2012" role="doc-biblioref">McCulloch &amp; Neuhaus, 2011</a>)</span>.</p>
+</div>
+<div id="fig-transfrom" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-transfrom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="results_files/figure-html/fig_transform-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-transfrom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.2: Distribution of the observed overall accuracy and transformed by logit and FT transformation.
+</figcaption>
+</figure>
+</div>
+<div style="text-align: justify">
+<p><a href="#tbl-sum" class="quarto-xref">Table&nbsp;<span>4.1</span></a> summarises the overall accuracy (effect size of interest), study sample size and the collected study features, including the study features such as sample size, overall accuracy, types of machine learning models used and SDG goal targeted. For the meta-analysis the range of the sample size (259 - 75782016) and overall accuracy (0.6504 - 1) are of importance. Most studies used Neural Networks (48%), followed by Tree-Based Models (45%), and a small portion used other types of models (7%). Regarding SDGs, 44% of the studies aimed at SDG 11 (Sustainable Cities), 43% targeted SDG 15 (Life on Land), and 13% focused on SDG 2 (Zero Hunger).</p>
+</div>
+<div style="page-break-after: always;"></div>
+<div id="tbl-sum" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sum-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.1: Summary table
+</figcaption>
+<div aria-describedby="tbl-sum-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">Feature</th>
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold;">Statistic</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left; width: 7cm;">Overall Accuracy</td>
+<td style="text-align: center; width: 6cm;">0.90 (0.65 - 1.00)</td>
+</tr>
+<tr class="even" data-grouplength="23">
+<td colspan="2" style="text-align: left; border-bottom: 1px solid;"><strong>Study Features</strong></td>
+</tr>
+<tr class="odd" data-grouplength="4">
+<td colspan="2" style="text-align: left; border-bottom: 1px solid;"><strong>Numeric b</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Sample Size</td>
+<td style="text-align: center; width: 6cm;">6,401,352.08 (259.00 - 75,782,016.00)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Number of Citations</td>
+<td style="text-align: center; width: 6cm;">14.84 (2.00 - 68.00)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Number of Classes</td>
+<td style="text-align: center; width: 6cm;">3.71 (2.00 - 13.00)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Majority-class Proportion</td>
+<td style="text-align: center; width: 6cm;">0.72 (0.14 - 1.00)</td>
+</tr>
+<tr class="even" data-grouplength="41">
+<td colspan="2" style="text-align: left; border-bottom: 1px solid;"><strong>Categorical c</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Publication Year</td>
+<td style="text-align: center; width: 6cm;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 6em; width: 7cm;" data-indentlevel="3">2018</td>
+<td style="text-align: center; width: 6cm;">7 (8.1%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 6em; width: 7cm;" data-indentlevel="3">2019</td>
+<td style="text-align: center; width: 6cm;">4 (4.7%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 6em; width: 7cm;" data-indentlevel="3">2020</td>
+<td style="text-align: center; width: 6cm;">30 (35%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 6em; width: 7cm;" data-indentlevel="3">2021</td>
+<td style="text-align: center; width: 6cm;">6 (7.0%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 6em; width: 7cm;" data-indentlevel="3">2022</td>
+<td style="text-align: center; width: 6cm;">13 (15%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 6em; width: 7cm;" data-indentlevel="3">2023</td>
+<td style="text-align: center; width: 6cm;">26 (30%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">SDG Theme</td>
+<td style="text-align: center; width: 6cm;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 6em; width: 7cm;" data-indentlevel="3">SDG11: Sustainable Cities</td>
+<td style="text-align: center; width: 6cm;">38 (44%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 6em; width: 7cm;" data-indentlevel="3">SDG15: Life on Land</td>
+<td style="text-align: center; width: 6cm;">37 (43%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 6em; width: 7cm;" data-indentlevel="3">SDG2: Zero Hunger</td>
+<td style="text-align: center; width: 6cm;">11 (13%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Classification Type</td>
+<td style="text-align: center; width: 6cm;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 6em; width: 7cm;" data-indentlevel="3">Object-level</td>
+<td style="text-align: center; width: 6cm;">46 (53%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 6em; width: 7cm;" data-indentlevel="3">Pixel-level</td>
+<td style="text-align: center; width: 6cm;">36 (42%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 6em; width: 7cm;" data-indentlevel="3">Unclear</td>
+<td style="text-align: center; width: 6cm;">4 (4.7%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Model Group</td>
+<td style="text-align: center; width: 6cm;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 6em; width: 7cm;" data-indentlevel="3">Neural Networks</td>
+<td style="text-align: center; width: 6cm;">41 (48%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 6em; width: 7cm;" data-indentlevel="3">Other</td>
+<td style="text-align: center; width: 6cm;">6 (7.0%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 6em; width: 7cm;" data-indentlevel="3">Tree-Based Models</td>
+<td style="text-align: center; width: 6cm;">39 (45%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em; width: 7cm;" data-indentlevel="1">Ancillary Data</td>
+<td style="text-align: center; width: 6cm;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Remote Sensing Only</td>
+<td style="text-align: center; width: 6cm;">71 (83%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Ancillary Data Included</td>
+<td style="text-align: center; width: 6cm;">15 (17%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em; width: 7cm;" data-indentlevel="1">Indices</td>
+<td style="text-align: center; width: 6cm;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Not Used</td>
+<td style="text-align: center; width: 6cm;">23 (27%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Used</td>
+<td style="text-align: center; width: 6cm;">63 (73%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em; width: 7cm;" data-indentlevel="1">Remote Sensing Type</td>
+<td style="text-align: center; width: 6cm;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Active</td>
+<td style="text-align: center; width: 6cm;">11 (13%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Combined</td>
+<td style="text-align: center; width: 6cm;">7 (8.1%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Not Reported</td>
+<td style="text-align: center; width: 6cm;">7 (8.1%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Passive</td>
+<td style="text-align: center; width: 6cm;">61 (71%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em; width: 7cm;" data-indentlevel="1">Device Group</td>
+<td style="text-align: center; width: 6cm;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Landsat</td>
+<td style="text-align: center; width: 6cm;">15 (17%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Not Reported</td>
+<td style="text-align: center; width: 6cm;">7 (8.1%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Other</td>
+<td style="text-align: center; width: 6cm;">44 (51%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Sentinel</td>
+<td style="text-align: center; width: 6cm;">20 (23%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em; width: 7cm;" data-indentlevel="1">Number of Spectral Bands</td>
+<td style="text-align: center; width: 6cm;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Low</td>
+<td style="text-align: center; width: 6cm;">18 (21%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Mid</td>
+<td style="text-align: center; width: 6cm;">26 (30%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Not Reported</td>
+<td style="text-align: center; width: 6cm;">42 (49%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em; width: 7cm;" data-indentlevel="1">Spatial Resolution</td>
+<td style="text-align: center; width: 6cm;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">&gt;1 metres</td>
+<td style="text-align: center; width: 6cm;">7 (8.1%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 7cm; padding-left: 3em;" data-indentlevel="1">10-30 metres</td>
+<td style="text-align: center; width: 6cm;">39 (45%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 7cm; padding-left: 3em;" data-indentlevel="1">Not Reported</td>
+<td style="text-align: center; width: 6cm;">40 (47%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 7cm;">Confusion Matrix</td>
+<td style="text-align: center; width: 6cm;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 7cm;">Not Reported</td>
+<td style="text-align: center; width: 6cm;">23 (27%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 7cm;">Reported</td>
+<td style="text-align: center; width: 6cm;">63 (73%)</td>
+</tr>
+</tbody><tfoot>
+<tr class="odd">
+<td style="text-align: left; padding: 0;"><sup>a</sup> Effect size of interest, b. Numeric: mean (min - max), c. Categorical variables: number of effect sizes (%)</td>
+<td style="text-align: center;"></td>
+</tr>
+</tfoot>
+
+</table>
+
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+<div id="fig-features" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-features-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="results_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="1056"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-features-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.3: Categorical study features
+</figcaption>
+</figure>
+</div>
+<div id="fig-features2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-features2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="results_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-features2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.4: Numeric study features
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="meta-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="meta-analysis">Meta-analysis</h2>
+<div style="text-align: justify">
+<p>The forest plot below (<a href="#fig-forest" class="quarto-xref">Figure&nbsp;<span>4.5</span></a>) compares the overall accuracy effect size across studies using both weighted and unweighted models, with error bars which correspond to the weighted model — at this scale there is no discernible difference between the error bars of the two models. Each study is given with the number of estimates per study <span class="math inline">\(k_j\)</span>, and study average effect size (<span class="math inline">\(\kappa_j\)</span>), with 95% confidence intervals (CI), both for the weighted and unweighted model. Of the 20 primary studies included, six reported only one effect. Based on the unweighted model, the average accuracy of machine learning methods applied to remote sensing data is 0.90 (95% CI[0.85; 0.94]). While the three-level meta-analytic model produced an average accuracy of 0.89 (95% CI[0.85; 0.93]). This implies, that on average, the machine learning methods correctly classify around 90% of the time when applied to remote sensing data.</p>
+</div>
+<div style="text-align: justify">
+<div id="fig-forest" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-forest-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/forestplot_comb.png" style="width:18cm;height:17cm" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-forest-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.5: Forest plot for both the weighted and unweighted model. <span class="math inline">\(k_j\)</span> is number of reported overall accuracy estimates per study, the corresponding average effect size(<span class="math inline">\(\kappa_j\)</span>) and confidence interval per study for both models is given on the right. The pooled summary effect size based on the three-level RE meta-analytic and unweighted model are given on the bottom.
+</figcaption>
+</figure>
+</div>
+</div>
+<div style="text-align: justify">
+<p>The heterogeneity metrics Cochran’s Q indicate significant heterogeneity of the reported overall acccuracies. The percentage of the variance attribution is <span class="math inline">\(I^2_{\text{level3}}\)</span> = 63.62% which is the fraction of the variation that can be attributed to between-study, and <span class="math inline">\(I^2_{\text{level2}}\)</span> = 36.38% which is within-study heterogeneity, with negligible fixed effect variance (variance due to sampling error). The <span class="math inline">\(I^2\)</span> value of 100% indicates that all the observed variability in effect sizes across studies is due to heterogeneity rather than sampling error, suggesting substantial differences between the studies and a high degree of variation in their results.</p>
+<section id="model-selection" class="level4">
+<h4 class="anchored" data-anchor-id="model-selection">Model Selection</h4>
+<p>Using the multi-model inference function, a total of 31,298 models were fitted. <a href="#fig-best" class="quarto-xref">Figure&nbsp;<span>4.6</span></a>, illustrates the predictor importance after evaluating all possible combinations of predictors to identify which combination provides the best fit and which predictors are most influential. Higher importance values indicate more consistent inclusion in high-weight models. The majority class proportion is the most important predictor, followed by the inclusion of ancillary data. Less influential predictors include used of indices, sample size, publication year, and the number of classes in the study. Meanwhile, factors such as classification type, SDG goal, machine learning group, spatial resolution, and citation count have minimal importance in the overall model performance (i.e., where not included in the models top performing models according to AIC).</p>
+</section>
+</div>
+<div style="text-align: justify">
+<div id="fig-best" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-best-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/fig-best_mod.png" class="img-fluid figure-img" width="697">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-best-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.6: Model-averaged predictor importance plot with a reference line at 0.8 a commonly used as a threshold to indicate important predictors.
+</figcaption>
+</figure>
+</div>
+</div>
+<p><a href="#tbl-multi_coef" class="quarto-xref">Table&nbsp;<span>4.2</span></a> shows the results of the multi-model inference. The significant study features are the Majority-class Proportion and the inclusion of ancillary data. Interestingly, the use of ancillary data has a negative effect on overall accuracy.</p>
+<div id="tbl-multi_coef" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-multi_coef-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.2: Multimodel inference coefficients and feature importance. The estimated coefficients (b) and standard error (SE) are in FT transformed scale.
+</figcaption>
+<div aria-describedby="tbl-multi_coef-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">Feature</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">Category</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">Importance</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">b</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">SE</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">z.value</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">p</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Intercept</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">1.29</td>
+<td style="text-align: left;">7.85</td>
+<td style="text-align: left;">0.16</td>
+<td style="text-align: left;">0.869</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Majority-class Proportion</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0.47</td>
+<td style="text-align: left;">0.08</td>
+<td style="text-align: left;">6.15</td>
+<td style="text-align: left;">&lt; .0001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ancillary Data</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0.92</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Remote Sensing Only</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">-0.12</td>
+<td style="text-align: left;">0.05</td>
+<td style="text-align: left;">2.33</td>
+<td style="text-align: left;">0.02</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Indices</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0.39</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Used</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0.03</td>
+<td style="text-align: left;">0.04</td>
+<td style="text-align: left;">0.67</td>
+<td style="text-align: left;">0.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Number of Spectral Bands</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0.38</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Mid</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0.05</td>
+<td style="text-align: left;">0.06</td>
+<td style="text-align: left;">0.72</td>
+<td style="text-align: left;">0.471</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Not Reported</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0.02</td>
+<td style="text-align: left;">0.04</td>
+<td style="text-align: left;">0.55</td>
+<td style="text-align: left;">0.581</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Confusion Matrix</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0.16</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Reported</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0.01</td>
+<td style="text-align: left;">0.02</td>
+<td style="text-align: left;">0.29</td>
+<td style="text-align: left;">0.776</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sample Size</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0.13</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0.1</td>
+<td style="text-align: left;">0.922</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Number of Classes</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0.11</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0.19</td>
+<td style="text-align: left;">0.846</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Publication Year</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0.1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0.06</td>
+<td style="text-align: left;">0.952</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Remote Sensing Type</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0.03</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Combined</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0.01</td>
+<td style="text-align: left;">0.03</td>
+<td style="text-align: left;">0.17</td>
+<td style="text-align: left;">0.869</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Not Reported</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0.02</td>
+<td style="text-align: left;">0.04</td>
+<td style="text-align: left;">0.971</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Passive</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0.02</td>
+<td style="text-align: left;">0.16</td>
+<td style="text-align: left;">0.87</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Spatial Resolution</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0.02</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">10-30 metres</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0.07</td>
+<td style="text-align: left;">0.01</td>
+<td style="text-align: left;">0.99</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Not Reported</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0.07</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0.996</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SDG Theme</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0.02</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SDG15: Life on Land</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0.01</td>
+<td style="text-align: left;">0.1</td>
+<td style="text-align: left;">0.924</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SDG2: Zero Hunger</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0.01</td>
+<td style="text-align: left;">0.08</td>
+<td style="text-align: left;">0.939</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Classification Type</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0.02</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Pixel-level</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0.01</td>
+<td style="text-align: left;">0.06</td>
+<td style="text-align: left;">0.955</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Unclear</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0.01</td>
+<td style="text-align: left;">0.05</td>
+<td style="text-align: left;">0.958</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Model Group</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0.01</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Other</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0.01</td>
+<td style="text-align: left;">0.04</td>
+<td style="text-align: left;">0.965</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Tree-Based Models</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0.01</td>
+<td style="text-align: left;">0.05</td>
+<td style="text-align: left;">0.961</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Device Group</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Not Reported</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0.01</td>
+<td style="text-align: left;">0.05</td>
+<td style="text-align: left;">0.956</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Other</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0.05</td>
+<td style="text-align: left;">0.963</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Sentinel</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0.01</td>
+<td style="text-align: left;">0.05</td>
+<td style="text-align: left;">0.959</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Number of Citations</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0.01</td>
+<td style="text-align: left;">0.995</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+<div>
+<p>Multimodel inference something about best 5 models and comparing AIC</p>
+</div>
+<div id="tbl-compare" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-compare-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.3: Set of 5 best-ranked models and intercept only model ordered by AIC<span class="math inline">\(_c\)</span>
+</figcaption>
+<div aria-describedby="tbl-compare-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">Candidate models</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">df</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">AIC_c</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Akaike weights</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left; width: 8.5cm;">Ancillary Data + Majority-class Proportion + Indices</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">-115.46</td>
+<td style="text-align: right;">0.39</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 8.5cm;">Ancillary Data + Majority-class Proportion + Number of Spectral Bands</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">-114.42</td>
+<td style="text-align: right;">0.23</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 8.5cm;">Ancillary Data + Majority-class Proportion</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">-114.13</td>
+<td style="text-align: right;">0.20</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 8.5cm;">Ancillary Data + Confusion Matrix + Majority-class Proportion + Number of Spectral Bands</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">-113.08</td>
+<td style="text-align: right;">0.12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 8.5cm;">Ancillary Data + Majority-class Proportion + Number of Spectral Bands + Sample Size</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">-111.65</td>
+<td style="text-align: right;">0.06</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 8.5cm;">Intercept-Only</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">-41.93</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+<div style="text-align: justify">
+<p><a href="#tbl-best_mod_coef" class="quarto-xref">Table&nbsp;<span>4.4</span></a> shows the estimated coefficients for the best fit model (lowest AIC), both in the FT transformed scale (b) and on the natural scale (b back-transformed). This shows that the proportion of majority class has the largest positive impact on the model’s outcome (b = 0.39, p &lt; .001), while the inclusion of ancillary data has a small negative effect (b = -0.11, p = 0.029) but a small but positive effect when back-transfored . The use of indices has a minimal and non-significant effect (b = 0.06, p = 0.131).</p>
+</div>
+<div id="tbl-best_mod_coef" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-best_mod_coef-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.4: Results of the best fit model.
+</figcaption>
+<div aria-describedby="tbl-best_mod_coef-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: left; empty-cells: hide; border-bottom: hidden;"></th>
+<th data-quarto-table-cell-role="th" style="text-align: right; empty-cells: hide; border-bottom: hidden;"></th>
+<th data-quarto-table-cell-role="th" style="text-align: right; empty-cells: hide; border-bottom: hidden;"></th>
+<th data-quarto-table-cell-role="th" style="text-align: right; empty-cells: hide; border-bottom: hidden;"></th>
+<th data-quarto-table-cell-role="th" style="text-align: right; empty-cells: hide; border-bottom: hidden;"></th>
+<th colspan="2" data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+back-transfromed scale
+</div></th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">Predictor</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">b</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">SE</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">t</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">p</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">b_BT</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">CI</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left; width: 6cm;">intercept</td>
+<td style="text-align: right;">0.99</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">17.22</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.70</td>
+<td style="text-align: left;">[0.58, 0.8]</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 6cm;">fraction_majority_class</td>
+<td style="text-align: right;">0.39</td>
+<td style="text-align: right;">0.08</td>
+<td style="text-align: right;">4.93</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.15</td>
+<td style="text-align: left;">[0.05, 0.27]</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 6cm;">ancillaryAncillary Data Included</td>
+<td style="text-align: right;">-0.11</td>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">-2.22</td>
+<td style="text-align: right;">0.029</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: left;">[0.04, 0]</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 6cm;">indicesUsed</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">1.53</td>
+<td style="text-align: right;">0.131</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: left;">[0, 0.02]</td>
+</tr>
+</tbody><tfoot>
+<tr class="even">
+<td style="text-align: left; padding: 0;"><span style="font-style: italic;">Note: </span></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0;"><sup></sup> The estimated coefficients (b), standard errors (SE) on the FT transformed scale, t-statistics, and p-values. Additionally, the coefficients (b) and their confidence intervals (CI) are shown on the back-transformed scale.</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tfoot>
+
+</table>
+
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+<div id="tbl-hetro" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-hetro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.5: Results for heterogeneity and covariates tests for intercept only model, individual covariates as well as the best model.
+</figcaption>
+<div aria-describedby="tbl-hetro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: left; empty-cells: hide; border-bottom: hidden;"></th>
+<th colspan="4" data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px; font-weight: bold;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Model
+</div></th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">Paramter</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Intercept Only</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Majority-class Proportion</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Ancillary Data</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Ancillary Data + Majority-class Proportion + Indices</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left; width: 1.5cm;">sig_lvl2</td>
+<td style="text-align: right; width: 2cm;">0.01</td>
+<td style="text-align: right; width: 2.5cm;">0.009</td>
+<td style="text-align: right; width: 2cm;">0.01</td>
+<td style="text-align: right; width: 5.5cm;">0.009</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 1.5cm;">sig_lvl3</td>
+<td style="text-align: right; width: 2cm;">0.017</td>
+<td style="text-align: right; width: 2.5cm;">0.007</td>
+<td style="text-align: right; width: 2cm;">0.015</td>
+<td style="text-align: right; width: 5.5cm;">0.005</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 1.5cm;">QE</td>
+<td style="text-align: right; width: 2cm;">12161784</td>
+<td style="text-align: right; width: 2.5cm;">11458055</td>
+<td style="text-align: right; width: 2cm;">12035286</td>
+<td style="text-align: right; width: 5.5cm;">11440331</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 1.5cm;">df_Q</td>
+<td style="text-align: right; width: 2cm;">85</td>
+<td style="text-align: right; width: 2.5cm;">84</td>
+<td style="text-align: right; width: 2cm;">84</td>
+<td style="text-align: right; width: 5.5cm;">82</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 1.5cm;">p_Q</td>
+<td style="text-align: right; width: 2cm;">0</td>
+<td style="text-align: right; width: 2.5cm;">0</td>
+<td style="text-align: right; width: 2cm;">0</td>
+<td style="text-align: right; width: 5.5cm;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 1.5cm;">F</td>
+<td style="text-align: right; width: 2cm;">NA</td>
+<td style="text-align: right; width: 2.5cm;">27</td>
+<td style="text-align: right; width: 2cm;">3</td>
+<td style="text-align: right; width: 5.5cm;">13</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 1.5cm;">df_F</td>
+<td style="text-align: right; width: 2cm;">NA</td>
+<td style="text-align: right; width: 2.5cm;">1</td>
+<td style="text-align: right; width: 2cm;">1</td>
+<td style="text-align: right; width: 5.5cm;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 1.5cm;">p_F</td>
+<td style="text-align: right; width: 2cm;">NA</td>
+<td style="text-align: right; width: 2.5cm;">0</td>
+<td style="text-align: right; width: 2cm;">0.117</td>
+<td style="text-align: right; width: 5.5cm;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 1.5cm;">I2_lvl2</td>
+<td style="text-align: right; width: 2cm;">36.38</td>
+<td style="text-align: right; width: 2.5cm;">57.29</td>
+<td style="text-align: right; width: 2cm;">40.47</td>
+<td style="text-align: right; width: 5.5cm;">63.46</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 1.5cm;">I2_lvl3</td>
+<td style="text-align: right; width: 2cm;">63.62</td>
+<td style="text-align: right; width: 2.5cm;">42.71</td>
+<td style="text-align: right; width: 2cm;">59.53</td>
+<td style="text-align: right; width: 5.5cm;">36.54</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 1.5cm;">R2_lvl2</td>
+<td style="text-align: right; width: 2cm;">NA</td>
+<td style="text-align: right; width: 2.5cm;">7.8</td>
+<td style="text-align: right; width: 2cm;">-1.4</td>
+<td style="text-align: right; width: 5.5cm;">8.6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 1.5cm;">R2_lvl3</td>
+<td style="text-align: right; width: 2cm;">NA</td>
+<td style="text-align: right; width: 2.5cm;">60.7</td>
+<td style="text-align: right; width: 2cm;">14.7</td>
+<td style="text-align: right; width: 5.5cm;">69.9</td>
+</tr>
+</tbody><tfoot>
+<tr class="even">
+<td style="text-align: left; padding: 0;"><span style="font-style: italic;">Note: </span></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0;"><sup></sup> Test statistic, degrees of freedom and respective p values are provide. This table allows heterogeneity at level 2 and 3 can be compared between the incetept only model, Majority-class Proportion and Adncillary Data only models, as well as the combinded model</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+</tfoot>
+
+</table>
+
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+<p><a href="#tbl-hetro" class="quarto-xref">Table&nbsp;<span>4.5</span></a> shows the parameter estimates of the meta-analysis comparing the intercept only and three mixed effects models: (1) with the Majority-class Proportion as the only covariate, (2) use Ancillary Data only, and (3) the best fit model (from <a href="#tbl-best_mod_coef" class="quarto-xref">Table&nbsp;<span>4.4</span></a>). Majority-class Proportion explains more of the between study heterogeneity, as shown by the difference in <span class="math inline">\(\sigma^2_{\text{level2}}\)</span> between the intercept only and the Majority-class Proportion. The use of Ancillary Data explains relatively little between study heterogeneity and negligible within study heterogeneity. The combined model explains the most heterogeneity. This shift is also reflect in the <span class="math inline">\(I^2\)</span>. The total <span class="math inline">\(I^2\)</span> consistently being 100% in both models indicates that almost none of the variation between effect sizes can be attributed to sampling error, this might suggest that the included studies are too different from each to compare (see discussion for apples and oranges problem). All models show significant heterogeneity (Cochran’s Q, p &lt; 0.001) results. The <span class="math inline">\(R^2\)</span>values show that the covariates in the combined mixed effects model explain 69.9% of the variance at level 3 and 8.6% at level 2.</p>
+<div style="text-align: justify">
+<p><a href="#fig-bubble" class="quarto-xref">Figure&nbsp;<span>4.7</span></a> illustrates the relationship between the proportion of the majority class and overall accuracy of the individual studies included in the meta-analysis. The plot is based on combined mixed effects model, with the solid black line representing the fitted regression line and the shaded area indicating the 95% confidence interval. Each point (bubble) represents a study, with its size proportional to the weight it received in the analysis (larger points indicate studies with more influence). The plot shows that as the proportion of the majority class increases, overall accuracy tends to improve.</p>
+</div>
+<div id="fig-bubble" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bubble-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/fig-bubble.png" class="img-fluid figure-img" width="673">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bubble-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.7: Bubble plot showing the observed effect size, overall accuracy of the individual studies plotted against a the proportion of the majority class. Based on the mixed-effects meta-regression model, the overall accuracy as a function of proportion of the majority with corresponding 95% confidence interval bounds. The size of the points are proportional to the weight that the observation received in the analysis, while the color of the points is unique to each study, with the lowest overall actuary from each study labeled with the first author and publication year.
+</figcaption>
+</figure>
+</div>
+<div style="text-align: justify">
+<p><a href="#fig-preds" class="quarto-xref">Figure&nbsp;<span>4.8</span></a> shows the observed overall accuracy against the predicted overall accuracy’s made by combined mixed effects model. The points are coloured by the addition of ancillary information in the primary study. It appears that the addition of ancillary information leads to a lower overall accuracy, however, this could be due to a number of unmeasured factors, such as study’s with more complicated classifications (more similar classes) adding accuracy data. As <a href="#fig-preds" class="quarto-xref">Figure&nbsp;<span>4.8</span></a> shows Model 2 over estimates the overall accuracy — the fit regression line (in grey) is above the line of perfect agreement (<span class="math inline">\(y = x\)</span>, in black).</p>
+</div>
+<div id="fig-preds" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-preds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="results_files/figure-html/preds-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-preds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.8: Observed and predicted overall accuracy. The colour indicates whether the addition of ancillary data in the primary study’s model. The line of perfect agreement <span class="math inline">\(y = x\)</span> is in black and fit regression of the points in grey.
+</figcaption>
+</figure>
+</div>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-mcculloch2012" class="csl-entry" role="listitem">
+McCulloch, C. E., &amp; Neuhaus, J. M. (2011). Misspecifying the shape of a random effects distribution: Why getting it wrong may not matter. <em>Statistical Science</em>, <em>26</em>(3), 388–402. <a href="https://doi.org/10.1214/11-STS361">https://doi.org/10.1214/11-STS361</a>
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/methods.html" class="pagination-link" aria-label="Methods">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Methods</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/discussion.html" class="pagination-link" aria-label="Discussion">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Discussion</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

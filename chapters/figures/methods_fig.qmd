@@ -1,0 +1,406 @@
+```{r}
+
+set.seed(1234)
+library(ggrepel)
+library(ggridges)
+library(tidyverse)
+
+mu <- 0.5 
+no_effect_size <- 7
+no_studies <- 3
+n_values <- c(20, 1000)
+
+
+# Heterogeneity
+## level 3
+sig2_xi <- 0.02
+## level 2
+sig2_zeta <- 0.001 
+
+df <- data.frame(effectID = 1:no_effect_size, 
+                 studyID = rep(1:no_studies,length.out = no_effect_size),
+                 n_ij = rep(n_values, length.out = no_effect_size)#, 
+                 #zeta = rnorm(no_effect_size, mean = 0, sd = sqrt(sig2_zeta))
+                 )
+df <- df|>
+  group_by(studyID)|>
+  mutate(esid = row_number(), 
+         xi = rnorm(1, mean = 0, sd = sqrt(sig2_xi)),
+         kappa_j = mu + xi, 
+         #theta_ij = kappa_j + zeta
+   ) |>
+  ungroup()
+
+# Repeat each row according to n_ij
+df_repeated2 <- df[rep(seq_len(nrow(df)), df$n_ij), ]
+df_repeated2$zeta <- rnorm(nrow(df_repeated2), mean = 0, sd = sqrt(sig2_zeta))
+
+df_repeated2$theta_ij <- df_repeated2$kappa_j + df_repeated2$zeta
+
+
+df_repeated2$e_ij <- rbinom(nrow(df_repeated2), size = df_repeated2$n_ij, 
+                           prob = df_repeated2$theta_ij)
+
+df_repeated2$theta_hat <- df_repeated2$e_ij/ df_repeated2$n_ij
+
+# selected one actual observation of theta
+df_repeated2 <- df_repeated2 %>%
+  group_by(effectID) %>%
+  mutate(selected = ifelse(row_number() == sample(1:n(), 1), 1, 0)) %>%
+  ungroup()
+
+####
+df_mu <- df_repeated2[1, ]
+df_mu[1, ]<- 0
+df_mu$studyID <- 4
+df_mu$n_ij<- 1000
+df_mu2 <- df_mu[rep(seq_len(nrow(df_mu)), df_mu$n_ij), ]
+df_mu2$xi <- rnorm(1000, mean = 0, sd = sqrt(sig2_xi))
+df_mu2$theta_hat <- mu + df_mu2$xi
+
+
+df_repeated2 <- rbind(df_mu2, df_repeated2)
+
+
+ggplot(df_repeated2, aes(x = theta_hat, y = studyID, group = effectID)) +
+  #mu 
+  geom_vline(aes(xintercept = mu), 
+             linetype = "dashed", 
+             show.legend = TRUE
+             ) +
+  
+  stat_density_ridges(#quantile_lines = TRUE,
+                      #quantiles = 0.5,
+                      scale = 0.9, 
+                      bandwidth = 0.07,
+                      colour = "transparent",
+                      fill = "#001158",
+                      alpha = 0.2)+
+  
+   # theta hat observation  label
+  geom_point(data = df_repeated2 %>% filter(selected == 1),
+             aes(x = theta_hat, y = studyID, colour = ""), 
+             shape = 15, size = 3, colour = "black", alpha = 0.8
+             ) +
+  geom_label_repel(data = df_repeated2 %>% filter(selected == 1 & esid ==2 & studyID ==1),
+            aes(x = theta_hat, y = studyID, 
+                label = paste0("hat(theta)[", esid, studyID, "] == ", theta_hat,
+                               " *','~n == ", n_ij
+                )), 
+            min.segment.length = 0, 
+            nudge_x = 0.5, nudge_y = 0.3,
+            parse = TRUE
+            ) +
+  geom_label_repel(data = df_repeated2 %>% filter(selected == 1 & esid ==3 & studyID ==1),
+            aes(x = theta_hat, y = studyID, 
+                label = paste0("hat(theta)[", esid, studyID, "] == ", theta_hat,
+                               " *','~n == ", n_ij
+                )), 
+            min.segment.length = 0, 
+            nudge_x = -0.3, nudge_y = 0.3,
+            parse = TRUE
+            ) +
+  
+   geom_label_repel(data = df_repeated2 %>% filter(selected == 1 & esid == 3 & studyID ==1),
+            aes(x = theta_ij, y = studyID, 
+                label = paste0("theta[ij]==", round(theta_ij, 2))
+                ), 
+            min.segment.length = 0, 
+            nudge_x =  0.4, nudge_y = -0.2,
+            parse = TRUE
+            ) +
+  # true theta 
+  geom_point(data = df_repeated2 %>% filter(selected == 1),
+             aes(x = theta_ij, y = studyID), 
+             shape = 21, size = 3, colour = "black", fill = "white", alpha = 0.5, 
+             show.legend = T
+             ) +
+  
+    
+  
+  # deviation between theta_hat and theta due to epsilon 
+  geom_curve(data = df_repeated2 %>% 
+                 filter(selected == 1 & esid == 3 & studyID ==1),
+            aes(x = theta_ij, y = studyID, 
+                xend = theta_hat, yend = studyID),
+            arrow = arrow(ends = "both", length = unit(0.2,"cm")), 
+            curvature = 0.1,
+            linewidth = 0.8, 
+            colour = "#001158"
+            
+               )+
+  
+  geom_label_repel(data = df_repeated2 %>% 
+                     filter(selected == 1 & esid == 3 & studyID ==1),
+            aes(x = theta_hat, y = studyID, 
+                label = paste("epsilon[ij]")
+                ), 
+            min.segment.length = 0,
+            segment.color = 'transparent', 
+            nudge_x = 0.1,
+            nudge_y = -0.2,
+            parse = TRUE
+  )+
+  # study level means 
+  geom_segment(data = df_repeated2 %>% filter(studyID <4), 
+               aes(x = kappa_j, y = studyID,
+                   xend = kappa_j, yend = studyID+.9),
+               
+               linewidth = 0.5, 
+               colour = "#001158",
+               alpha = 0.2, 
+               linetype = "dashed", 
+               show.legend = TRUE
+               )+
+  
+  geom_label_repel(data = df_repeated2 %>% filter(selected == 1 & esid == 1 & studyID ==2),
+            aes(x = kappa_j, y = studyID+0.4, 
+                label = paste0("kappa[", esid, studyID, "] == ", round(kappa_j, 2))
+                ), 
+            min.segment.length = 0, 
+            nudge_x =  -0.3, 
+            nudge_y = 0,
+            parse = TRUE
+            )+
+   geom_label_repel(data = df_repeated2 %>% filter(selected == 1 & esid == 1 & studyID ==2),
+            aes(x = theta_ij, y = studyID, 
+                label = paste0("theta[", esid, studyID, "] == ", round(theta_ij, 2))
+                ), 
+            min.segment.length = 0, 
+            nudge_x =  0.2, nudge_y = 0.1,
+            parse = TRUE
+            )+
+
+  geom_curve(data = df_repeated2 %>% 
+                 filter(selected == 1 & esid == 1 & studyID ==2),
+            aes(x = theta_ij, studyID, 
+                xend = kappa_j, yend = studyID+0.3),
+            arrow = arrow(ends = "both", length = unit(0.2,"cm")),
+            curvature = 0.3,
+            linewidth = 0.8, 
+            colour = "#001158"
+            
+               )+
+  
+    geom_label_repel(data = df_repeated2 %>% 
+                     filter(selected == 1 & esid == 1 & studyID ==2),
+            aes(x = theta_ij, y = studyID, 
+                label = paste("zeta[ij]")
+                ), 
+            min.segment.length = 0,
+            segment.color = 'transparent',
+            nudge_x = 0, nudge_y = 0.3,
+            parse = TRUE
+  )+
+  
+  # over all 
+  
+  geom_label_repel(data = df_repeated2 %>% filter(selected == 1 & esid == 1 & studyID ==3),
+            aes(x = kappa_j, y = studyID+0.5, 
+                label = paste0("kappa[", esid, studyID, "] == ", round(kappa_j, 2))
+                ), 
+            min.segment.length = 0, 
+            nudge_x =  0.3, 
+            nudge_y = 0,
+            parse = TRUE
+            )+
+
+  geom_curve(data = df_repeated2 %>% 
+                 filter(selected == 1 & esid == 1 & studyID ==3),
+            aes(x = mu, y = studyID+ 0.8, 
+                xend = kappa_j, yend = studyID+0.8),
+            curvature = 0.3, 
+            arrow = arrow(ends = "both", length = unit(0.2,"cm")), 
+            linewidth = 0.8, 
+            colour = "#001158"
+               )+
+  
+    geom_label_repel(data = df_repeated2 %>% 
+                     filter(selected == 1 & esid == 1 & studyID ==3),
+            aes(x = theta_ij, y = studyID, 
+                label = paste("xi[j]")
+                ), 
+            min.segment.length = 0,
+            segment.color = 'transparent',
+            nudge_x = -.1, nudge_y = 0.5,
+            parse = TRUE
+  )+
+  geom_label(data = df_repeated2 %>% 
+                     filter(selected == 1 & esid == 1 & studyID ==3), 
+             aes(x = 0.5, y = studyID+0.9, 
+                label = paste("mu")
+                ), 
+            parse = TRUE)+
+    
+  
+  
+  scale_y_continuous(breaks= c(1, 2, 3, 4), 
+                   labels=c("Study 1", "Study 2","Study 3", "Overall Population"))+
+  scale_x_continuous(breaks= c(0, 0.5, 1))+
+  labs(y = NULL, 
+       x = NULL)+
+  
+  
+ theme_light() +
+  
+  theme(panel.grid.minor = element_blank())
+
+
+  
+
+
+ggsave("fig.png", height = 15, width = 20, units = "cm")
+
+```
+
+the density plots represent the sampling distribution of hat{\\theta}\_ij
+
+width of the normal curve is based on the square root of the variance, or standard error
+
+```{r}
+df_repeated2$overall <- ifelse(df_repeated2$studyID ==4, TRUE, FALSE)
+ggplot(df_repeated2, aes(x = theta_hat, fill = as.factor(studyID), 
+                         group = effectID)) +
+  #mu 
+  geom_vline(aes(xintercept = mu), 
+             linetype = "dashed", 
+             show.legend = TRUE
+             )+
+  geom_density(aes(alpha = overall), bw =  0.07, colour = "transparent") +
+  scale_alpha_discrete(range = c(0.1, 0.9))
+```
+
+```{r}
+
+df_repeated_j <- df_repeated2|>
+  filter((studyID == 2 | studyID ==4 | (studyID ==3& esid ==2)))
+
+
+df_repeated_j|> group_by(studyID, esid)|>
+  summarise(mean = mean(theta_hat))
+
+df_repeated_j$theta_hat <- ifelse((df_repeated_j$studyID == 2& df_repeated_j$esid ==1 ), 
+                                 df_repeated_j$theta_hat -0.25, 
+                                 df_repeated_j$theta_hat)
+df_repeated_j$theta_hat <- ifelse((df_repeated_j$studyID == 2& df_repeated_j$esid ==2 ), 
+                                 df_repeated_j$theta_hat +0.1, 
+                                 df_repeated_j$theta_hat)
+
+df_repeated_j$theta_hat <- ifelse((df_repeated_j$studyID ==3), 
+                                 df_repeated_j$theta_hat -0.2, 
+                                 df_repeated_j$theta_hat)
+
+ggplot(df_repeated_j, aes(x = theta_hat, y = studyID, group = effectID)) +
+  #mu 
+  
+  
+  stat_density_ridges(aes(x = theta_hat, y = studyID, group = effectID, 
+                          fill = as.factor(studyID)),
+                      #quantiles = 0.5,
+                      scale = 0.9, 
+                      bandwidth = 0.07,
+                      colour = "transparent",
+                      #fill = "#001158",
+                      alpha = 0.2, show.legend = FALSE)+
+  scale_fill_manual(values=c("#001158", "#00580c", "#58002e"))+
+  
+  geom_segment(aes(x = 0.4546, y = 2,
+                   xend = 0.4546, yend = 3.9),
+               
+               linewidth = 0.5, 
+               colour = "#00580c",
+               alpha = 0.2, 
+               linetype = "dashed", 
+               show.legend = F
+               )+
+  geom_segment(aes(x = 0.5, y = 3,
+                   xend = 0.5, yend = 4.4),
+               
+               linewidth = 0.6, 
+               colour = "#58002e",
+               alpha = 0.2, 
+               linetype = "longdash", 
+               show.legend = F
+               )+
+   geom_segment(aes(x = 0.287, y = 2,
+                   xend = 0.287, yend = 2.9),
+               
+               linewidth = 0.6, 
+               colour = "#001158",
+               alpha = 0.2, 
+               linetype = "dotted", 
+               show.legend = F
+               )+
+  geom_segment(aes(x = 0.6075, y = 2,
+                   xend = 0.6075, yend = 2.5),
+               
+               linewidth = 0.6, 
+               colour = "#001158",
+               alpha = 0.2, 
+               linetype = "dotted", 
+               show.legend = F
+               )+
+ theme_void() +
+  xlim(c(0.05,0.95))+
+  
+  theme(panel.grid.minor = element_blank())
+
+
+  
+
+
+ggsave("fig_levels_new.png", height = 15, width = 20, units = "cm")
+```
+
+```{r}
+(0.655- 0.4675)
+```
+
+```{r}
+set.seed(123)
+
+mu <- 0.5
+sig_3 <- 0.002
+sig_2 <- 0.0001 
+m_i <- c(10, 100)
+hat_theta_i <- c(0.3, 0.7)
+v_i <- (hat_theta_i * (1- hat_theta_i))/ m_i
+
+xi <- rnorm(2, mean = 0, sd = sqrt(sig_3))
+
+k_1 = mu+xi[1] + 0.2 #x_j
+k_2 = mu+xi[2]
+
+zeta <-rnorm(1, mean = 0, sd = sqrt(sig_2)) 
+
+theta_i1 <- k_1 + zeta
+theta_i2 <- k_2 + zeta
+
+var_hat_theta_1_1 <- sig_3+sig_2+v_i[1]
+var_hat_theta_2_1 <- sig_3+sig_2+v_i[1]
+var_hat_theta_1_2 <- sig_3+sig_2+v_i[2]
+var_hat_theta_2_2 <- sig_3+sig_2+v_i[2]
+
+hat_theta_1_1s= rnorm(n = m_i[1], mean = (theta_i + 0.2), sd = sqrt(var_hat_theta_1_1)) 
+hat_theta_2_1s= rnorm(n = m_i[1], mean = (theta_i + 0.2), sd = sqrt(var_hat_theta_2_1)) 
+hat_theta_1_2s= rnorm(n = m_i[2], mean = (theta_i - 0.2), sd = sqrt(var_hat_theta_1_2)) 
+hat_theta_2_2s= rnorm(n = m_i[2], mean = (theta_i - 0.2), sd = sqrt(var_hat_theta_2_2))  
+
+
+# Combine data into a single data frame
+df <- data.frame(
+  Effect_Size = c(hat_theta_1_1s, hat_theta_2_1s, hat_theta_1_2s, hat_theta_2_2s),
+  study_id = factor(c(rep("1s", length(hat_theta_1_1s) + length(hat_theta_2_1s)),
+                      rep("2s", length(hat_theta_1_2s) + length(hat_theta_2_2s)))),
+  effect_id = factor(c(rep("1", length(hat_theta_1_1s)), 
+                           rep("2", length(hat_theta_2_1s)), 
+                          rep("1", length(hat_theta_1_2s)), 
+                           rep("2", length(hat_theta_2_2s))))
+)
+
+ggplot(df, aes(x = Effect_Size, fill = study_id, colour = effect_id)) +
+  geom_density(alpha = 0.5, bw = 0.07) +  # Add density plot with transparency
+  theme_minimal()
+
+
+```

@@ -13,7 +13,7 @@ book:
     background: "#F5F5F5"
     logo: images/ul.logo.png
     search: true
-  date: " 2024"
+  date: " 01-11-2024"
  
   chapters:
     - index.qmd
@@ -33,7 +33,7 @@ book:
   search:
     location: navbar
     type: overlay
-  output-file: leach
+  output-file: NMLeach_MasterThesis
   downloads:
     -  pdf
 
@@ -60,6 +60,10 @@ format:
     include-in-header: 
       text: |
         \usepackage{booktabs}
+        \usepackage{graphicx}
+        \newcommand{\bminipage}{\begin{minipage}{0.65\textwidth}}
+        \newcommand{\eminipage}{\end{minipage}}
+        \newcommand{\minipagehfill}{\hfill}
         \usepackage{setspace}
         \usepackage{longtable}
         \usepackage{lscape}
@@ -68,6 +72,10 @@ format:
         \usepackage{float}
         \floatplacement{table}{H}
         \pagenumbering{gobble}
+        \usepackage{titlesec}
+        \titleformat{\chapter}[display]
+        {\normalfont\huge\bfseries}{}{0pt}{\Huge}
+        \titlespacing*{\chapter}{0pt}{-15pt}{0pt} % Adjust spacing
         
     fig-pos: 'H'
     template-partials:
@@ -86,11 +94,11 @@ format:
     
     linestretch: 1.5
     geometry:
-      - inner=1.9cm
-      - outer=1.9cm
+      - inner=1.8cm
+      - outer=1.7cm
       - top=1.9cm
-      - bottom=3cm
-      - headsep=10pt
+      - bottom=2.5cm
+      - headsep=9pt
       - headheight=11pt
       - footskip=33pt
       - ignorehead

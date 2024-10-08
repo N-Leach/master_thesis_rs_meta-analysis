@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>2&nbsp; Background – Evaluating the Performance of Machine Learning Models in Remote Sensing for Sustainable Development Goals: A Meta-Analysis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/methods.html" rel="next">
+<link href="../chapters/intro.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/background.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">common theme specification</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../images/ul.logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Evaluating the Performance of Machine Learning Models in Remote Sensing for Sustainable Development Goals: A Meta-Analysis</a> 
+        <div class="sidebar-tools-main">
+    <a href="../leach.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Forward</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../frontmatter/abstract.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Abstract</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../frontmatter/abbreviations_notation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Table of Notation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/background.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">common theme specification</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/methods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Methods</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/results.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Results</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/discussion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Discussion</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#remote-sensing" id="toc-remote-sensing" class="nav-link active" data-scroll-target="#remote-sensing">Remote Sensing</a></li>
+  <li><a href="#machine-learning" id="toc-machine-learning" class="nav-link" data-scroll-target="#machine-learning">Machine Learning</a></li>
+  <li><a href="#previous-reviews" id="toc-previous-reviews" class="nav-link" data-scroll-target="#previous-reviews">Previous Reviews</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-background" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Background</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="remote-sensing" class="level2">
+<h2 class="anchored" data-anchor-id="remote-sensing">Remote Sensing</h2>
+<div style="text-align: justify">
+<p>In the broadest sense, remote sensing involves acquiring information about an object or phenomenon without direct contact <span class="citation" data-cites="campbell2011">(<a href="../references.html#ref-campbell2011" role="doc-biblioref">Campbell &amp; Wynne, 2011</a>)</span>. More specifically, remote sensing refers to gathering data about land or water surfaces using sensors mounted on aerial or satellite platforms that record electromagnetic radiation reflected or emitted from the Earth’s surface <span class="citation" data-cites="campbell2011">(<a href="../references.html#ref-campbell2011" role="doc-biblioref">Campbell &amp; Wynne, 2011, p. 6</a>)</span>. The origins of remote sensing lie with the development of photography in the 19th century, with the earliest aerial or Earth Observation photographs taken with cameras mounted on balloons, kites, pigeons, and aeroplanes. <span class="citation" data-cites="campbell2011 burke2021">(<a href="../references.html#ref-burke2021" role="doc-biblioref">Burke et al., 2021</a>; <a href="../references.html#ref-campbell2011" role="doc-biblioref">Campbell &amp; Wynne, 2011, p. 7</a>)</span>. The first mass use of remote sensing was during World War I with aerial photography. The modern era of satellite-based remote sensing started with the launch of Landsat 1 in 1972, the first satellite specifically designed for Earth Observation <span class="citation" data-cites="campbell2011">(<a href="../references.html#ref-campbell2011" role="doc-biblioref">Campbell &amp; Wynne, 2011, p. 15</a>)</span>. Today, remote sensing technology enables frequent and systematic collection of data about the Earth’s surface with global coverage, revolutionizing our ability to monitor and analyze the Earth’s surface <span class="citation" data-cites="burke2021 nasa2019">(<a href="../references.html#ref-burke2021" role="doc-biblioref">Burke et al., 2021</a>; <a href="../references.html#ref-nasa2019" role="doc-biblioref">NASA, 2019</a>)</span>. As of May 2023, roughly 1039 active nonmilitary Earth Observation satellites are in orbit; 51% were launched in 2020 <span class="citation" data-cites="unionofconcernedscientists">(<a href="../references.html#ref-unionofconcernedscientists" role="doc-biblioref">UCS, 2021</a>)</span>.</p>
+</div>
+<div id="fig-UCS" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-UCS-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="background_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-UCS-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.1: Number of active satellites by date of launch. Data acquired from <span class="citation" data-cites="unionofconcernedscientists">UCS (<a href="../references.html#ref-unionofconcernedscientists" role="doc-biblioref">2021</a>)</span>.
+</figcaption>
+</figure>
+</div>
+<div style="text-align: justify">
+<p>Sensors on remote sensing devices such as satellites measure electromagnetic radiation reflected by objects on the Earth’s surface. This is done in two different ways: passive and active. Passive sensors rely on natural energy sources, like sunlight, to record incident energy reflected off the Earth’s surface. While active sensors generate their own energy, which is emitted and then measured as it reflects back from with the Earth’s surface <span class="citation" data-cites="nasa2019">(<a href="../references.html#ref-nasa2019" role="doc-biblioref">NASA, 2019</a>)</span>.</p>
+</div>
+<div id="fig-sensors" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sensors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/activepassive_rs.png" style="width:14.1cm;height:4.4cm" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sensors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.2: Illustration of a passive sensor and an active sensor. Source: <span class="citation" data-cites="nasa2019">NASA (<a href="../references.html#ref-nasa2019" role="doc-biblioref">2019</a>)</span> Applied Passive Sciences Remote Sensing Training Program.
+</figcaption>
+</figure>
+</div>
+<div style="text-align: justify">
+<p>Components of the Earth’s surface have different spectral signatures — i.e., reflect, absorb, or transmit energy in different amounts and wavelengths <span class="citation" data-cites="campbell2011">(<a href="../references.html#ref-campbell2011" role="doc-biblioref">Campbell &amp; Wynne, 2011</a>)</span>. Remote sensing devices have several sensors that measure specific ranges of wavelengths in the electromagnetic spectrum; these are referred to as spectral bands (e.g.&nbsp;visible light, infrared, or ultraviolet radiation) <span class="citation" data-cites="seos2014 nasa2019">(<a href="../references.html#ref-nasa2019" role="doc-biblioref">NASA, 2019</a>; <a href="../references.html#ref-seos2014" role="doc-biblioref">SEOS, 2014</a>)</span>. By capturing information from particular bands the spectral signatures of surfaces can be used to identify objects on the ground. <a href="#fig-spectralsig" class="quarto-xref">Figure&nbsp;<span>2.3</span></a> illustrates the differences between the spectral signatures of soil, green vegetation, and water across various wavelengths. The grey bands in the figure represent the specific spectral bands on the Landsat TM satellite <span class="citation" data-cites="seos2014">(<a href="../references.html#ref-seos2014" role="doc-biblioref">SEOS, 2014</a>)</span>. The distinct reflectance properties of each material within these bands enable the differentiation of surface materials, making it possible to identify different land cover types. This information can be used directly for classification, or it can be combined into indices—such as the Normalized Difference Vegetation Index (NDVI)—to enhance the detection of specific features like vegetation health and coverage <span class="citation" data-cites="nasa2019 campbell2011">(<a href="../references.html#ref-campbell2011" role="doc-biblioref">Campbell &amp; Wynne, 2011</a>; <a href="../references.html#ref-nasa2019" role="doc-biblioref">NASA, 2019</a>)</span>. The <span class="math inline">\(NDVI\)</span> uses red light and near-infrared (NIR) —given by <span class="math inline">\(\frac{NIR - Red}{NIR + Red}\)</span> — to distinguish green vegetation. Higher <span class="math inline">\(NDVI\)</span> values indicate green vegetation as more red light is absorbed, whereas lower values correspond to non-vegetated areas where more red light is reflected.</p>
+</div>
+<div id="fig-spectralsig" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-spectralsig-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/spectral_signatures_landsat.jpg" class="img-fluid figure-img" style="width:12.5cm">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-spectralsig-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.3: Spectral signatures of soil, green vegetation, and water across different wavelengths, representing the portion of incident radiation that is reflected by each material as a function of wavelength. The grey bands indicate the spectral ranges (channels) of Landsat TM satellite. Bands 1-3 capture visible light (Blue, Green, Red), while Band 4 captures near-infrared (NIR), and Bands 5 and 7 cover parts of the intermediate infrared spectrum. These spectral bands allow for the differentiation of various surface materials based on their unique reflectance properties. Source: Siegmund and Menz (2005) as cited and modified by <span class="citation" data-cites="seos2014">SEOS (<a href="../references.html#ref-seos2014" role="doc-biblioref">2014</a>)</span>.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="machine-learning" class="level2">
+<h2 class="anchored" data-anchor-id="machine-learning">Machine Learning</h2>
+<div style="text-align: justify">
+<p>Machine learning techniques such as neural networks, random forests, and support vector machines have long been applied for spatial data analysis and geographic modeling <span class="citation" data-cites="lavallin_machine_2021 haddaway_evidence_2022">(<a href="../references.html#ref-haddaway_evidence_2022" role="doc-biblioref">Haddaway et al., 2022</a>; <a href="../references.html#ref-lavallin_machine_2021" role="doc-biblioref">Lavallin &amp; Downs, 2021</a>)</span>. Compared to using indices alone, machine learning techniques enhance the accuracy and efficiency of data analysis and interpretation processes making it possible to analyze large volumes of data effectively. Which is particularly useful for handling the high complexity and dimensionality of remote sencing data. In recent years, the application of machine learning techniques in remote sensing has surged, driven by the increasing availability of large datasets and advancements in computational power <span class="citation" data-cites="un-ggim2019 zhang_review_2022">(<a href="../references.html#ref-un-ggim2019" role="doc-biblioref">UN-GGIM:Europe, 2019</a>; <a href="../references.html#ref-zhang_review_2022" role="doc-biblioref">Y. Zhang et al., 2022</a>)</span>. These machine learning models can be grouped into four main types according to the aims of analyses: classification, clustering, regression, and dimension reduction. <a href="#tbl-models" class="quarto-xref">Table&nbsp;<span>2.1</span></a> describes this grouping as well as giving examples. It is important to note that recent trends in machine learning and remote sensing analyses use hybrid or ensemble approaches using a combination of these groups <span class="citation" data-cites="un-ggim2019">(<a href="../references.html#ref-un-ggim2019" role="doc-biblioref">UN-GGIM:Europe, 2019</a>)</span>. For a thorough review of these methods see <span class="citation" data-cites="un-ggim2019">UN-GGIM:Europe (<a href="../references.html#ref-un-ggim2019" role="doc-biblioref">2019</a>)</span>.</p>
+</div>
+<div id="tbl-models" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align: justify">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-models-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.1: Categories of machine learning methods grouped according to the analytic aim
+</figcaption>
+<div aria-describedby="tbl-models-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Analysis aim</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left; width: 2cm;">Classification</td>
+<td style="text-align: left; width: 14cm;">Assigning objects to known classes based on input variables. For example, categorizing pixels in an image into crop types using a model trained on known data.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 2cm;">Regression</td>
+<td style="text-align: left; width: 14cm;">Predict a numeric (discrete or continuous) response variable based on input variables, similar to classification but with numeric outputs. An example is predicting crop yield from Earch Observation image data.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 2cm;">Clustering</td>
+<td style="text-align: left; width: 14cm;">Groups objects based on input variables without pre-defined classes, identifying similarities among the objects. This can help in grouping pixels in an image for further inspection.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 2cm;">Dimension reduction</td>
+<td style="text-align: left; width: 14cm;">Reduces a large set of variables to a smaller set that retains most of the original information. This can simplify analysis or generate new variables like indices (e.g., Vegetation Index) for interpretation.</td>
+</tr>
+</tbody><tfoot>
+<tr class="odd">
+<td style="text-align: left; padding: 0;"><span style="font-style: italic;">Note: </span></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0;"><sup></sup> Adapted from UN-GGIM:Europe (2019) and Haddaway et al.(2022).</td>
+<td style="text-align: left;"></td>
+</tr>
+</tfoot>
+
+</table>
+
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+<div style="text-align: justify">
+<p>To verify these analyses performance metrics are used. For classification tasks, this involves creating a confusion matrix — a cross-tabulation of class labels assigned to model predictions and reference data (ground truth). In a confusion matrix the correctly classified instances are on the diagonal, and the off-diagonal cells indicate which classes are confused (i.e., are incorrectly classified). In remote sensing applications, accuracy assessments are undertaken on a pixel, group of pixels (e.g.&nbsp;block), or an object level <span class="citation" data-cites="stehman2019">(<a href="../references.html#ref-stehman2019" role="doc-biblioref">Stehman &amp; Foody, 2019</a>)</span>.</p>
+</div>
+<div id="tbl-confusion" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align: justify">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-confusion-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.2: Confusion matrix of four classes
+</figcaption>
+<div aria-describedby="tbl-confusion-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: left; empty-cells: hide; border-bottom: hidden;"></th>
+<th colspan="6" data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px; font-weight: bold;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Predictions
+</div></th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">Reference</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">Class 1</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">Class 2</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">Class 3</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">Class 4</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">Total</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">Producer's accuracy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold;">Class 1</td>
+<td style="text-align: left;">$m_{11}$</td>
+<td style="text-align: left;">$m_{12}$</td>
+<td style="text-align: left;">$m_{13}$</td>
+<td style="text-align: left;">$m_{14}$</td>
+<td style="text-align: left;">$m_{1.}$</td>
+<td style="text-align: left;">$m_{11}/m_{1.}$</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; font-weight: bold;">Class 2</td>
+<td style="text-align: left;">$m_{21}$</td>
+<td style="text-align: left;">$m_{22}$</td>
+<td style="text-align: left;">$m_{23}$</td>
+<td style="text-align: left;">$m_{24}$</td>
+<td style="text-align: left;">$m_{2.}$</td>
+<td style="text-align: left;">$m_{22}/m_{2.}$</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold;">Class 3</td>
+<td style="text-align: left;">$m_{31}$</td>
+<td style="text-align: left;">$m_{32}$</td>
+<td style="text-align: left;">$m_{33}$</td>
+<td style="text-align: left;">$m_{33}$</td>
+<td style="text-align: left;">$m_{3.}$</td>
+<td style="text-align: left;">$m_{33}/m_{3.}$</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; font-weight: bold;">Class 4</td>
+<td style="text-align: left;">$m_{41}$</td>
+<td style="text-align: left;">$m_{42}$</td>
+<td style="text-align: left;">$m_{43}$</td>
+<td style="text-align: left;">$m_{44}$</td>
+<td style="text-align: left;">$m_{4.}$</td>
+<td style="text-align: left;">$m_{44}/m_{4.}$</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold;">Total</td>
+<td style="text-align: left;">$m_{.1}$</td>
+<td style="text-align: left;">$m_{.2}$</td>
+<td style="text-align: left;">$m_{.3}$</td>
+<td style="text-align: left;">$m_{.4}$</td>
+<td style="text-align: left;">$m$</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; font-weight: bold;">User's accuracy</td>
+<td style="text-align: left;">$m_{11}/m_{.1}$</td>
+<td style="text-align: left;">$m_{22}/m_{.2}$</td>
+<td style="text-align: left;">$m_{33}/m_{.3}$</td>
+<td style="text-align: left;">$m_{44}/m_{.4}$</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody><tfoot>
+<tr class="even">
+<td style="text-align: left; padding: 0;"><span style="font-style: italic;">Note: </span></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0;"><sup></sup> Confusion matrix for a classification with four classes, where the rows ($r$) represent the reference (observed) classification and the columns ($c$) represent the predicted classes. $m_{rc}$ is the number of instances predicted in reference class $r$ and predicted class $c$, and $m$ is the total number of instances (i.e., the number of pixels/objects classified).</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tfoot>
+
+</table>
+
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+<div style="text-align: justify">
+<p>From this matrix, performance measures such as overall accuracy are derived <span class="citation" data-cites="fao2016 un-ggim2019 stehman2019">(<a href="../references.html#ref-fao2016" role="doc-biblioref">FAO, 2016</a>; <a href="../references.html#ref-stehman2019" role="doc-biblioref">Stehman &amp; Foody, 2019</a>; <a href="../references.html#ref-un-ggim2019" role="doc-biblioref">UN-GGIM:Europe, 2019</a>)</span>. Where the overall accuracy is the total number of successful classifications, <span class="math inline">\(s\)</span> over total number of instances, <span class="math inline">\(m\)</span>.</p>
+<p><span id="eq-OA"><span class="math display">\[
+\text{Overall Accuracy (OA)} = \frac{\sum^q_{r=1}m_{rr}}{m}= \frac{s}{m}
+\tag{2.1}\]</span></span></p>
+<p>If the unit of accuracy assessment is a pixel, then overall accuracy is the proportion of pixels classified correctly. Other metrics include the reliability (User’s accuracy) and sensitivity (recall or Producer’s accuracy). Reliability is the correct classifications for a particular class divided by the column total (<span class="math inline">\(m_{.c}\)</span>) and sensitivity is correct classifications over the row total (<span class="math inline">\(m_{r.}\)</span>). It is important to consider the purpose of the map when evaluating its accuracy, as overall accuracy may not reflect the accuracy of specific classes. Factors such as sample size, class stability, class proportions, and landscape variability influence the overall accuracy <span class="citation" data-cites="un-ggim2019 fao2016">(<a href="../references.html#ref-fao2016" role="doc-biblioref">FAO, 2016</a>; see <a href="../references.html#ref-un-ggim2019" role="doc-biblioref">UN-GGIM:Europe, 2019</a>)</span>.</p>
+<section id="australia-land-cover-mapping" class="level2">
+<h2 class="anchored" data-anchor-id="australia-land-cover-mapping">Australia Land Cover Mapping</h2>
+<p>To illustrate how remote sensing data and machine leaning can be used to support ecological sustainable development, <span class="citation" data-cites="owers2022">Owers et al. (<a href="../references.html#ref-owers2022" role="doc-biblioref">2022</a>)</span> developed an approach to monitor and map land cover across Australia using techniques. Their study utilized Landsat sensor data archive through Digital Earth Australia to generate annual land cover maps from 1988 to 2020 at a 25-meter resolution. The study used random forest and artificial neural networks to classify individual pixels according to the FAO’s Land Cover Classification System (LCCS) framework.</p>
+</section>
+</div>
+<div id="fig-owers2022" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-owers2022-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/owers_etal22.jpg" class="img-fluid figure-img" style="width:10.2cm">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-owers2022-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.4: Land cover mapping created by <span class="citation" data-cites="owers2022">Owers et al. (<a href="../references.html#ref-owers2022" role="doc-biblioref">2022</a>)</span> using Landstat data to make continent-wide classifications using the LCCS frame work which differentiates six (classes) land cover types: cultivated terrestrial vegetation (CTV), natural terrestrial vegetation (NTV), natural aquatic vegetation (NAV), artificial surfaces (AS), bare surfaces (BS), and water bodies (W).
+</figcaption>
+</figure>
+</div>
+<div style="text-align: justify">
+<p>To produce such maps using a topographical field survey is impractical, given Australia’s size (<span class="math inline">\(7,688,287 \text{ km}^2\)</span>). While field surveys are the most accurate method of generating training sample data, they are labor-intensive, time-consuming, and expensive <span class="citation" data-cites="zhang2022">(<a href="../references.html#ref-zhang2022" role="doc-biblioref">C. Zhang &amp; Li, 2022</a>)</span>. A topographical survey of just 20 hectares (<span class="math inline">\(0.2 \text{ km}^2\)</span>) takes a team of four people approximately five days to complete, even though the resulting topographical map would have a high resolution of 0.5 meters (L.A. Mbila, personal communication, January 26, 2024). In <span class="citation" data-cites="owers2022">Owers et al. (<a href="../references.html#ref-owers2022" role="doc-biblioref">2022</a>)</span>, experts visually inspected the satellite imagery to validate the training and test data. While this is a less labor-intensive, costly and time-consuming than field surveys it still requires significant effort and expertise.</p>
+<p>In contrast to the challenges associated with field surveys, remote sensing provides an efficient method for the continuous monitoring of large areas that would otherwise be inaccessible <span class="citation" data-cites="zhang2022 owers2022">(<a href="../references.html#ref-owers2022" role="doc-biblioref">Owers et al., 2022</a>; <a href="../references.html#ref-zhang2022" role="doc-biblioref">C. Zhang &amp; Li, 2022</a>)</span>. Thefore, <span style="text-align: justify">the potential applications are numerous. Examples include monitoring of land use and degradation, forestry, biodiversity, agriculture, disaster prediction, water resources, public health, urban planning, poverty, and the management and preservation of world heritage sites</span> <span class="citation" data-cites="anshuka_drought_2019 campbell2011 ekmen2024 hall2023 lavallin_machine_2021 maso2023">(<a href="../references.html#ref-anshuka_drought_2019" role="doc-biblioref">Anshuka et al., 2019</a>; <a href="../references.html#ref-campbell2011" role="doc-biblioref">Campbell &amp; Wynne, 2011</a>; <a href="../references.html#ref-ekmen2024" role="doc-biblioref">Ekmen &amp; Kocaman, 2024</a>; <a href="../references.html#ref-hall2023" role="doc-biblioref">O. Hall et al., 2023</a>; <a href="../references.html#ref-lavallin_machine_2021" role="doc-biblioref">Lavallin &amp; Downs, 2021</a>; <a href="../references.html#ref-maso2023" role="doc-biblioref">Maso et al., 2023</a>)</span>.</p>
+</div>
+</section>
+<section id="previous-reviews" class="level2">
+<h2 class="anchored" data-anchor-id="previous-reviews">Previous Reviews</h2>
+<div style="text-align: justify">
+<p>Numerous studies have previously examined the application of remote sensing for SDG monitoring. However, existing reviews are typically either limited to specific contexts, such as the use of satellite data for poverty estimation <span class="citation" data-cites="hall2023">(<a href="../references.html#ref-hall2023" role="doc-biblioref">O. Hall et al., 2023</a>)</span> or focus on descriptive results <span class="citation" data-cites="yin_review_2023">(see <a href="../references.html#ref-yin_review_2023" role="doc-biblioref">Yin et al., 2023</a>)</span>. The existing reviews either apply methodology that aligns more closely with Synthesis Without Meta-Analysis <span class="citation" data-cites="campbell2020">(<a href="../references.html#ref-campbell2020" role="doc-biblioref">Campbell et al., 2020</a>)</span> —for example, <span class="citation" data-cites="thapa_deep_2023">Thapa et al. (<a href="../references.html#ref-thapa_deep_2023" role="doc-biblioref">2023</a>)</span> and <span class="citation" data-cites="ekmen2024">Ekmen &amp; Kocaman (<a href="../references.html#ref-ekmen2024" role="doc-biblioref">2024</a>)</span> — or apply unweighted meta-analysis techniques, such as <span class="citation" data-cites="khatami2016">Khatami et al. (<a href="../references.html#ref-khatami2016" role="doc-biblioref">2016</a>)</span> and <span class="citation" data-cites="hall2023">O. Hall et al. (<a href="../references.html#ref-hall2023" role="doc-biblioref">2023</a>)</span> ). In unweighted meta-analysis all studies are treated equally regardless of their sample size, quality, or variance <span class="citation" data-cites="hall2018">(<a href="../references.html#ref-hall2018" role="doc-biblioref">J. A. Hall &amp; Rosenthal, 2018</a>)</span>. However, it is more common in traditional applications of meta-analysis, to use the sample sizes when aggregating individual studies <span class="citation" data-cites="hall2018">(<a href="../references.html#ref-hall2018" role="doc-biblioref">J. A. Hall &amp; Rosenthal, 2018</a>)</span>. However, to my knowledge, no examples of a weighted meta-analysis applied to predictive performance in remote sensing data have been conduced, highlighting a gap that this study aims to address.</p>
+</div>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-anshuka_drought_2019" class="csl-entry" role="listitem">
+Anshuka, A., Ogtrop, F. F. van, &amp; Willem Vervoort, R. (2019). Drought forecasting through statistical models using standardised precipitation index: A systematic review and meta-regression analysis. <em>Natural Hazards</em>, <em>97</em>(2), 955–977. <a href="https://doi.org/10.1007/s11069-019-03665-6">https://doi.org/10.1007/s11069-019-03665-6</a>
+</div>
+<div id="ref-burke2021" class="csl-entry" role="listitem">
+Burke, M., Driscoll, A., Lobell, D. B., &amp; Ermon, S. (2021). Using satellite imagery to understand and promote sustainable development. <em>Science</em>, <em>371</em>(6535), eabe8628. <a href="https://doi.org/10.1126/science.abe8628">https://doi.org/10.1126/science.abe8628</a>
+</div>
+<div id="ref-campbell2020" class="csl-entry" role="listitem">
+Campbell, McKenzie, J. E., Sowden, A., Katikireddi, S. V., Brennan, S. E., Ellis, S., Hartmann-Boyce, J., Ryan, R., Shepperd, S., Thomas, J., Welch, V., &amp; Thomson, H. (2020). Synthesis without meta-analysis (SWiM) in systematic reviews: reporting guideline. <em>BMJ</em>, <em>368</em>, l6890. <a href="https://doi.org/10.1136/bmj.l6890">https://doi.org/10.1136/bmj.l6890</a>
+</div>
+<div id="ref-campbell2011" class="csl-entry" role="listitem">
+Campbell, &amp; Wynne, R. H. (2011). <em>Introduction to remote sensing</em> (5th ed). Guilford Press.
+</div>
+<div id="ref-ekmen2024" class="csl-entry" role="listitem">
+Ekmen, O., &amp; Kocaman, S. (2024). Remote sensing for UN SDGs: A global analysis of research and collaborations. <em>The Egyptian Journal of Remote Sensing and Space Sciences</em>, <em>27</em>(2), 329–341. <a href="https://doi.org/10.1016/j.ejrs.2024.04.002">https://doi.org/10.1016/j.ejrs.2024.04.002</a>
+</div>
+<div id="ref-fao2016" class="csl-entry" role="listitem">
+FAO, F. and A. O. (2016). <em>Map accuracy assessment and area estimation practical guide</em>.<a href=", http://www.fao.org/3/a-i5601e.pdf">, http://www.fao.org/3/a-i5601e.pdf</a>
+</div>
+<div id="ref-haddaway_evidence_2022" class="csl-entry" role="listitem">
+Haddaway, N. R., Bannach-Brown, A., Grainger, M. J., Hamilton, W. K., Hennessy, E. A., Keenan, C., Pritchard, C. C., &amp; Stojanova, J. (2022). The evidence synthesis and meta-analysis in <span>R</span> conference (<span>ESMARConf</span>): Levelling the playing field of conference accessibility and equitability. <em>Systematic Reviews</em>, <em>11</em>(1), 113. <a href="https://doi.org/10.1186/s13643-022-01985-6">https://doi.org/10.1186/s13643-022-01985-6</a>
+</div>
+<div id="ref-hall2018" class="csl-entry" role="listitem">
+Hall, J. A., &amp; Rosenthal, R. (2018). Choosing between random effects models in meta-analysis: Units of analysis and the generalizability of obtained results. <em>Social and Personality Psychology Compass</em>, <em>12</em>(10), e12414. <a href="https://doi.org/10.1111/spc3.12414">https://doi.org/10.1111/spc3.12414</a>
+</div>
+<div id="ref-hall2023" class="csl-entry" role="listitem">
+Hall, O., Dompae, F., Wahab, I., &amp; Dzanku, F. M. (2023). A review of machine learning and satellite imagery for poverty prediction: Implications for development research and applications. <em>Journal of International Development</em>, <em>35</em>(7), 1753–1768. <a href="https://doi.org/10.1002/jid.3751">https://doi.org/10.1002/jid.3751</a>
+</div>
+<div id="ref-khatami2016" class="csl-entry" role="listitem">
+Khatami, R., Mountrakis, G., &amp; Stehman, S. V. (2016). A meta-analysis of remote sensing research on supervised pixel-based land-cover image classification processes: General guidelines for practitioners and future research. <em>Remote Sensing of Environment</em>, <em>177</em>, 89–100. <a href="https://doi.org/10.1016/j.rse.2016.02.028">https://doi.org/10.1016/j.rse.2016.02.028</a>
+</div>
+<div id="ref-lavallin_machine_2021" class="csl-entry" role="listitem">
+Lavallin, A., &amp; Downs, J. A. (2021). Machine learning in geography–<span>Past</span>, present, and future. <em>Geography Compass</em>, <em>15</em>(5), e12563. <a href="https://doi.org/10.1111/gec3.12563">https://doi.org/10.1111/gec3.12563</a>
+</div>
+<div id="ref-maso2023" class="csl-entry" role="listitem">
+Maso, J., Zabala, A., &amp; Serral, I. (2023). Earth Observations for Sustainable Development Goals. <em>Remote Sensing</em>, <em>15</em>(10), 2570. <a href="https://doi.org/10.3390/rs15102570">https://doi.org/10.3390/rs15102570</a>
+</div>
+<div id="ref-nasa2019" class="csl-entry" role="listitem">
+NASA. (2019). <em>What is Remote Sensing?</em> <a href="https://www.earthdata.nasa.gov/learn/backgrounders/remote-sensing">https://www.earthdata.nasa.gov/learn/backgrounders/remote-sensing</a>
+</div>
+<div id="ref-owers2022" class="csl-entry" role="listitem">
+Owers, C. J., Lucas, R. M., Clewley, D., Tissott, B., Chua, S. M. T., Hunt, G., Mueller, N., Planque, C., Punalekar, S. M., Bunting, P., Tan, P., &amp; Metternicht, G. (2022). Operational continental-scale land cover mapping of Australia using the Open Data Cube. <em>International Journal of Digital Earth</em>, <em>15</em>(1), 1715–1737. <a href="https://doi.org/10.1080/17538947.2022.2130461">https://doi.org/10.1080/17538947.2022.2130461</a>
+</div>
+<div id="ref-seos2014" class="csl-entry" role="listitem">
+SEOS. (2014). <em>Introduction to remote sensing</em>. <a href="https://seos-project.eu/remotesensing/remotesensing-c01-p06.html">https://seos-project.eu/remotesensing/remotesensing-c01-p06.html</a>
+</div>
+<div id="ref-stehman2019" class="csl-entry" role="listitem">
+Stehman, S. V., &amp; Foody, G. M. (2019). Key issues in rigorous accuracy assessment of land cover products. <em>Remote Sensing of Environment</em>, <em>231</em>, 111199. <a href="https://doi.org/10.1016/j.rse.2019.05.018">https://doi.org/10.1016/j.rse.2019.05.018</a>
+</div>
+<div id="ref-thapa_deep_2023" class="csl-entry" role="listitem">
+Thapa, A., Horanont, T., Neupane, B., &amp; Aryal, J. (2023). Deep <span>Learning</span> for <span>Remote</span> <span>Sensing</span> <span>Image</span> <span>Scene</span> <span>Classification</span>: <span>A</span> <span>Review</span> and <span>Meta</span>-<span>Analysis</span>. <em>Remote Sensing</em>, <em>15</em>(19), 4804. <a href="https://doi.org/10.3390/rs15194804">https://doi.org/10.3390/rs15194804</a>
+</div>
+<div id="ref-unionofconcernedscientists" class="csl-entry" role="listitem">
+UCS. (2021). <em>Union of Concerned Scientists (UCS) Satellite Database</em>. <a href="https://www.ucsusa.org/resources/satellite-database">https://www.ucsusa.org/resources/satellite-database</a>
+</div>
+<div id="ref-un-ggim2019" class="csl-entry" role="listitem">
+UN-GGIM:Europe. (2019). <em>The territorial dimension in SDG indicators: Geospatial data analysis and its integration with statistical data</em>. Instituto Nacional de Estatística. <a href="https://un-ggim-europe.org/wp-content/uploads/2019/05/UN_GGIM_08_05_2019-The-territorial-dimension-in-SDG-indicators-Final.pdf">https://un-ggim-europe.org/wp-content/uploads/2019/05/UN_GGIM_08_05_2019-The-territorial-dimension-in-SDG-indicators-Final.pdf</a>
+</div>
+<div id="ref-yin_review_2023" class="csl-entry" role="listitem">
+Yin, C., Peng, N., Li, Y., Shi, Y., Yang, S., &amp; Jia, P. (2023). A review on street view observations in support of the sustainable development goals. <em>International Journal of Applied Earth Observation and Geoinformation</em>, <em>117</em>, 103205. <a href="https://doi.org/10.1016/j.jag.2023.103205">https://doi.org/10.1016/j.jag.2023.103205</a>
+</div>
+<div id="ref-zhang2022" class="csl-entry" role="listitem">
+Zhang, C., &amp; Li, X. (2022). Land Use and Land Cover Mapping in the Era of Big Data. <em>Land</em>, <em>11</em>(10), 1692. <a href="https://doi.org/10.3390/land11101692">https://doi.org/10.3390/land11101692</a>
+</div>
+<div id="ref-zhang_review_2022" class="csl-entry" role="listitem">
+Zhang, Y., Liu, J., &amp; Shen, W. (2022). A <span>Review</span> of <span>Ensemble</span> <span>Learning</span> <span>Algorithms</span> <span>Used</span> in <span>Remote</span> <span>Sensing</span> <span>Applications</span>. <em>Applied Sciences</em>, <em>12</em>(17), 8654. <a href="https://doi.org/10.3390/app12178654">https://doi.org/10.3390/app12178654</a>
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/intro.html" class="pagination-link" aria-label="Introduction">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/methods.html" class="pagination-link" aria-label="Methods">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Methods</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

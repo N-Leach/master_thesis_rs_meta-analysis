@@ -1,0 +1,84 @@
+# Data wrangling 
+
+```{r}
+## Features extracted from the relevant papers
+extracted_features <- read_excel("data/extracted_features.xlsx", sheet = "Include",  na = "NA")
+extracted_features <- extracted_features|>
+  mutate(DOI = tolower(DOI)) 
+
+## total set of papers after duplicates removed
+citations<- read.csv("data/citations.csv")
+citations <- citations|>
+  mutate(DOI = tolower(DOI))
+# citation number data
+open_alex <- read.csv("data/OpenAlex.csv")
+open_alex <- open_alex[, c("DOI", "globalCitationsCount")]
+open_alex <- open_alex|>
+  mutate(DOI = tolower(DOI)) 
+
+## murging first author and year for study label
+citations$AuthorYear <- paste(sapply(strsplit(citations$Author, ", "), 
+                                     `[`, 1), "et al.", 
+                              citations$Publication.Year)
+
+## Joining the reference data with the extracted feature data
+citations_needed<- subset(citations, DOI %in% extracted_features$DOI, 
+                          select = c(DOI, AuthorYear, Publication.Title, Publication.Year))
+
+dat <- inner_join(citations_needed, extracted_features, by = "DOI")
+
+# adding global citation number 
+dat <- left_join(dat,open_alex, by = "DOI")
+
+### columns that are factors 
+cols_to_factor<- c("SDG_theme", "classification_type", "model_group", "ancillary", 
+                   "indices", "RS_device_type", "RS_device_group",  
+                   "RS_spectral_bands_no","RS_spatital_resolution_m",  
+                   "Confusion_matrix")
+
+
+my_data <- subset(dat, !(is.na(total)), # omitting studies without totals 
+               # needed columns 
+               select = c("DOI", "AuthorYear", "Publication.Year", 
+                          "globalCitationsCount", "location", cols_to_factor,
+                          "OA_reported", "number_classes", 
+                          "fraction_majority_class", "total" ))
+
+
+
+
+## Regrouping the extracted features: at least 5 for each group  
+### ML models
+my_data$model_group <- ifelse((my_data$model_group == "Neural Networks" | 
+                                 my_data$model_group == "Tree-Based Models"), 
+                          my_data$model_group,"Other") # other is SVM and KNN 
+my_data$model_group <- factor(my_data$model_group, 
+                             levels = c("Neural Networks", "Tree-Based Models",
+                                        "Other"))
+my_data$no_band_group <- with(my_data, ifelse(RS_spectral_bands_no == "Not Reported", "Not Reported",
+                        ifelse(RS_spectral_bands_no %in% c(1, 4, 5), "Low",
+                        ifelse(RS_spectral_bands_no %in% c(7, 8, 9, 10, 11, 13, 14), "Mid", NA))))
+
+
+## Remote Sensing Spatial resolution
+my_data$RS_spatital_res_grouped <- ifelse(my_data$RS_spatital_resolution_m<1, ">1", 
+                                      ifelse(my_data$RS_spatital_resolution_m>10 &
+                                               my_data$RS_spatital_resolution_m<30,
+                                             "15-25", my_data$RS_spatital_resolution_m))
+## reorder RS_device group
+my_data$RS_device_group <- factor(my_data$RS_device_group, 
+                             levels = c("Sentinel", "Landsat", "Other", "Not Reported"))
+
+my_data[cols_to_factor] <- lapply(my_data[cols_to_factor], as.factor)
+
+
+# making by paper estimate id 
+my_data <- my_data |> group_by(AuthorYear) |> mutate(esid = row_number())
+
+
+### analysis of proportions done as event/sample size so making an event variable
+my_data$event <- my_data$total*my_data$OA_reported
+
+### saving data for analysis 
+write.csv(my_data, "../data/analysis_df.csv")
+```

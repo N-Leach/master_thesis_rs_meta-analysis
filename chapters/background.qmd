@@ -74,7 +74,7 @@ Sensors on remote sensing devices such as satellites measure electromagnetic rad
 ![Illustration of a passive sensor and an active sensor. Source: @nasa2019 Applied Passive Sciences Remote Sensing Training Program.](figures/activepassive_rs.png){#fig-sensors width="14.1cm" height="4.4cm"}
 
 ::: {style="text-align: justify"}
-Components of the Earth's surface have different spectral signatures --- i.e. reflect, absorb, or transmit energy in different amounts and wavelengths [@campbell2011]. Remote sensing devices have several sensors that measure specific ranges of wavelengths in the electromagnetic spectrum; these are referred to as spectral bands (e.g. visible light, infrared, or ultraviolet radiation) [@seos2014; @nasa2019]. By capturing information from particular bands the spectral signatures of surfaces can be used to identify objects on the ground. @fig-spectralsig illustrates the differences between the spectral signatures of soil, green vegetation, and water across various wavelengths. The grey bands in the figure represent the specific spectral bands on the Landsat TM satellite [@seos2014]. The distinct reflectance properties of each material within these bands enable the differentiation of surface materials, making it possible to identify different land cover types. This information can be used directly for classification, or it can be combined into indices---such as the Normalized Difference Vegetation Index (NDVI)---to enhance the detection of specific features like vegetation health and coverage [@nasa2019; @campbell2011]. The $NDVI$ uses red light and near-infrared (NIR) ---given by $\frac{NIR - Red}{NIR + Red}$ --- to distinguish green vegetation. Higher $NDVI$ values indicate green vegetation as more red light is absorbed, whereas lower values correspond to non-vegetated areas where more red light is reflected.
+Components of the Earth's surface have different spectral signatures --- i.e., reflect, absorb, or transmit energy in different amounts and wavelengths [@campbell2011]. Remote sensing devices have several sensors that measure specific ranges of wavelengths in the electromagnetic spectrum; these are referred to as spectral bands (e.g. visible light, infrared, or ultraviolet radiation) [@seos2014; @nasa2019]. By capturing information from particular bands the spectral signatures of surfaces can be used to identify objects on the ground. @fig-spectralsig illustrates the differences between the spectral signatures of soil, green vegetation, and water across various wavelengths. The grey bands in the figure represent the specific spectral bands on the Landsat TM satellite [@seos2014]. The distinct reflectance properties of each material within these bands enable the differentiation of surface materials, making it possible to identify different land cover types. This information can be used directly for classification, or it can be combined into indices---such as the Normalized Difference Vegetation Index (NDVI)---to enhance the detection of specific features like vegetation health and coverage [@nasa2019; @campbell2011]. The $NDVI$ uses red light and near-infrared (NIR) ---given by $\frac{NIR - Red}{NIR + Red}$ --- to distinguish green vegetation. Higher $NDVI$ values indicate green vegetation as more red light is absorbed, whereas lower values correspond to non-vegetated areas where more red light is reflected.
 :::
 
 ![Spectral signatures of soil, green vegetation, and water across different wavelengths, representing the portion of incident radiation that is reflected by each material as a function of wavelength. The grey bands indicate the spectral ranges (channels) of Landsat TM satellite. Bands 1-3 capture visible light (Blue, Green, Red), while Band 4 captures near-infrared (NIR), and Bands 5 and 7 cover parts of the intermediate infrared spectrum. These spectral bands allow for the differentiation of various surface materials based on their unique reflectance properties. Source: Siegmund and Menz (2005) as cited and modified by @seos2014.](figures/spectral_signatures_landsat.jpg){#fig-spectralsig width="12.5cm"}
@@ -94,32 +94,31 @@ read_excel("figures/summary_tables.xlsx", sheet = "ML_cat")|>
   column_spec(1, width = "2cm")|>
   column_spec(2, width = "14cm")|>
   
-  footnote(threeparttable=T)
+  footnote(c("Adapted from UN-GGIM:Europe (2019) and Haddaway et al.(2022)."), 
+           threeparttable=TRUE)
 ```
-
-*Note:* Adapted from @un-ggim2019 and @haddaway_evidence_2022.
 
 Categories of machine learning methods grouped according to the analytic aim
 :::
 
 ::: {style="text-align: justify"}
-To verify these analyses performance metrics are used. For classification tasks, this involves creating a confusion matrix --- a cross-tabulation of class labels assigned to model predictions and reference data (ground truth). In a confusion matrix the correctly classified instances are on the diagonal, and the off-diagonal cells indicate which classes are confused (i.e. are incorrectly classified). In remote sensing applications, accuracy assessments are undertaken on a pixel, group of pixels (e.g. block), or an object level [@stehman2019].
+To verify these analyses performance metrics are used. For classification tasks, this involves creating a confusion matrix --- a cross-tabulation of class labels assigned to model predictions and reference data (ground truth). In a confusion matrix the correctly classified instances are on the diagonal, and the off-diagonal cells indicate which classes are confused (i.e., are incorrectly classified). In remote sensing applications, accuracy assessments are undertaken on a pixel, group of pixels (e.g. block), or an object level [@stehman2019].
 :::
 
-::: {#tbl-tex style="text-align: justify"}
+::: {#tbl-confusion style="text-align: justify"}
 ```{r}
-data <- data.frame(
+confusion <- data.frame(
   Reference = c("Class 1","Class 2","Class 3","Class 4", "Total", "User's accuracy"), 
   #Predictions 
   c1 = c("$m_{11}$", "$m_{21}$", "$m_{31}$", "$m_{41}$", "$m_{.1}$", "$m_{11}/m_{.1}$"),
   c2 = c("$m_{12}$", "$m_{22}$", "$m_{32}$", "$m_{42}$", "$m_{.2}$", "$m_{22}/m_{.2}$"),
   c3 = c("$m_{13}$", "$m_{23}$", "$m_{33}$", "$m_{43}$", "$m_{.3}$", "$m_{33}/m_{.3}$"),
   c4 = c("$m_{14}$", "$m_{24}$", "$m_{33}$", "$m_{44}$", "$m_{.4}$", "$m_{44}/m_{.4}$"),
-  total = c("$m_{1.}$", "$m_{2.}$", "$m_{3.}$", "$m_{4.}$", "$n$", ""),
+  total = c("$m_{1.}$", "$m_{2.}$", "$m_{3.}$", "$m_{4.}$", "$m$", ""),
   pa = c("$m_{11}/m_{1.}$", "$m_{22}/m_{2.}$",
          "$m_{33}/m_{3.}$", "$m_{44}/m_{4.}$", "", "")
 )
-data|>
+confusion|>
   kable(booktabs = TRUE, linesep = "", escape = FALSE, 
         col.names = c("Reference","Class 1","Class 2","Class 3","Class 4", "Total", "Producer's accuracy")
         ) |>
@@ -128,28 +127,25 @@ data|>
   add_header_above(c("", "Predictions" = 6), bold = TRUE) |>
   row_spec(0, bold = TRUE)|>
   column_spec(1, bold = TRUE)|>
-  footnote(threeparttable = TRUE)
+  footnote(c("Confusion matrix for a classification with four classes, where the rows ($r$) represent the reference (observed) classification and the columns ($c$) represent the predicted classes. $m_{rc}$ is the number of instances predicted in reference class $r$ and predicted class $c$, and $m$ is the total number of instances (i.e., the number of pixels/objects classified)."), 
+           threeparttable=TRUE, escape=FALSE)
 ```
-
-*Note:* Confusion matrix for a classification with four classes, where the rows ($r$) represent the reference (observed) classification and the columns ($c$) represent the predicted classes. $m_{rc}$ is the number of instances predicted in reference class $r$ and predicted class $c$, and $n$ is the total number of instances (i.e. the number of pixels/objects classified).
 
 Confusion matrix of four classes
 :::
 
 ::: {style="text-align: justify"}
-From this matrix, performance measures such as overall accuracy are derived [@fao2016; @un-ggim2019; @stehman2019]. Where the overall accuracy is the total number of successful classifications, $s$ over total number of instances, $n$.
+From this matrix, performance measures such as overall accuracy are derived [@fao2016; @un-ggim2019; @stehman2019]. Where the overall accuracy is the total number of successful classifications, $s$ over total number of instances, $m$.
 
 $$
-\text{Overall Accuracy (OA)} = \frac{\sum^q_{r=1}m_{rr}}{n}= \frac{s}{n}
+\text{Overall Accuracy (OA)} = \frac{\sum^q_{r=1}m_{rr}}{m}= \frac{s}{m}
 $$ {#eq-OA}
 
 If the unit of accuracy assessment is a pixel, then overall accuracy is the proportion of pixels classified correctly. Other metrics include the reliability (User's accuracy) and sensitivity (recall or Producer's accuracy). Reliability is the correct classifications for a particular class divided by the column total ($m_{.c}$) and sensitivity is correct classifications over the row total ($m_{r.}$). It is important to consider the purpose of the map when evaluating its accuracy, as overall accuracy may not reflect the accuracy of specific classes. Factors such as sample size, class stability, class proportions, and landscape variability influence the overall accuracy [see @un-ggim2019; @fao2016 ].
 
 ## Australia Land Cover Mapping
 
-To illustrate how remote sensing data and machine leaning can be used to support ecological sustainable development, @owers2022 developed an approach to monitor and map land cover across Australia using techniques.
-
-The study utilized Landsat sensor data archive through Digital Earth Australia to generate annual land cover maps from 1988 to 2020 at a 25-meter resolution. The study used random forest and artificial neural networks to classify individual pixels according to the FAO's Land Cover Classification System (LCCS) framework.
+To illustrate how remote sensing data and machine leaning can be used to support ecological sustainable development, @owers2022 developed an approach to monitor and map land cover across Australia using techniques. Their study utilized Landsat sensor data archive through Digital Earth Australia to generate annual land cover maps from 1988 to 2020 at a 25-meter resolution. The study used random forest and artificial neural networks to classify individual pixels according to the FAO's Land Cover Classification System (LCCS) framework.
 :::
 
 ![Land cover mapping created by @owers2022 using Landstat data to make continent-wide classifications using the LCCS frame work which differentiates six (classes) land cover types: cultivated terrestrial vegetation (CTV), natural terrestrial vegetation (NTV), natural aquatic vegetation (NAV), artificial surfaces (AS), bare surfaces (BS), and water bodies (W).](figures/owers_etal22.jpg){#fig-owers2022 alt="Spectral signatures of soil, green vegetation and water a cross wavelengths, i.e. the portion of the incident radiation that is reflected by the material as a function of wavelength. The grey bands are the spectral ranges (channels) of NASA Landsat TM satalite. Bands 1-3 collect visble light… TO ADD: reference." width="10.2cm"}
