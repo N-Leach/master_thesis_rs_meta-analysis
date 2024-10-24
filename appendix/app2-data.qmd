@@ -3,6 +3,7 @@
 The following code shows how I combined the data from different sources and grouped the variables. For the final that see [Github repository.](https://github.com/N-Leach/master_thesis_rs_meta-analysis/tree/main/data)
 
 ```{r}
+#| code-fold: false
 source("../appendix/packages.R")
 
 # Manualy extracted features from poteniatly relevant papers
@@ -70,7 +71,7 @@ my_data$no_band_group <- with(my_data,
 
 # Group remote sensing spatial resolution
 my_data$RS_spatital_res_grouped <- ifelse(my_data$RS_spatital_resolution_m < 1, 
-                                          ">1 metres",
+                                          "<1 metre",
                                   ifelse(my_data$RS_spatital_resolution_m >= 10 & 
                                          my_data$RS_spatital_resolution_m <= 30, 
                                          "10-30 metres", 
@@ -119,6 +120,7 @@ write.csv(my_data, "../data/analysis_df.csv")
 The following assesses whether any categorical variables in the dataset had values that are unique to a single study. First, the relevant categorical variables, including features like remote sensing device type and spatial resolution are selected. A function is defined to group each variable by its values and count the number of distinct papers associated with each value. The tables show the number of papers, effect sizes, and highlights the specific study name if that category is only represented by a single source. The number of effect sizes is always greater than 5, however there are a few instances that only one study contributed to a category.
 
 ```{r}
+#| code-fold: false
 categorical_cols <- c("SDG_theme", "classification_type", "model_group", "ancillary", 
                       "indices", "RS_device_group", "RS_devices", "RS_device_type",
                       "RS_device_group", "no_band_group", 
@@ -160,8 +162,4 @@ for (var in names(count_values_list)) {
 
 ```
 
-For tables and figures labels for the variable names
 
-```{r}
-names(my_data)
-```

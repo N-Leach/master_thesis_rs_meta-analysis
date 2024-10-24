@@ -1,9 +1,19 @@
+---
+execute:
+  echo: false
+  message: false
+  warning: false
+  enabled: true
+---
+
 # Background {#sec-background style="text-align: justify"}
 
 ```{r set-up}
 source("../appendix/packages.R")
 source("../appendix/feature_labels.R")
 ```
+
+This chapter provides an overview of the concepts and methodologies analysed in this research. It provides a brief introduction to remote sensing, machine learning techniques, and their applications in land cover mapping and SDG monitoring.
 
 ## Remote Sensing
 
@@ -29,7 +39,7 @@ In the broadest sense, remote sensing involves acquiring information about an ob
 ::: {#fig-UCS}
 ```{r}
 #| fig-width: 5
-#| fig-height: 3
+#| fig-height: 2.5
 
 ggplot(data = UCS_Satellite_Database_EarthObs|> 
          group_by(week = lubridate::floor_date(Date_Launch, 'week'))|>
@@ -39,31 +49,33 @@ ggplot(data = UCS_Satellite_Database_EarthObs|>
   
   scale_x_date(date_breaks = "5 years", date_labels = "%Y") +
   
-  labs(y = "Number of Satellite", x = "Date", 
+  labs(y = "Number of Satellite", x = "Year", 
         title = "Number of Satellites Launched Over Time") +
   common_theme
 
 ```
 
-Number of active satellites by date of launch. Data acquired from @unionofconcernedscientists.
+Number of active satellites by date of launch --- data acquired from @unionofconcernedscientists.
 :::
 
 ::: {style="text-align: justify"}
 Sensors on remote sensing devices such as satellites measure electromagnetic radiation reflected by objects on the Earth's surface. This is done in two different ways: passive and active. Passive sensors rely on natural energy sources, like sunlight, to record incident energy reflected off the Earth's surface. While active sensors generate their own energy, which is emitted and then measured as it reflects back from with the Earth's surface [@nasa2019].
 :::
 
-![Illustration of a passive sensor and an active sensor. Source: @nasa2019 Applied Passive Sciences Remote Sensing Training Program.](figures/activepassive_rs.png){#fig-sensors width="14.1cm" height="4.4cm"}
+![Illustration of a passive sensor and an active sensor ---source: @nasa2019.](figures/activepassive_rs.png){#fig-sensors width="14.1cm" height="4.4cm"}
 
 ::: {style="text-align: justify"}
-Components of the Earth's surface have different spectral signatures --- i.e., reflect, absorb, or transmit energy in different amounts and wavelengths [@campbell2011]. Remote sensing devices have several sensors that measure specific ranges of wavelengths in the electromagnetic spectrum; these are referred to as spectral bands (e.g. visible light, infrared, or ultraviolet radiation) [@seos2014; @nasa2019]. By capturing information from particular bands the spectral signatures of surfaces can be used to identify objects on the ground. @fig-spectralsig illustrates the differences between the spectral signatures of soil, green vegetation, and water across various wavelengths. The grey bands in the figure represent the specific spectral bands on the Landsat TM satellite [@seos2014]. The distinct reflectance properties of each material within these bands enable the differentiation of surface materials, making it possible to identify different land cover types. This information can be used directly for classification, or it can be combined into indices---such as the Normalized Difference Vegetation Index (NDVI)---to enhance the detection of specific features like vegetation health and coverage [@nasa2019; @campbell2011]. The $NDVI$ uses red light and near-infrared (NIR) ---given by $\frac{NIR - Red}{NIR + Red}$ --- to distinguish green vegetation. Higher $NDVI$ values indicate green vegetation as more red light is absorbed, whereas lower values correspond to non-vegetated areas where more red light is reflected.
+Components of the Earth's surface have different spectral signatures --- i.e., reflect, absorb, or transmit energy in different amounts and wavelengths [@campbell2011]. Remote sensing devices have several sensors that measure specific ranges of wavelengths in the electromagnetic spectrum; these are referred to as spectral bands; e.g., visible light, infrared, or ultraviolet radiation [@seos2014; @nasa2019]. By capturing information from particular bands, the spectral signatures of surfaces can be used to identify objects on the ground. @fig-spectralsig illustrates the differences between the spectral signatures of soil, green vegetation, and water across various wavelengths. The grey bands in the figure represent the specific spectral bands on the Landsat TM satellite [@seos2014]. The distinct reflectance properties of each material within these bands enable the differentiation of surface materials, making it possible to identify different land cover types. This information can be used directly for classification, or it can be combined into indices---such as the Normalized Difference Vegetation Index (NDVI)---to enhance the detection of specific features like vegetation health and coverage [@nasa2019; @campbell2011]. The $NDVI$ uses red light and near-infrared (NIR) to distinguish green vegetation. Higher $NDVI$ values indicate green vegetation as more red light is absorbed, whereas lower values correspond to non-vegetated areas where more red light is reflected.
 :::
 
-![Spectral signatures of soil, green vegetation, and water across different wavelengths, representing the portion of incident radiation that is reflected by each material as a function of wavelength. The grey bands indicate the spectral ranges (channels) of Landsat TM satellite. Bands 1-3 capture visible light (Blue, Green, Red), while Band 4 captures near-infrared (NIR), and Bands 5 and 7 cover parts of the intermediate infrared spectrum. These spectral bands allow for the differentiation of various surface materials based on their unique reflectance properties. Source: Siegmund and Menz (2005) as cited and modified by @seos2014.](figures/spectral_signatures_landsat.jpg){#fig-spectralsig width="12.5cm"}
+![Spectral signatures of soil, green vegetation, and water across different wavelengths, representing the portion of incident radiation that is reflected by each material as a function of wavelength. The grey bands indicate the spectral ranges (channels) of Landsat TM satellite. Bands 1-3 capture visible light (Blue, Green, Red), Band 4 captures near-infrared (NIR), and Bands 5 and 7 cover parts of the intermediate infrared spectrum. These spectral bands allow for the differentiation of various surface materials based on their unique reflectance properties ---source: Siegmund and Menz (2005) as cited and modified by @seos2014.](figures/spectral_signatures_landsat.jpg){#fig-spectralsig width="12.5cm"}
 
 ## Machine Learning
 
 ::: {style="text-align: justify"}
-Machine learning techniques such as neural networks, random forests, and support vector machines have long been applied for spatial data analysis and geographic modeling [@lavallin_machine_2021; @haddaway_evidence_2022]. Compared to using indices alone, machine learning techniques enhance the accuracy and efficiency of data analysis and interpretation processes making it possible to analyze large volumes of data effectively. Which is particularly useful for handling the high complexity and dimensionality of remote sencing data. In recent years, the application of machine learning techniques in remote sensing has surged, driven by the increasing availability of large datasets and advancements in computational power [@un-ggim2019; @zhang_review_2022]. These machine learning models can be grouped into four main types according to the aims of analyses: classification, clustering, regression, and dimension reduction. @tbl-models describes this grouping as well as giving examples. It is important to note that recent trends in machine learning and remote sensing analyses use hybrid or ensemble approaches using a combination of these groups [@un-ggim2019]. For a thorough review of these methods see @un-ggim2019.
+Machine learning techniques such as neural networks, random forests, and support vector machines have long been applied for spatial data analysis and geographic modelling [@lavallin_machine_2021; @haddaway_evidence_2022]. Compared to using indices alone, machine learning techniques enhance the accuracy and efficiency of data analysis and interpretation processes, making it possible to analyze large volumes of data effectively. This is particularly useful for handling the high complexity and dimensionality of remote sensing data. In recent years, the application of machine learning techniques in remote sensing has surged, driven by the increasing availability of large datasets and advancements in computational power [@un-ggim2019; @zhang_review_2022].
+
+These machine learning models can be grouped into four main types according to the aims of analyses: classification, clustering, regression, and dimension reduction. @tbl-models describes this grouping and gives examples. It is important to note that recent trends in machine learning and remote sensing analyses use hybrid or ensemble approaches using a combination of these groups, for a thorough review of these methods see @un-ggim2019.
 :::
 
 ::: {#tbl-models style="text-align: justify"}
@@ -79,11 +91,11 @@ read_excel("figures/summary_tables.xlsx", sheet = "ML_cat")|>
            threeparttable=TRUE)
 ```
 
-Categories of machine learning methods grouped according to the analytic aim
+Categories of machine learning methods grouped according to the analytic aim.
 :::
 
 ::: {style="text-align: justify"}
-To verify these analyses performance metrics are used. For classification tasks, this involves creating a confusion matrix --- a cross-tabulation of class labels assigned to model predictions and reference data (ground truth). In a confusion matrix the correctly classified instances are on the diagonal, and the off-diagonal cells indicate which classes are confused (i.e., are incorrectly classified). In remote sensing applications, accuracy assessments are undertaken on a pixel, group of pixels (e.g. block), or an object level [@stehman2019].
+Performance metrics are used to verify these analyses, which for classification tasks involve creating a confusion matrix --- a cross-tabulation of class labels assigned to model predictions and reference data (ground truth). In a confusion matrix, the correctly classified instances are on the diagonal, and the off-diagonal cells indicate which classes are confused (i.e., incorrectly classified). In remote sensing applications, accuracy assessments are undertaken on a pixel, group of pixels (e.g. block), or an object level [@stehman2019].
 :::
 
 ::: {#tbl-confusion style="text-align: justify"}
@@ -108,7 +120,7 @@ confusion|>
   add_header_above(c("", "Predictions" = 6), bold = TRUE) |>
   row_spec(0, bold = TRUE)|>
   column_spec(1, bold = TRUE)|>
-  footnote(c("Confusion matrix for a classification with four classes, where the rows ($r$) represent the reference (observed) classification and the columns ($c$) represent the predicted classes. $m_{rc}$ is the number of instances predicted in reference class $r$ and predicted class $c$, and $m$ is the total number of instances (i.e., the number of pixels/objects classified)."), 
+  footnote(c("The rows ($r$) represent the reference (observed) classification and the columns ($c$) represent the predicted classes. $m_{rc}$ is the number of instances in reference (observered) class $r$ and predicted class $c$, and $m$ is the total number of instances (i.e., the number of pixels/objects classified)."), 
            threeparttable=TRUE, escape=FALSE)
 ```
 
@@ -116,29 +128,29 @@ Confusion matrix of four classes
 :::
 
 ::: {style="text-align: justify"}
-From this matrix, performance measures such as overall accuracy are derived [@fao2016; @un-ggim2019; @stehman2019]. Where the overall accuracy is the total number of successful classifications, $s$ over total number of instances, $m$.
+From this matrix, performance measures such as overall accuracy are derived [@fao2016; @un-ggim2019; @stehman2019] where the overall accuracy is the total number of successful classifications $s$ over the total number of instances, $m$ ($q$ is the number of classes).
 
 $$
 \text{Overall Accuracy (OA)} = \frac{\sum^q_{r=1}m_{rr}}{m}= \frac{s}{m}
 $$ {#eq-OA}
 
-If the unit of accuracy assessment is a pixel, then overall accuracy is the proportion of pixels classified correctly. Other metrics include the reliability (User's accuracy) and sensitivity (recall or Producer's accuracy). Reliability is the correct classifications for a particular class divided by the column total ($m_{.c}$) and sensitivity is correct classifications over the row total ($m_{r.}$). It is important to consider the purpose of the map when evaluating its accuracy, as overall accuracy may not reflect the accuracy of specific classes. Factors such as sample size, class stability, class proportions, and landscape variability influence the overall accuracy [see @un-ggim2019; @fao2016 ].
+If the unit of accuracy assessment is a pixel, then overall accuracy is the proportion of pixels classified correctly. Other metrics include reliability (User's accuracy) and sensitivity (recall or Producer's accuracy). Reliability is the correct classification for a particular class divided by the column total ($m_{.c}$), and sensitivity is the correct classification over the row total ($m_{r.}$). It is important to consider the map's purpose when evaluating its accuracy, as overall accuracy may not reflect the accuracy of specific classes. Factors such as sample size, class stability, class proportions, and landscape variability influence the overall accuracy [see @un-ggim2019; @fao2016].
 
 ## Australia Land Cover Mapping
 
-To illustrate how remote sensing data and machine leaning can be used to support ecological sustainable development, @owers2022 developed an approach to monitor and map land cover across Australia using techniques. Their study utilized Landsat sensor data archive through Digital Earth Australia to generate annual land cover maps from 1988 to 2020 at a 25-meter resolution. The study used random forest and artificial neural networks to classify individual pixels according to the FAO's Land Cover Classification System (LCCS) framework.
+As an example of how remote sensing data and machine learning can be used to support ecologically sustainable development, @owers2022 developed an approach to monitor and map land cover across Australia using techniques. Their study used Landsat sensor data archive through Digital Earth Australia to generate annual land cover maps from 1988 to 2020 at a 25-meter resolution. The study used random forest and artificial neural networks to classify individual pixels according to the FAO's Land Cover Classification System (LCCS) framework.
 :::
 
-![Land cover mapping created by @owers2022 using Landstat data to make continent-wide classifications using the LCCS frame work which differentiates six (classes) land cover types: cultivated terrestrial vegetation (CTV), natural terrestrial vegetation (NTV), natural aquatic vegetation (NAV), artificial surfaces (AS), bare surfaces (BS), and water bodies (W).](figures/owers_etal22.jpg){#fig-owers2022 alt="Spectral signatures of soil, green vegetation and water a cross wavelengths, i.e. the portion of the incident radiation that is reflected by the material as a function of wavelength. The grey bands are the spectral ranges (channels) of NASA Landsat TM satalite. Bands 1-3 collect visble light… TO ADD: reference." width="10.2cm"}
+![Land cover mapping created by @owers2022 using Landstat data to make continent-wide classifications using the LCCS frame work which differentiates six (classes) land cover types: cultivated terrestrial vegetation (CTV), natural terrestrial vegetation (NTV), natural aquatic vegetation (NAV), artificial surfaces (AS), bare surfaces (BS), and water bodies (W).](figures/owers_etal22.jpg){#fig-owers2022 width="10cm"}
 
 ::: {style="text-align: justify"}
-To produce such maps using a topographical field survey is impractical, given Australia's size ($7,688,287 \text{ km}^2$). While field surveys are the most accurate method of generating training sample data, they are labor-intensive, time-consuming, and expensive [@zhang2022]. A topographical survey of just 20 hectares ($0.2 \text{ km}^2$) takes a team of four people approximately five days to complete, even though the resulting topographical map would have a high resolution of 0.5 meters (L.A. Mbila, personal communication, January 26, 2024). In @owers2022, experts visually inspected the satellite imagery to validate the training and test data. While this is a less labor-intensive, costly and time-consuming than field surveys it still requires significant effort and expertise.
+Producing such detailed maps through traditional topographical field surveys would be impractical, given Australia's size ($7,688,287 \text{ km}^2$). While field surveys are considered the most accurate method for generating training sample data, they are labor-intensive, time-consuming, and costly [@zhang2022]. For example, surveying just 20 hectares ($0.2 \text{ km}^2$) would take a team of four people approximately five days to complete, though the resulting topographical map would have a high resolution of 0.5 meters (L.A. Mbila, personal communication, January 26, 2024). In @owers2022, experts visually inspected the satellite imagery to validate the training and test data. While this method is less labor-intensive, costly, and time-consuming than field surveys, it still demands significant effort and expertise.
 
-In contrast to the challenges associated with field surveys, remote sensing provides an efficient method for the continuous monitoring of large areas that would otherwise be inaccessible [@zhang2022; @owers2022]. Thefore, [the potential applications are numerous. Examples include monitoring of land use and degradation, forestry, biodiversity, agriculture, disaster prediction, water resources, public health, urban planning, poverty, and the management and preservation of world heritage sites]{style="text-align: justify"} [@anshuka_drought_2019; @campbell2011; @ekmen2024; @hall2023; @lavallin_machine_2021; @maso2023].
+In contrast to the limitations of field surveys, remote sensing provides an efficient means for continuously monitoring large, often inaccessible areas [@zhang2022; @owers2022]. The potential applications of this technology are vast, including land use and degradation monitoring, forestry, biodiversity assessment, agriculture, disaster prediction, water resource management, public health, urban planning, poverty tracking, and the management and preservation of world heritage sites [@anshuka_drought_2019; @campbell2011; @ekmen2024; @hall2023; @lavallin_machine_2021; @maso2023].
 :::
 
 ## Previous Reviews
 
 ::: {style="text-align: justify"}
-Numerous studies have previously examined the application of remote sensing for SDG monitoring. However, existing reviews are typically either limited to specific contexts, such as the use of satellite data for poverty estimation [@hall2023] or focus on descriptive results [see @yin_review_2023]. The existing reviews either apply methodology that aligns more closely with Synthesis Without Meta-Analysis [@campbell2020] ---for example, @thapa_deep_2023 and @ekmen2024 --- or apply unweighted meta-analysis techniques, such as @khatami2016 and @hall2023 ). In unweighted meta-analysis all studies are treated equally regardless of their sample size, quality, or variance [@hall2018]. However, it is more common in traditional applications of meta-analysis, to use the sample sizes when aggregating individual studies [@hall2018]. However, to my knowledge, no examples of a weighted meta-analysis applied to predictive performance in remote sensing data have been conduced, highlighting a gap that this study aims to address.
+Numerous studies have previously examined the application of remote sensing for SDG monitoring. However, existing reviews are typically either limited to specific contexts, such as the use of satellite data for poverty estimation [@hall2023] or focus on descriptive results [see @yin_review_2023]. The existing reviews either apply methodology that aligns more closely with Synthesis Without Meta-Analysis [@campbell2020] ---for example, @thapa_deep_2023 and @ekmen2024 --- or apply unweighted meta-analysis techniques, such as @khatami2016 and @hall2023. In an unweighted meta-analysis all studies are treated equally regardless of their sample size, quality, or variance [@hall2018]. However, it is more common in traditional applications of meta-analysis, to use the sample sizes when aggregating individual studies [@hall2018]. However, to my knowledge, no examples of a weighted meta-analysis applied to predictive performance in remote sensing data have been conduced, highlighting a gap that this study aims to address.
 :::

@@ -35,55 +35,59 @@ ies.da$indices <- relevel(factor(ies.da$indices), ref = "Not Used")
 ```
 
 ::: {style="text-align: justify"}
-A total of $n = 20$ studies with $k = 86$ effect sizes were included in this analysis, with each primary study reported between one and 27 results ($1 \leq k_j \leq 27$). The research area of these studies span 18 countries, @fig-subfig-map shows a map indicating the location of each effect size. These primary studies were grouped into three different SDG goals: SDG 2 (Zero Hunger), SDG 11 (Sustainable Cities), and SDG 15 (Life on Land).
+A total of $n = 20$ studies with $k = 86$ effect sizes were included in this analysis, with each primary study reported between one and 27 results ($1 \leq k_j \leq 27$). The research area of these studies span 18 countries, @fig-map_range shows a map indicating the location of each effect size. These primary studies were grouped into three different SDG goals: SDG 2 Zero Hunger, SDG 11 Sustainable Cities, and SDG 15 Life on Land.
 :::
 
-::: {#fig-charts layout-nrow="2"}
+::: {#fig-map_range layout-nrow="2"}
 ```{r}
 #| fig-height: 2.8
 #| fig-width: 5
-#| label: fig-subfig-map
-#| fig-cap-location: top
-#| fig-cap: "Map of researched locations"
 sf_world <- ne_countries(returnclass = "sf")
 
 # Get the world map data with country names, latitude, and longitude
 world_map <- map_data("world") 
  
-SDG_colours <- 
-scale_colour_manual(values = c(
+SDG_colours <- c(
     "SDG2: Zero Hunger" = "#E8B700",  
     "SDG11: Sustainable Cities" = "#FF7518",  
-    "SDG15: Life on Land" = "#2C9F2C"  
-  ))  
+    "SDG15: Life on Land" = "#2C9F2C" )  
 
 study_map <- world_map |>
   group_by(region) |>
   summarize(lat = mean(lat), long = mean(long), .groups = 'drop')|>
-  right_join(my_data, join_by("region"=="location"))
+  right_join(subset(my_data, esid ==1), join_by("region"=="location"))
  
 ggplot(sf_world) + 
   geom_sf(fill = "#f4f3f1")+
   coord_sf(ylim = c(-55,80)) +
-  geom_jitter(data = study_map, aes(x = long, y = lat, colour = SDG_theme), 
-              #color = "#001158",
-              alpha = 0.4,
-              size = 1.2, 
-              width = 3, 
-              height = 1, 
-             show.legend = FALSE) +
- SDG_colours +
-  theme_void()
+  geom_jitter(data = study_map, aes(x = long, y = lat, 
+                                    fill = SDG_theme), 
+              size = 2, 
+              width = 5,
+              colour = "transparent",
+              alpha = 0.8,
+              height = 0,
+              shape = 25,
+              show.legend = FALSE) +
+  labs(title = "(a) Map of researched locations", 
+       x = NULL, 
+       y = NULL) +
+  scale_fill_manual(values = SDG_colours ) +
+  common_theme +
+   theme(
+    axis.text = element_blank(),
+    axis.ticks = element_blank(),
+    panel.grid = element_blank(),
+    panel.border = element_blank(),
+    plot.margin = margin(0, 0, 0, 0)
+  )
 
 ```
 
 ```{r}
-#| fig-height: 4.5
+#| fig-height: 4.4
 #| fig-width: 7
-#| label: fig-subfig-oa
-#| fig-cap-location: top
-#| fig-cap:  "Reported overall accuracy by study" 
-ggplot(ies.da ,aes(x = reorder(AuthorYear, OA_reported), y = OA_reported, 
+ggplot(ies.da, aes(x = reorder(AuthorYear, OA_reported), y = OA_reported, 
                colour = SDG_theme
                ))+
   geom_point(alpha = 0.2, size = 1.5)+
@@ -91,8 +95,8 @@ ggplot(ies.da ,aes(x = reorder(AuthorYear, OA_reported), y = OA_reported,
                  size = 2, shape = 17)+
   labs(x = NULL, 
        y = "Observed Overall Accuracy", 
-       title = " ") +
-  SDG_colours+
+       title = "(B) Reported overall accuracy by study") +
+  scale_colour_manual(values = SDG_colours ) +
   guides(colour=guide_legend(title= NULL, nrow=1, byrow=TRUE, 
                              override.aes = list(shape = 16, size = 2.5)
                              )
@@ -112,7 +116,7 @@ ggplot(ies.da ,aes(x = reorder(AuthorYear, OA_reported), y = OA_reported,
 
 ```
 
-Study location and range of reported overall accuracy, colour-coded by SDG goal. Individual outcomes shown as points and mean overall accuracy represented by triangles.
+Top, shows primary study location map and bottom the range of reported overall accuracy. With individual overall accuracies shown as points and mean overall accuracy represented by triangles. Both the map and points are colour-coded by SDG goal.
 :::
 
 ```{r normal_test}
@@ -120,7 +124,7 @@ shapiro_test_result <- round(shapiro_test(ies.da$yi)[, 2:3], 2)
 ```
 
 ::: {style="text-align: justify"}
-@fig-subfig-oa and @tbl-sum (bellow) show, the reported overall accuracies are not centered around 0.5. Therefore, a transformation is required. @fig-transfrom shows the distribution of observed overall accuracy as well as the logit and FT transformation values. FT visually performs better than the Logit transformation. However the Shapiro-Wilk Normality Test shows that the distribution of the FT transformed overall accuracy still departed significantly from normality ($W =$ `r shapiro_test_result$statistic`, p-value \< 0.01). Nevertheless, conducting a meta-analysis remains justified, as these statistical models are generally robust against violations of normality [@mcculloch2012].
+\@#fig-map_range **(b)** and @tbl-sum (bellow) show, the reported overall accuracies are not centered around 0.5. Therefore, a transformation is required. @fig-transfrom shows the distribution of observed overall accuracy as well as the logit and FT transformation values. FT visually performs better than the Logit transformation. However the Shapiro-Wilk Normality test shows that the distribution of the FT transformed overall accuracy still departed significantly from normality ($W =$ `r shapiro_test_result$statistic`, p-value \< 0.01). Nevertheless, conducting a meta-analysis remains justified, as these statistical models are generally robust against violations of normality [@mcculloch2012].
 :::
 
 ::: {#fig-transfrom}
@@ -190,7 +194,6 @@ ies.da |>
       all_categorical() ~ "{n} ({p}%)"
     ),
     label = feature_labels,
-    digits = all_continuous() ~ 2,
     missing = "no"
   ) |>
   modify_header(label = "Feature") |>
@@ -198,14 +201,15 @@ ies.da |>
   as_kable(
     booktabs = TRUE,
     longtable = TRUE, 
-    linesep = ""
+    linesep = "",
+    escape = TRUE
   )|>
   kable_styling(font_size = 9, 
                 full_width = FALSE)|>
-  pack_rows("Study Features", 2, 24, latex_gap_space = "0.1em" #, hline_before = T
+  pack_rows("Study Features", 2, 46, latex_gap_space = "0.1em" #, hline_before = T
             )|>
-  pack_rows("Numeric b", 2, 5, latex_gap_space = "0em")|>
-  pack_rows("Categorical c", 6,46, latex_gap_space = "0em")|>
+  pack_rows("Numeric$^b$", 2, 5, latex_gap_space = "0em")|>
+  pack_rows("Categorical$^c$", 6,46, latex_gap_space = "0em")|>
    row_spec(c(0),  bold = TRUE)|>
   column_spec(1, width = "7cm")|>
   column_spec(2, width = "6cm")|>
@@ -213,8 +217,8 @@ ies.da |>
                29:30, 32:35,37:40,42:44,
                46:48), 
                level_of_indent = 1.5)|>
-  footnote(alphabet = c("Effect size of interest, b. Numeric: mean (min - max), c. Categorical variables: number of effect sizes (%)"), 
-               threeparttable=TRUE)
+  footnote(alphabet = c("Effect size of interest. $^a$For numeric predictors: mean (min - max) and $^b$ for categorical variables number of effect sizes (%)"), 
+               threeparttable=TRUE, escape = FALSE)
 
 ```
 
@@ -521,6 +525,7 @@ ggplot( subset(ies.da, ies.da$classification_type != "Unclear"),
         mapping = aes(classification_type, weights))+
   geom_boxplot()
 
+
 ```
 
 ```{r fig_forrest, eval=FALSE}
@@ -654,10 +659,14 @@ The forest plot below (@fig-forest) compares the overall accuracy effect size ac
 
 ::: {style="text-align: justify"}
 The heterogeneity metrics Cochran's Q indicate significant heterogeneity of the reported overall acccuracies. The percentage of the variance attribution is $I^2_{\text{level3}}$ = `r results$I_L3[1]`% which is the fraction of the variation that can be attributed to between-study, and $I^2_{\text{level2}}$ = `r results$I_L2[1]`% which is within-study heterogeneity, with negligible fixed effect variance (variance due to sampling error). The $I^2$ value of 100% indicates that all the observed variability in effect sizes across studies is due to heterogeneity rather than sampling error, suggesting substantial differences between the studies and a high degree of variation in their results.
+:::
+
+::: {style="text-align: justify"}
+\newpage
 
 #### Model Selection
 
-Using the multi-model inference function, a total of 31,298 models were fitted. @fig-best, illustrates the predictor importance after evaluating all possible combinations of predictors to identify which combination provides the best fit and which predictors are most influential. Higher importance values indicate more consistent inclusion in high-weight models. The majority class proportion is the most important predictor, followed by the inclusion of ancillary data. Less influential predictors include used of indices, sample size, publication year, and the number of classes in the study. Meanwhile, factors such as classification type, SDG goal, machine learning group, spatial resolution, and citation count have minimal importance in the overall model performance (i.e., where not included in the models top performing models according to AIC).
+Using the multi-model inference function, a total of 31,298 models converged <!--# ADD -->. @fig-best, illustrates the predictor importance after evaluating all possible combinations of predictors to identify which combination provides the best fit and which predictors are most influential. Higher importance values indicate more consistent inclusion in high-weight models. The majority class proportion is the most important predictor, followed by the inclusion of ancillary data. Less influential predictors include used of indices, sample size, publication year, and the number of classes in the study. Meanwhile, factors such as classification type, SDG goal, machine learning group, spatial resolution, and citation count have minimal importance in the overall model performance (i.e., were not included in the models top performing models according to AIC).
 :::
 
 ```{r eval=FALSE}
@@ -692,43 +701,42 @@ ggsave("figures/fig-best_mod.png", height =4, width = 7)
 ```
 
 ::: {style="text-align: justify"}
-![Model-averaged predictor importance plot with a reference line at 0.8 a commonly used as a threshold to indicate important predictors.](figures/fig-best_mod.png){#fig-best width="697"}
+![Model-averaged predictor importance plot with a reference line at 0.8 a commonly used as a threshold to indicate important predictors.](figures/fig-best_mod.png){#fig-best width="17.5cm"}
 :::
 
-@tbl-multi_coef shows the results of the multi-model inference. The significant study features are the Majority-class Proportion and the inclusion of ancillary data. Interestingly, the use of ancillary data has a negative effect on overall accuracy.
+::: {style="text-align: justify"}
+In the multimodel inference analysis, the five best-performing models were identified based on their AIC scores. The selected top models consistently included key predictors such as the majority-class proportion and the use of ancillary data. @tbl-multi_coef shows the results of the multi-model inference. The significant study features are the majority-class proportion and the inclusion of ancillary data. Interestingly, the use of ancillary data has a negative effect on overall accuracy in the FT transformed scale. @tbl-compare shows these best performing models and the intercept-only model (before adding the predictors), note that the AIC is very similar in among the top five.
+:::
 
 ::: {#tbl-multi_coef}
-\renewcommand{\arraystretch}{0.68}
+\renewcommand{\arraystretch}{0.7}
 
 ```{r multi_coef}
-multi_coef<- read.csv("multimodel_inference_results.csv")
-multi_coef[is.na(multi_coef)] <- ""
-  
-kable(
+multi_coef<- read_excel("figures/summary_tables.xlsx", 
+                        sheet = "multimodel_inference_results")
+  kable(
   multi_coef,
-    booktabs = TRUE,
-    #longtable = TRUE, 
-    linesep = ""
+  booktabs = TRUE,
+  linesep = "",
+  col.names = c("Importance", "Feature (Referance Category)", 
+                "Comparison Category", "b", "SE", "z", "p"),
   )|>
-  kable_styling(font_size = 9, 
+    kable_styling(font_size = 9.5, 
                 full_width = FALSE)|>
- row_spec(c(0),  bold = TRUE)
+    row_spec(c(0),  bold = TRUE)|>
+   
+    footnote(c("Importace of each feature, the reference and combarsion categories given with their estimated coefficients (b), standard errors (SE) on the FT transformed scale with correstponding z- and p-values."), threeparttable=T)
   
 ```
 
-Multimodel inference coefficients and feature importance. The estimated coefficients (b) and standard error (SE) are in FT transformed scale.
+Multi-model inference coefficients and feature importance.
 :::
 
-<div>
-
-Multimodel inference something about best 5 models and comparing AIC
-
-</div>
-
 ::: {#tbl-compare}
+\renewcommand{\arraystretch}{0.7}
+
 ```{r}
 multi_inf<- readRDS("../appendix/multimodel_inference_out.rda")
-
 models <- data.frame(
   #Model.no = c(42, 138, 10, 142, 16522, 1),
   "Candidate models" = c("Ancillary Data + Majority-class Proportion + Indices", 
@@ -745,18 +753,19 @@ models <- data.frame(
 kable(
   models,
   booktabs = TRUE,
+  escape = FALSE,
   linesep = c("\\addlinespace \\addlinespace"),
-  col.names = c("Candidate models", "df", "AIC_c", "Akaike weights"),
+  col.names = c("Candidate models", "df", "AIC$_c$", "Akaike weights"),
   digits = c(0,0, 2, 2,2)
   )|>
-  kable_styling(font_size = 10, 
+  kable_styling(font_size = 9.5, 
                 full_width = FALSE)|>
  row_spec(c(0),  bold = TRUE)|>
-  column_spec(1, width = "8.5cm")
+  column_spec(1, width = "9cm")
 
 ```
 
-Set of 5 best-ranked models and intercept only model ordered by AIC$_c$
+Set of 5 best-ranked models and intercept only model ordered by AIC$_c$. <!--# make it clear that Are these weights computed using only these 5 models or all 31,298 models  -->
 :::
 
 ```{r best_mod}
@@ -772,10 +781,12 @@ meta_reg_42 <- rma.mv(yi, vi,
 ```
 
 ::: {style="text-align: justify"}
-@tbl-best_mod_coef shows the estimated coefficients for the best fit model (lowest AIC), both in the FT transformed scale (b) and on the natural scale (b back-transformed). This shows that the proportion of majority class has the largest positive impact on the model's outcome (b = 0.39, p \< .001), while the inclusion of ancillary data has a small negative effect (b = -0.11, p = 0.029) but a small but positive effect when back-transfored . The use of indices has a minimal and non-significant effect (b = 0.06, p = 0.131).
+@tbl-best_mod_coef shows the estimated coefficients for the best-fit model --- i.e., the model with the lowest AIC value among the candidate models. The coefficients are presented both in the FT-transformed scale (**b**) and on the natural (back-transformed) scale. The results highlight that the proportion of the majority class has the largest positive effect ($b = 0.39$, $b^{BT} = 0.15$, p \< .001). Suggesting that increasing the majority-class proportion significantly improves overall accuracy. While, the inclusion of ancillary data has a small negative effect on the FT-transformed scale ($b = -0.11, p = 0.029$) but shows a slight positive effect once back-transformed ($b^{BF} = 0.01$). The use of indices has a minimal and non-significant effect ($p = 0.131$).
 :::
 
 ::: {#tbl-best_mod_coef}
+\renewcommand{\arraystretch}{0.7}
+
 ```{r}
 backtras.function<- function(t_bar, se){
   v_bar <- (se)^2
@@ -785,32 +796,60 @@ backtras.function<- function(t_bar, se){
 ci.function <- function(ci_l, ci_u, se){
   back_ci_l = backtras.function(ci_l, se)
   back_ci_u = backtras.function(ci_u, se)
-  out<- paste0("[", round(back_ci_l, 2), ", ", round(back_ci_u, 2), "]")
+  out<- paste0("[", paste0(format(round(back_ci_l, 2), nsmall = 2)), ", ", # must be a better way
+               paste0(format(round(back_ci_u,2), nsmall = 2)), "]")
   return(out)
 }
 
-meta_reg_42|>
+coef_bestmod <- 
+  meta_reg_42|>
   tidy() |>
   mutate(estimate_back_transfromed = mapply(backtras.function, meta_reg_42$b, meta_reg_42$se))|>
   mutate(CI = mapply(ci.function, meta_reg_42$ci.lb,meta_reg_42$ci.ub, meta_reg_42$se))|>
-  select(term, estimate, std.error, statistic,	p.value, estimate_back_transfromed, CI)|>
-  kable(booktabs = TRUE, linesep = "", 
-        col.names = c("Predictor", "b", "SE", "t", "p", "b_BT", "CI"), 
+  select(term, estimate, std.error, statistic,	p.value, estimate_back_transfromed, CI)
+
+coef_bestmod$term <- factor(
+  coef_bestmod$term,
+  levels = c(
+    "intercept",
+    "fraction_majority_class",
+    "ancillaryAncillary Data Included",
+    "indicesUsed"
+  ),
+  labels = c(
+    "Intercept",
+    "Majority-class Proportion",
+    "Ancillary Data:  Included",
+    "Indices:  Used"
+  )
+)
+
+coef_bestmod|>
+  kable(booktabs = TRUE, 
+        linesep = "",
+        escape = FALSE, 
+        col.names = c("Predictor", "b", "SE", "t", "p", "b$^{B-FT}$", "CI"), 
         digits = c(0, 2, 2, 2, 3, 2), 
-        align = c("l", "r", "r", "r", "r", "r")
+        align = c("l", "r", "r", "r", "r", "r", "r")
   ) |>
   kable_styling(font_size = 10, 
                 full_width = FALSE)|>
   add_header_above(c(" ","","","","", "back-transfromed scale" = 2)) |>
   row_spec(c(0),  bold = TRUE)|>
   column_spec(1, width = "6cm")|>
-  footnote(c("The estimated coefficients (b), standard errors (SE) on the FT transformed scale, t-statistics, and p-values. Additionally, the coefficients (b) and their confidence intervals (CI) are shown on the back-transformed scale."), threeparttable=T)
+  footnote(c("The estimated coefficients (b), standard errors (SE) on the FT transformed scale, with correstponding t-statistics and p-values. Additionally, the coefficients ($b^{B-FT}$) and corresponding confidence intervals (CI) are shown on the back-transformed scale."), escape = FALSE, threeparttable=T)
 ```
 
-Results of the best fit model.
+Table of estimated coefficients for the best-fit model.
+:::
+
+::: {style="text-align: justify"}
+To assess the impact of the study features on the estimated heterogeneity the features included in the best-fit model are fitted as sole covariates. @tbl-hetro shows the parameter estimates from the meta-analysis, comparing the intercept-only model with four mixed-effects models, one for each of the features in the best-fit model and best-fit model itself.
 :::
 
 ::: {#tbl-hetro}
+\renewcommand{\arraystretch}{0.7}
+
 ```{r multi-level_meta-regression}
 
 meta_reg_anc <- rma.mv(yi, vi,
@@ -831,23 +870,45 @@ meta_reg_frac <- rma.mv(yi, vi,
                        test = "t", 
                        dfs="contain", 
                        mods = ~ fraction_majority_class)
+meta_reg_ind <- rma.mv(yi, vi,
+                       data = ies.da,
+                       random = ~ 1 | AuthorYear / esid,
+                       tdist = TRUE,
+                       method = "REML",
+                       test = "t", 
+                       dfs="contain", 
+                       mods = ~ indices)
 
 extract_parameters <- function(model) {
-  out <- data.frame(model = if (!is.null(model$formula.mods)) paste(model$formula.mods)[2] else "Intercept Only",  
-                    sig_lvl2 = round(model$sigma2[2], 3), 
-                    sig_lvl3 = round(model$sigma2[1], 3), 
-                    QE = round(model$QE,0), 
-                    df_Q = model$QEdf,
-                    p_Q = round(model$QEp,3), 
-  #for F-test
-  "F" = if (!is.null(model$formula.mods)) round(model$QM,0) else NA,
-  df_F = if (!is.null(model$formula.mods)) model$QMdf[1] else NA,
-  p_F = if (!is.null(model$formula.mods)) round(model$QMp,3) else NA, 
-  I2_lvl2 = dmetar::var.comp(model)$results[2,2], 
-  I2_lvl3 = dmetar::var.comp(model)$results[3,2],
-  R2_lvl2 = if (!is.null(model$formula.mods)) (round(1-(model$sigma2[2]/pes.da.lvl3$sigma2[2]),3)*100) else NA, 
-  R2_lvl3 = if (!is.null(model$formula.mods)) (round(1-(model$sigma2[1]/pes.da.lvl3$sigma2[1]),3)*100) else NA
-  
+  out <- data.frame(
+    model = if (!is.null(model$formula.mods)) paste(model$formula.mods)[2] else "Intercept Only",  
+    sig_lvl2 = round(model$sigma2[2], 3), 
+    sig_lvl3 = round(model$sigma2[1], 3), 
+    QE = round(model$QE,0), 
+    df_Q = model$QEdf,
+    p_Q = round(model$QEp,3), 
+    f_test = if (!is.null(model$formula.mods))
+      round(model$QM, 0)
+    else
+      NA,
+    df_F = if (!is.null(model$formula.mods))
+      model$QMdf[1]
+    else
+      NA,
+    p_F = if (!is.null(model$formula.mods))
+      round(model$QMp, 3)
+    else
+      NA,
+    I2_lvl2 = dmetar::var.comp(model)$results[2, 2],
+    I2_lvl3 = dmetar::var.comp(model)$results[3, 2],
+    R2_lvl2 = if (!is.null(model$formula.mods))
+      (round(1 - (model$sigma2[2] / pes.da.lvl3$sigma2[2]), 3) * 100)
+    else
+      NA,
+    R2_lvl3 = if (!is.null(model$formula.mods))
+      (round(1 - (model$sigma2[1] / pes.da.lvl3$sigma2[1]), 3) * 100)
+    else
+      NA
   )
     return(out)
 }
@@ -855,49 +916,61 @@ extract_parameters <- function(model) {
 heterogeneity_tbl <- rbind(extract_parameters(pes.da.lvl3), 
                            extract_parameters(meta_reg_frac), 
                            extract_parameters(meta_reg_anc), 
+                           extract_parameters(meta_reg_ind),
                            extract_parameters(meta_reg_42))
-heterogeneity_tbl[] <- lapply(heterogeneity_tbl, function(x) {
-  if (is.numeric(x)) {
-    return(as.character(x))
-  }
-  return(x)
-})
-transposed <- heterogeneity_tbl %>%
-  pivot_longer(cols = -model, names_to = "Parameter", values_to = "Value")|>
-  pivot_wider(names_from = model, values_from = Value)
 
+heterogeneity_tbl$model <- factor(heterogeneity_tbl$model, 
+                                  levels = c("Intercept Only", 
+                                             "fraction_majority_class",
+                                             "ancillary",
+                                             "indices",
+                                             "fraction_majority_class + ancillary + indices"), 
+                                  labels = c("Intercept Only", 
+                                             "Majority-class Proportion",
+                                             "Ancillary Data",
+                                             "Indices",
+                                             "Combinded model$^{\\text{a}}$"))
 
+heterogeneity_tbl$p_Q <- ifelse(heterogeneity_tbl$p_Q <0.0001,
+                                "<.0001",
+                                heterogeneity_tbl$p_Q)
 
 kable(
-  transposed,
-    booktabs = TRUE,
-    linesep = "", 
-  align = c("l", "r", "r", "r", "r", "r"),
-  col.names = c("Paramter", "Intercept Only", 
-                "Majority-class Proportion", 
-                "Ancillary Data", 
-                "Ancillary Data + Majority-class Proportion + Indices")
+  heterogeneity_tbl,
+  booktabs = TRUE,
+  escape = FALSE,
+  linesep = "", 
+  col.names = c("Model",
+    "$\\sigma^2_{\\text{level2}}$", "$\\sigma^2_{\\text{level3}}$", 
+    "$Q_E$", "df", "$p_Q$", "$F$", "df", "$p_F$", 
+    "$I^2_{\\text{level2}}$", "$I^2_{\\text{level3}}$", 
+    "$R^2_{\\text{level2}}$", "$R^2_{\\text{level3}}$"), 
+  align = c("l", "r","r","r","r","r","r",  "r","r","r","r","r","r")
   )|>
-  kable_styling(font_size = 9.5, 
+  kable_styling(font_size = 9, 
                 full_width = FALSE)|>
- row_spec(c(0),  bold = TRUE)|>
-  column_spec(1, width = "1.5cm")|>
-  column_spec(2, width = "2cm")|>
-  column_spec(3, width = "2.5cm")|>
-  column_spec(4, width = "2cm")|>
-  column_spec(5, width = "5.5cm")|>
-  add_header_above(c(" ","Model" = 4), bold = TRUE) |>
-  footnote(c("Test statistic, degrees of freedom and respective p values are provide. This table allows heterogeneity at level 2 and 3 can be compared between the incetept only model, Majority-class Proportion and Adncillary Data only models, as well as the combinded model"), threeparttable=TRUE)
+  row_spec(c(0),  bold = TRUE)|>
+  #column_spec(1, width = "4cm")|>
+  #column_spec(c(2,3,10:13), width = "0.8cm")|>
+  #column_spec(c(5,7,8), width = "0.1cm")|>
+  footnote(general = "Test statistic, degrees of freedom and respective p values are provide. This table allows heterogeneity at level 2 and 3 can be compared between the incetept only model, Majority-class Proportion and Adncillary Data only models, as well as the combinded model", 
+           alphabet = "Combinded model: Ancillary Data + Majority-class Proportion + Indices", threeparttable=TRUE)
 
 ```
 
 Results for heterogeneity and covariates tests for intercept only model, individual covariates as well as the best model.
 :::
 
-@tbl-hetro shows the parameter estimates of the meta-analysis comparing the intercept only and three mixed effects models: (1) with the Majority-class Proportion as the only covariate, (2) use Ancillary Data only, and (3) the best fit model (from @tbl-best_mod_coef). Majority-class Proportion explains more of the between study heterogeneity, as shown by the difference in $\sigma^2_{\text{level2}}$ between the intercept only and the Majority-class Proportion. The use of Ancillary Data explains relatively little between study heterogeneity and negligible within study heterogeneity. The combined model explains the most heterogeneity. This shift is also reflect in the $I^2$. The total $I^2$ consistently being 100% in both models indicates that almost none of the variation between effect sizes can be attributed to sampling error, this might suggest that the included studies are too different from each to compare (see discussion for apples and oranges problem). All models show significant heterogeneity (Cochran's Q, p \< 0.001) results. The $R^2$values show that the covariates in the combined mixed effects model explain 69.9% of the variance at level 3 and 8.6% at level 2.
+::: {style="text-align: justify"}
+As shown in @tbl-hetro, the Majority-class Proportion explains a greater proportion of the between-study heterogeneity, as indicated by the reduction in $\sigma^2_{\text{level2}}$ between the intercept-only model and the model with the Majority-class Proportion. In contrast, the use of Ancillary Data explains relatively little between-study heterogeneity and negligible within-study heterogeneity.
+
+The combined model (best-fit model) explains the most heterogeneity overall, as reflected in the shift in $I^2$ values. The total $I^2$, consistently at 100% across all models, suggests that nearly all the variation in effect sizes is due to differences between the studies, rather than sampling error. This observation raises the possibility of an "apples and oranges" problem (see the discussion section), where the included studies may be too heterogeneous to be meaningfully compared.
+
+All models show significant heterogeneity, with Cochran's Q test results being significant (p \< 0.001). The $R^2$ values indicate that the covariates in the combined mixed-effects model account for 69.9% of the variance at level 3 (between-study level) and 8.6% of the variance at level 2 (within-study level).
+:::
 
 ::: {style="text-align: justify"}
-@fig-bubble illustrates the relationship between the proportion of the majority class and overall accuracy of the individual studies included in the meta-analysis. The plot is based on combined mixed effects model, with the solid black line representing the fitted regression line and the shaded area indicating the 95% confidence interval. Each point (bubble) represents a study, with its size proportional to the weight it received in the analysis (larger points indicate studies with more influence). The plot shows that as the proportion of the majority class increases, overall accuracy tends to improve.
+@fig-bubble illustrates the relationship between the proportion of the majority class and overall accuracy of the individual studies included in the meta-analysis. The plot is based on the combined mixed-effects model, where the solid black line represents the fitted regression line, and the shaded area indicates the 95% confidence interval. Each point (or bubble) represents an individual study, with the size of each bubble proportional to the weight it received in the analysis (i.e., larger points represent studies that had more influence on the overall results). The plot demonstrates a clear trend: as the proportion of the majority class increases, overall accuracy tends to improve, indicating a positive correlation between these two variables.
 :::
 
 ```{r, eval=FALSE}
@@ -907,15 +980,19 @@ authors <- unique(ies.da$AuthorYear)
 author_colors <- setNames(colors[1:length(authors)], authors)
 ies.da$color <- author_colors[ies.da$AuthorYear]
 
-# labels 
+
+# labels
+ies.da <- tibble::rowid_to_column(ies.da, "effectsizeID")
 lowest_yi_per_author <- ies.da |>
   group_by(AuthorYear) |>
   filter(yi == min(yi)) |>
   select(AuthorYear, effectsizeID)
-png(file="fig-bubble.png", width=700, height=700)
-bubble_plot <- regplot(meta_reg_22,
+# 2 level mod
+
+png(file="fig-bubble_lvl3.png", width=700, height=800)
+bubble_plot_3lvl <- regplot(meta_reg_42,
         mod = "fraction_majority_class", 
-        transf = transf.ipft.hm, targ =list(ni=1/(meta_reg_22$se)^2), 
+        transf = transf.ipft.hm, targ =list(ni=1/(meta_reg_42$se)^2), 
         xlab = "Proportion of majority class", 
         ylab = "Overall Accuracy",
         slab = ies.da$AuthorYear, 
@@ -924,14 +1001,56 @@ bubble_plot <- regplot(meta_reg_22,
         bg=ies.da$color, 
         xlim=c(0.05, 1.05), 
         ylim=c(0.64, 1))
-
 dev.off()
 ```
 
-![Bubble plot showing the observed effect size, overall accuracy of the individual studies plotted against a the proportion of the majority class. Based on the mixed-effects meta-regression model, the overall accuracy as a function of proportion of the majority with corresponding 95% confidence interval bounds. The size of the points are proportional to the weight that the observation received in the analysis, while the color of the points is unique to each study, with the lowest overall actuary from each study labeled with the first author and publication year.](figures/fig-bubble.png){#fig-bubble width="673"}
+![Bubble plot showing the observed effect size, overall accuracy of the individual studies plotted against a the proportion of the majority class. Based on the mixed-effects model, the overall accuracy as a function of proportion of the majority with corresponding 95% confidence interval bounds. The size of the points are proportional to the weight that the observation received in the analysis, while the color of the points is unique to each study, with the lowest overall actuary from each study labeled with the first author and publication year. <!--# paul:So as a general rule i'd say all your information must be contained within the plot, including the colors. You should be able to read it without the description  -->](figures/fig-bubble_lvl3.png){#fig-bubble width="569"}
 
 ::: {style="text-align: justify"}
-@fig-preds shows the observed overall accuracy against the predicted overall accuracy's made by combined mixed effects model. The points are coloured by the addition of ancillary information in the primary study. It appears that the addition of ancillary information leads to a lower overall accuracy, however, this could be due to a number of unmeasured factors, such as study's with more complicated classifications (more similar classes) adding accuracy data. As @fig-preds shows Model 2 over estimates the overall accuracy --- the fit regression line (in grey) is above the line of perfect agreement ($y = x$, in black).
+The size of the points in the bubble plot illustrates the benefit of incorporating the structure of the data into meta-analytic weighting. Namely, that the difference in size of the bubbles are not exessive. @fig-weight highlights this by plotting the weights for each study from a fixed effect, random effect with two levels and the structure used here, the random effects with three levels. As shown, the fixed-effects model particularity as one study is heavily weighted, which can distort the overall results. In contrast, the two-level and three-level models distribute the weights more evenly across studies, reflecting the importance of accounting for between-study heterogeneity and within-study variation.
+:::
+
+::: {#fig-weight}
+```{r weights}
+#| fig-height: 4.4
+#| fig-width: 7
+
+# Fixed-effect model (only within-study variance)
+FE_mod <- rma(yi, vi, method = "FE", data = ies.da)
+ies.da$w_FE <- weights(FE_mod)
+# 2 level meta analysis weights 
+ies.da$w_RE2 <- weights(pes.da)
+# 3 level meta analysis weights 
+ies.da$w_RE3 <- weights(pes.da.lvl3)
+
+ggplot(ies.da, aes(x = factor(AuthorYear)))+
+  geom_jitter(aes(y = w_FE, size = w_FE, colour = "Fixed Effect Model"), 
+             alpha = 0.2, width = 0, height = 0.1)+
+  geom_jitter(aes(y = w_RE2, size = w_RE2, colour = "Two Level Random Effect Model"), 
+              alpha = 0.2, width = 0, height = 0.1)+
+   geom_jitter(aes(y = w_RE3, size = w_RE3, colour = "Three Level Random Effect Model"), 
+             alpha = 0.2, width = 0, height = 0.1)+
+   scale_size_continuous(range = c(1, 5), breaks = c(0.5, 0.8, 1.1, 1.4,1.5, 2))+
+  coord_flip() +
+  labs(x = NULL, 
+       y = "Weights", 
+       title = "Weights of different meta-analysis models") +
+  guides(size = "none")+
+  common_theme+
+  theme(# grid lines 
+        panel.grid.major.y = element_line(linewidth = 0.1, colour = "grey80"),
+       # legend specs
+        legend.position = "bottom", 
+        legend.text= element_text(size=8, margin = margin(l = -0.3, r = -0.5, unit = "cm"))
+       ) 
+ 
+```
+
+Intercept only models at three different levels plot to compare weighting.
+:::
+
+::: {style="text-align: justify"}
+Lastly, @fig-preds is a plot of observed overall accuracy against the predicted overall accuracy from the combined mixed-effects model. The points are colored based on whether ancillary information was included in the primary study. As @fig-preds illustrates, the combined mixed-effects model tends to overestimate overall accuracy --- the fitted regression line (in grey) lies above the line of perfect agreement (y = x, in black), indicating that the model's predictions are generally higher than the observed accuracy values.
 :::
 
 ::: {#fig-preds}
@@ -949,11 +1068,15 @@ ggplot(ies.da, aes(x = OA_reported, y = preds))+
   ylim(c(0.64,1))+
   labs(x = "Reported Overall Accuracy", 
        y = "Predicted Overall Accuracy", 
-       title = "Plot of Observed Agaist Predicted Accuracy Based on the Meta-regression Model.")+
+       title = "Plot of Observed Agaist Predicted Accuracy")+
     theme(legend.text = element_text(size = 8), 
           legend.position = "top") +
   common_theme
+
+ggsave("fig-preds.png", width = 15,
+  height = 10,
+  units = "cm")
 ```
 
-Observed and predicted overall accuracy. The colour indicates whether the addition of ancillary data in the primary study's model. The line of perfect agreement $y = x$ is in black and fit regression of the points in grey.
+Observed and predicted overall accuracy. The colour indicates whether the addition of ancillary data in the primary study's model. The line of perfect agreement $y = x$ is in black and fit regression of the points in grey. <!--# add expalintion of reg line and that it is based on the mixed effect -->
 :::
