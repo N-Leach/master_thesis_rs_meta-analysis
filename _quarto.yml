@@ -13,21 +13,22 @@ book:
     background: "#F5F5F5"
     logo: images/ul.logo.png
     search: true
-  date: " 01-11-2024"
+  date: 2024-11-13
+  date-format: long
  
   chapters:
-    - index.qmd
-    #- frontmatter/acknowledgement.qmd
     - frontmatter/abstract.qmd
-    - frontmatter/abbreviations_notation.qmd
+    - index.qmd
     - chapters/intro.qmd
     - chapters/background.qmd
     - chapters/methods.qmd
     - chapters/results.qmd
     - chapters/discussion.qmd
+    - frontmatter/acknowledgement.qmd
     - references.qmd
-  #appendices: 
-  # - appendix/app1-paper_selection.qmd
+  appendices:
+    - appendix/app1-paper_selection/app1-paper_selection.qmd
+    - appendix/app2-data.qmd
 
   
   search:
@@ -46,8 +47,6 @@ execute:
   warning: false
   massage: false
 
-
-
 bibliography: references.bib
 csl: apa7.csl
 
@@ -56,14 +55,15 @@ format-links: true
 format:
   html:
     theme: cosmo
+    code-fold: true
+    html-table-processing: none
+    include-in-header: in-line_math_mode.html
   pdf:
     include-in-header: 
       text: |
         \usepackage{booktabs}
+        \usepackage{textcomp}
         \usepackage{graphicx}
-        \newcommand{\bminipage}{\begin{minipage}{0.65\textwidth}}
-        \newcommand{\eminipage}{\end{minipage}}
-        \newcommand{\minipagehfill}{\hfill}
         \usepackage{setspace}
         \usepackage{longtable}
         \usepackage{lscape}
@@ -75,7 +75,8 @@ format:
         \usepackage{titlesec}
         \titleformat{\chapter}[display]
         {\normalfont\huge\bfseries}{}{0pt}{\Huge}
-        \titlespacing*{\chapter}{0pt}{-15pt}{0pt} % Adjust spacing
+        \titlespacing*{\chapter}{0pt}{-20pt}{10pt} % to adjust header spacing
+      
         
     fig-pos: 'H'
     template-partials:
@@ -94,12 +95,12 @@ format:
     
     linestretch: 1.5
     geometry:
-      - inner=1.8cm
-      - outer=1.7cm
-      - top=1.9cm
-      - bottom=2.5cm
+      - inner=1.9cm
+      - outer=1.9cm
+      - top=1.8cm
+      - bottom=2cm
       - headsep=9pt
-      - headheight=11pt
+      - headheight=9pt
       - footskip=33pt
       - ignorehead
       - ignorefoot
