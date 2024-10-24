@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -287,9 +321,104 @@ window.Quarto = {
 
 <section id="descriptive-statistics" class="level2">
 <h2 class="anchored" data-anchor-id="descriptive-statistics">Descriptive Statistics</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"../appendix/packages.R"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"../appendix/feature_labels.R"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># final dataset, for data wrangling see appendix</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>my_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"../data/analysis_df.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># weights and transformation </span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to calculate various effect sizes and to estimate the variance </span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="do">## for the traditional meta analysis</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>ies.da  <span class="ot">&lt;-</span> <span class="fu">escalc</span>(<span class="at">xi =</span> event , <span class="at">ni =</span> total , <span class="at">data =</span> my_data ,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">measure =</span> <span class="st">"PFT"</span>,  <span class="co"># FT double  arcsine  transformation</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">slab=</span><span class="fu">paste</span>(AuthorYear, <span class="st">" Estimate "</span>, esid)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>               ) </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#the ies: individual effect size, new variables:</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="do">## yi: FTT effect sizes</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="do">## vi: calculated variances </span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>ies.da<span class="sc">$</span>ancillary <span class="ot">&lt;-</span> <span class="fu">relevel</span>(<span class="fu">factor</span>(ies.da<span class="sc">$</span>ancillary), <span class="at">ref =</span> <span class="st">"Remote Sensing Only"</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>ies.da<span class="sc">$</span>indices <span class="ot">&lt;-</span> <span class="fu">relevel</span>(<span class="fu">factor</span>(ies.da<span class="sc">$</span>indices), <span class="at">ref =</span> <span class="st">"Not Used"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 <div style="text-align: justify">
 <p>A total of <span class="math inline">\(n = 20\)</span> studies with <span class="math inline">\(k = 86\)</span> effect sizes were included in this analysis, with each primary study reported between one and 27 results (<span class="math inline">\(1 \leq k_j \leq 27\)</span>). The research area of these studies span 18 countries, <a href="#fig-map_range" class="quarto-xref">Figure&nbsp;<span>4.1</span></a> shows a map indicating the location of each effect size. These primary studies were grouped into three different SDG goals: SDG 2 Zero Hunger, SDG 11 Sustainable Cities, and SDG 15 Life on Land.</p>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sf_world <span class="ot">&lt;-</span> <span class="fu">ne_countries</span>(<span class="at">returnclass =</span> <span class="st">"sf"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the world map data with country names, latitude, and longitude</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>world_map <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">"world"</span>) </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>SDG_colours <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"SDG2: Zero Hunger"</span> <span class="ot">=</span> <span class="st">"#E8B700"</span>,  </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"SDG11: Sustainable Cities"</span> <span class="ot">=</span> <span class="st">"#FF7518"</span>,  </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"SDG15: Life on Land"</span> <span class="ot">=</span> <span class="st">"#2C9F2C"</span> )  </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>study_map <span class="ot">&lt;-</span> world_map <span class="sc">|&gt;</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region) <span class="sc">|&gt;</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">lat =</span> <span class="fu">mean</span>(lat), <span class="at">long =</span> <span class="fu">mean</span>(long), <span class="at">.groups =</span> <span class="st">'drop'</span>)<span class="sc">|&gt;</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">right_join</span>(<span class="fu">subset</span>(my_data, esid <span class="sc">==</span><span class="dv">1</span>), <span class="fu">join_by</span>(<span class="st">"region"</span><span class="sc">==</span><span class="st">"location"</span>))</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sf_world) <span class="sc">+</span> </span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">fill =</span> <span class="st">"#f4f3f1"</span>)<span class="sc">+</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">55</span>,<span class="dv">80</span>)) <span class="sc">+</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">data =</span> study_map, <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, </span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">fill =</span> SDG_theme), </span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>              <span class="at">size =</span> <span class="dv">2</span>, </span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>              <span class="at">width =</span> <span class="dv">5</span>,</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>              <span class="at">colour =</span> <span class="st">"transparent"</span>,</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha =</span> <span class="fl">0.8</span>,</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>              <span class="at">height =</span> <span class="dv">0</span>,</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>              <span class="at">shape =</span> <span class="dv">25</span>,</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>              <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"(a) Map of researched locations"</span>, </span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="cn">NULL</span>, </span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> SDG_colours ) <span class="sc">+</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>  common_theme <span class="sc">+</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>   <span class="fu">theme</span>(</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.border =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ies.da, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(AuthorYear, OA_reported), <span class="at">y =</span> OA_reported, </span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>               <span class="at">colour =</span> SDG_theme</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>               ))<span class="sc">+</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">size =</span> <span class="fl">1.5</span>)<span class="sc">+</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">geom =</span> <span class="st">"point"</span>, <span class="at">fun =</span> <span class="st">"mean"</span>, </span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>                 <span class="at">size =</span> <span class="dv">2</span>, <span class="at">shape =</span> <span class="dv">17</span>)<span class="sc">+</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, </span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Observed Overall Accuracy"</span>, </span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"(B) Reported overall accuracy by study"</span>) <span class="sc">+</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> SDG_colours ) <span class="sc">+</span></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour=</span><span class="fu">guide_legend</span>(<span class="at">title=</span> <span class="cn">NULL</span>, <span class="at">nrow=</span><span class="dv">1</span>, <span class="at">byrow=</span><span class="cn">TRUE</span>, </span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>                             <span class="at">override.aes =</span> <span class="fu">list</span>(<span class="at">shape =</span> <span class="dv">16</span>, <span class="at">size =</span> <span class="fl">2.5</span>)</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>                             )</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>         )<span class="sc">+</span></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>  common_theme<span class="sc">+</span></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="co"># grid lines </span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major.y =</span> <span class="fu">element_line</span>(<span class="at">linewidth =</span> <span class="fl">0.1</span>, <span class="at">colour =</span> <span class="st">"grey80"</span>),</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>       <span class="co"># legend specs</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.key.size =</span> <span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">'lines'</span>), </span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.key.spacing.x =</span> <span class="fu">unit</span>(<span class="sc">-</span><span class="fl">2.5</span>, <span class="st">"lines"</span>),</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text=</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">8</span>, <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">l =</span> <span class="sc">-</span><span class="fl">0.3</span>, <span class="at">r =</span> <span class="fl">1.5</span>, <span class="at">unit =</span> <span class="st">"cm"</span>)), </span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>       <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="at">t=</span> <span class="dv">2</span>, <span class="at">b =</span> <span class="dv">0</span>, <span class="at">r=</span> <span class="fl">0.1</span>, <span class="at">l =</span><span class="dv">0</span>, <span class="st">"cm"</span>), </span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend.box.margin =</span> <span class="fu">margin</span>(<span class="at">t=</span> <span class="sc">-</span><span class="fl">0.4</span>, <span class="at">b =</span> <span class="dv">0</span>, <span class="at">r=</span> <span class="dv">0</span>, <span class="at">l =</span><span class="dv">0</span>, <span class="st">"cm"</span>)</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>       )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div id="fig-map_range" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-map_range-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -321,9 +450,37 @@ Figure&nbsp;4.1: Top, shows primary study location map and bottom the range of r
 </figcaption>
 </figure>
 </div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>shapiro_test_result <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">shapiro_test</span>(ies.da<span class="sc">$</span>yi)[, <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>], <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 <div style="text-align: justify">
 <p>@#fig-map_range <strong>(b)</strong> and <a href="#tbl-sum" class="quarto-xref">Table&nbsp;<span>4.1</span></a> (bellow) show, the reported overall accuracies are not centered around 0.5. Therefore, a transformation is required. <a href="#fig-transfrom" class="quarto-xref">Figure&nbsp;<span>4.2</span></a> shows the distribution of observed overall accuracy as well as the logit and FT transformation values. FT visually performs better than the Logit transformation. However the Shapiro-Wilk Normality test shows that the distribution of the FT transformed overall accuracy still departed significantly from normality (<span class="math inline">\(W =\)</span> 0.93, p-value &lt; 0.01). Nevertheless, conducting a meta-analysis remains justified, as these statistical models are generally robust against violations of normality <span class="citation" data-cites="mcculloch2012">(<a href="../references.html#ref-mcculloch2012" role="doc-biblioref">McCulloch &amp; Neuhaus, 2011</a>)</span>.</p>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>raw_propotions <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ies.da, <span class="fu">aes</span>(<span class="at">x =</span> OA_reported))<span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">"#001158"</span>, <span class="at">alpha =</span> .<span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Observed Overall Accuracy"</span>, <span class="at">y =</span> <span class="st">"Count"</span>) <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  common_theme</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>logit_transformation <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ies.da, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(OA_reported<span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span>OA_reported))))<span class="sc">+</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">"#001158"</span>, <span class="at">alpha =</span> .<span class="dv">8</span>)<span class="sc">+</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Logit-transformed Overall Accuracy"</span>, <span class="at">y =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  common_theme</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>arcsin_transformation<span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ies.da, <span class="fu">aes</span>(<span class="at">x =</span> yi))<span class="sc">+</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">"#001158"</span>, <span class="at">alpha =</span> .<span class="dv">8</span>)<span class="sc">+</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"FT-transformed Overall Accuracy"</span>, <span class="at">y =</span> <span class="cn">NULL</span>)<span class="sc">+</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  common_theme</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>raw_propotions <span class="sc">+</span> logit_transformation<span class="sc">+</span> arcsin_transformation <span class="sc">+</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_annotation</span>(<span class="at">title =</span> <span class="st">"Density Plots of Observed and Transformed Overall Accuracy"</span>, </span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>                  <span class="at">theme =</span> <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div id="fig-transfrom" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-transfrom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -346,6 +503,59 @@ Figure&nbsp;4.2: Distribution of the observed overall accuracy and transformed b
 <p><a href="#tbl-sum" class="quarto-xref">Table&nbsp;<span>4.1</span></a> summarises the overall accuracy (effect size of interest), study sample size and the collected study features, including the study features such as sample size, overall accuracy, types of machine learning models used and SDG goal targeted. For the meta-analysis the range of the sample size (259 - 75782016) and overall accuracy (0.6504 - 1) are of importance. Most studies used Neural Networks (48%), followed by Tree-Based Models (45%), and a small portion used other types of models (7%). Regarding SDGs, 44% of the studies aimed at SDG 11 (Sustainable Cities), 43% targeted SDG 15 (Life on Land), and 13% focused on SDG 2 (Zero Hunger).</p>
 </div>
 <div style="page-break-after: always;"></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ies.da <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    OA_reported,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    total,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    globalCitationsCount,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    number_classes,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    fraction_majority_class,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    Publication.Year,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    SDG_theme,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    classification_type, </span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    model_group, </span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    ancillary,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    indices,</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    RS_device_type,</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    RS_device_group,</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    no_band_group,</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    RS_spatital_res_grouped, </span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    Confusion_matrix</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">statistic =</span> <span class="fu">list</span>(</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>      <span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">"{mean} ({min} - {max})"</span>,</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>      <span class="fu">all_categorical</span>() <span class="sc">~</span> <span class="st">"{n} ({p}%)"</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> feature_labels,</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">missing =</span> <span class="st">"no"</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">modify_header</span>(<span class="at">label =</span> <span class="st">"Feature"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">modify_header</span>(<span class="fu">all_stat_cols</span>() <span class="sc">~</span> <span class="st">"Statistic"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_kable</span>(</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">booktabs =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">longtable =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">linesep =</span> <span class="st">""</span>,</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">escape =</span> <span class="cn">TRUE</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">|&gt;</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">font_size =</span> <span class="dv">9</span>, </span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>                <span class="at">full_width =</span> <span class="cn">FALSE</span>)<span class="sc">|&gt;</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pack_rows</span>(<span class="st">"Study Features"</span>, <span class="dv">2</span>, <span class="dv">46</span>, <span class="at">latex_gap_space =</span> <span class="st">"0.1em"</span> <span class="co">#, hline_before = T</span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>            )<span class="sc">|&gt;</span></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pack_rows</span>(<span class="st">"Numeric$^b$"</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="at">latex_gap_space =</span> <span class="st">"0em"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pack_rows</span>(<span class="st">"Categorical$^c$"</span>, <span class="dv">6</span>,<span class="dv">46</span>, <span class="at">latex_gap_space =</span> <span class="st">"0em"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>   <span class="fu">row_spec</span>(<span class="fu">c</span>(<span class="dv">0</span>),  <span class="at">bold =</span> <span class="cn">TRUE</span>)<span class="sc">|&gt;</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">1</span>, <span class="at">width =</span> <span class="st">"7cm"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">2</span>, <span class="at">width =</span> <span class="st">"6cm"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_indent</span>(<span class="fu">c</span>(<span class="dv">7</span><span class="sc">:</span><span class="dv">12</span>, <span class="dv">14</span><span class="sc">:</span><span class="dv">16</span>, <span class="dv">18</span><span class="sc">:</span><span class="dv">20</span>, <span class="dv">22</span><span class="sc">:</span><span class="dv">24</span>, <span class="dv">26</span><span class="sc">:</span><span class="dv">27</span>, </span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>               <span class="dv">29</span><span class="sc">:</span><span class="dv">30</span>, <span class="dv">32</span><span class="sc">:</span><span class="dv">35</span>,<span class="dv">37</span><span class="sc">:</span><span class="dv">40</span>,<span class="dv">42</span><span class="sc">:</span><span class="dv">44</span>,</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>               <span class="dv">46</span><span class="sc">:</span><span class="dv">48</span>), </span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>               <span class="at">level_of_indent =</span> <span class="fl">1.5</span>)<span class="sc">|&gt;</span></span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">footnote</span>(<span class="at">alphabet =</span> <span class="fu">c</span>(<span class="st">"Effect size of interest. $^a$For numeric predictors: mean (min - max) and $^b$ for categorical variables number of effect sizes (%)"</span>), </span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>               <span class="at">threeparttable=</span><span class="cn">TRUE</span>, <span class="at">escape =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div id="tbl-sum" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sum-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -579,6 +789,162 @@ Table&nbsp;4.1: Summary table
 </div>
 </figure>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># common aesthetics </span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>box_theme <span class="ot">&lt;-</span> common_theme <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.title.y =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>point_color <span class="ot">&lt;-</span> <span class="st">"#001158"</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>ylab <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"FT Transformed Overall Accuracy"</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter plots for continuous variables</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>sample_size <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ies.da, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log10</span>(total), <span class="at">y =</span> yi)) <span class="sc">+</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">colour =</span> point_color) <span class="sc">+</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> feature_labels<span class="sc">$</span>total, </span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> ylab, </span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="fu">bquote</span>(<span class="st">"Sample Size:"</span><span class="sc">~</span>log[<span class="dv">10</span>](m[ij])), </span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>       <span class="co">#caption = stringr::str_wrap("Note: Log transformation was applied to handle large variation in sample sizes", width = 42)</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>       ) <span class="sc">+</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>   <span class="co">#expand_limits(x = 0)+</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  common_theme  <span class="co">#+</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  <span class="co">#theme(plot.caption = element_text(size = 7.5, hjust = 0, color = "gray30", </span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>   <span class="co">#                                 margin = margin(t = 5, r = 0, b = 20, l = 0))) </span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>number_class <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ies.da, <span class="fu">aes</span>(<span class="at">x =</span> number_classes, <span class="at">y =</span> yi)) <span class="sc">+</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">colour =</span> point_color) <span class="sc">+</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> feature_labels<span class="sc">$</span>number_classes, <span class="at">y =</span> ylab, <span class="at">x =</span> <span class="st">"Classes"</span>) <span class="sc">+</span> </span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">13</span>, <span class="dv">2</span>))<span class="sc">+</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>   <span class="fu">expand_limits</span>(<span class="at">x =</span> <span class="dv">0</span>)<span class="sc">+</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>  common_theme </span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>fraction_majority_class <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ies.da, <span class="fu">aes</span>(<span class="at">x =</span> fraction_majority_class, <span class="at">y =</span> yi)) <span class="sc">+</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">colour =</span> point_color) <span class="sc">+</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> feature_labels<span class="sc">$</span>fraction_majority_class, </span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> ylab, </span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Proportion"</span>) <span class="sc">+</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>   <span class="fu">expand_limits</span>(<span class="at">x =</span> <span class="dv">0</span>)<span class="sc">+</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>  common_theme </span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>cits <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ies.da, <span class="fu">aes</span>(<span class="at">x =</span> globalCitationsCount , <span class="at">y =</span> yi)) <span class="sc">+</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">colour =</span> point_color) <span class="sc">+</span></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> feature_labels<span class="sc">$</span>globalCitationsCount, </span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> ylab, </span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Citation"</span>) <span class="sc">+</span> </span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>   <span class="fu">expand_limits</span>(<span class="at">x =</span> <span class="dv">0</span>)<span class="sc">+</span></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>  common_theme </span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a><span class="do">#######################</span></span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Boxplots for categorical variables</span></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>modelgroup_box <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ies.da, <span class="fu">aes</span>(<span class="at">y =</span> yi, </span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">x =</span> <span class="fu">factor</span>(model_group, </span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>                                                <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Other"</span>, </span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>                                                           <span class="st">"Neural Networks"</span>, </span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>                                                           <span class="st">"Tree-Based Models"</span>)))) <span class="sc">+</span></span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">colour =</span> point_color, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete_wrap</span>() <span class="sc">+</span></span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> feature_labels<span class="sc">$</span>model_group, </span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="cn">NULL</span>) <span class="sc">+</span>  <span class="co"># patchwork collect x.axis not being agreeable manual selection </span></span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span> box_theme</span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>classtype_box <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ies.da, <span class="fu">aes</span>(<span class="at">y =</span> yi, <span class="at">x =</span> <span class="fu">fct_rev</span>(classification_type))) <span class="sc">+</span></span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">colour =</span> point_color, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> feature_labels<span class="sc">$</span>classification_type, </span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> ylab) <span class="sc">+</span></span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span> box_theme</span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>indexes_box <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ies.da, <span class="fu">aes</span>(<span class="at">y =</span> yi, <span class="at">x =</span> indices)) <span class="sc">+</span></span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">colour =</span> point_color, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> feature_labels<span class="sc">$</span>indices, <span class="at">y =</span> ylab) <span class="sc">+</span></span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span> box_theme</span>
+<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a>ancillary_box <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ies.da, <span class="fu">aes</span>(<span class="at">y =</span> yi, <span class="at">x =</span> ancillary)) <span class="sc">+</span></span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">colour =</span> point_color, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete_wrap</span>() <span class="sc">+</span></span>
+<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> feature_labels<span class="sc">$</span>ancillary, <span class="at">y =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span> box_theme</span>
+<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a><span class="co"># Data about RS devices and features</span></span>
+<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a>RStype_box <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ies.da, <span class="fu">aes</span>(<span class="at">y =</span> yi, <span class="at">x =</span> <span class="fu">factor</span>(RS_device_type,</span>
+<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a>                                                     <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Not Reported"</span>, <span class="st">"Combined"</span>, <span class="st">"Passive"</span>,<span class="st">"Active"</span>)))) <span class="sc">+</span></span>
+<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">colour =</span> point_color, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete_wrap</span>() <span class="sc">+</span></span>
+<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> feature_labels<span class="sc">$</span>RS_device_type, <span class="at">y =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span> box_theme</span>
+<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a>RSgroup_box <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ies.da, <span class="fu">aes</span>(<span class="at">y =</span> yi, </span>
+<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">x =</span> <span class="fu">factor</span>(RS_device_group,</span>
+<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Not Reported"</span>, <span class="st">"Other"</span>, <span class="st">"Sentinel"</span>,<span class="st">"Landsat"</span>)))) <span class="sc">+</span></span>
+<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">colour =</span> point_color, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb7-93"><a href="#cb7-93" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> feature_labels<span class="sc">$</span>RS_device_group, <span class="at">y =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span> box_theme</span>
+<span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-96"><a href="#cb7-96" aria-hidden="true" tabindex="-1"></a>RS_resolution_box <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ies.da, <span class="fu">aes</span>(<span class="at">y =</span> yi, <span class="at">x =</span> <span class="fu">fct_rev</span>(RS_spatital_res_grouped))) <span class="sc">+</span></span>
+<span id="cb7-97"><a href="#cb7-97" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb7-98"><a href="#cb7-98" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">colour =</span> point_color, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb7-99"><a href="#cb7-99" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> feature_labels<span class="sc">$</span>RS_spatital_res_grouped, <span class="at">y =</span> ylab) <span class="sc">+</span></span>
+<span id="cb7-100"><a href="#cb7-100" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span> box_theme</span>
+<span id="cb7-101"><a href="#cb7-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-102"><a href="#cb7-102" aria-hidden="true" tabindex="-1"></a>SDG_theme_box <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ies.da, </span>
+<span id="cb7-103"><a href="#cb7-103" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">aes</span>(<span class="at">y =</span> yi, <span class="at">x =</span> <span class="fu">factor</span>(SDG_theme, </span>
+<span id="cb7-104"><a href="#cb7-104" aria-hidden="true" tabindex="-1"></a>                                               <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"SDG2: Zero Hunger"</span>,</span>
+<span id="cb7-105"><a href="#cb7-105" aria-hidden="true" tabindex="-1"></a>                                                          <span class="st">"SDG11: Sustainable Cities"</span>, </span>
+<span id="cb7-106"><a href="#cb7-106" aria-hidden="true" tabindex="-1"></a>                                                          <span class="st">"SDG15: Life on Land"</span>)))) <span class="sc">+</span></span>
+<span id="cb7-107"><a href="#cb7-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb7-108"><a href="#cb7-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">colour =</span> point_color, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb7-109"><a href="#cb7-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete_wrap</span>() <span class="sc">+</span></span>
+<span id="cb7-110"><a href="#cb7-110" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> feature_labels<span class="sc">$</span>SDG_theme, <span class="at">y =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb7-111"><a href="#cb7-111" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span> box_theme</span>
+<span id="cb7-112"><a href="#cb7-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-113"><a href="#cb7-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-114"><a href="#cb7-114" aria-hidden="true" tabindex="-1"></a>publication_year_box <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ies.da, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(Publication.Year), <span class="at">y =</span> yi)) <span class="sc">+</span></span>
+<span id="cb7-115"><a href="#cb7-115" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb7-116"><a href="#cb7-116" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">colour =</span> point_color, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb7-117"><a href="#cb7-117" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> feature_labels<span class="sc">$</span>Publication.Year, <span class="at">y =</span> ylab) <span class="sc">+</span></span>
+<span id="cb7-118"><a href="#cb7-118" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span> box_theme</span>
+<span id="cb7-119"><a href="#cb7-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-120"><a href="#cb7-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-121"><a href="#cb7-121" aria-hidden="true" tabindex="-1"></a>no_band_group_box <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ies.da, <span class="fu">aes</span>(<span class="at">y =</span> yi, <span class="at">x =</span> <span class="fu">fct_rev</span>(no_band_group))) <span class="sc">+</span></span>
+<span id="cb7-122"><a href="#cb7-122" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb7-123"><a href="#cb7-123" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">colour =</span> point_color, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb7-124"><a href="#cb7-124" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> feature_labels<span class="sc">$</span>no_band_group, <span class="at">y =</span> ylab) <span class="sc">+</span></span>
+<span id="cb7-125"><a href="#cb7-125" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span> box_theme</span>
+<span id="cb7-126"><a href="#cb7-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-127"><a href="#cb7-127" aria-hidden="true" tabindex="-1"></a>confusion_matrix_box <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ies.da, <span class="fu">aes</span>(<span class="at">y =</span> yi, <span class="at">x =</span> Confusion_matrix)) <span class="sc">+</span></span>
+<span id="cb7-128"><a href="#cb7-128" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb7-129"><a href="#cb7-129" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">colour =</span> point_color, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb7-130"><a href="#cb7-130" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> feature_labels<span class="sc">$</span>Confusion_matrix, <span class="at">y =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb7-131"><a href="#cb7-131" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span> box_theme</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># layout areas </span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>design <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">area</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">area</span>(<span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">area</span>(<span class="dv">1</span>, <span class="dv">3</span>),</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">area</span>(<span class="dv">1</span>, <span class="dv">4</span>),</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">area</span>(<span class="dv">2</span>, <span class="dv">2</span>),</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">area</span>(<span class="dv">2</span>, <span class="dv">3</span>),</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">area</span>(<span class="dv">2</span>, <span class="dv">4</span>),</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">area</span>(<span class="dv">3</span>, <span class="dv">1</span>),</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">area</span>(<span class="dv">3</span>, <span class="dv">2</span>),</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">area</span>(<span class="dv">3</span>, <span class="dv">3</span>),</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">area</span>(<span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>publication_year_box <span class="sc">+</span> SDG_theme_box <span class="sc">+</span> classtype_box <span class="sc">+</span>  modelgroup_box <span class="sc">+</span> </span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>ancillary_box <span class="sc">+</span> indexes_box <span class="sc">+</span> RStype_box <span class="sc">+</span> no_band_group_box <span class="sc">+</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>RSgroup_box <span class="sc">+</span> RS_resolution_box <span class="sc">+</span> confusion_matrix_box <span class="sc">+</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_layout</span>(<span class="at">design =</span> design)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div id="fig-features" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-features-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -597,6 +963,12 @@ Figure&nbsp;4.3: Categorical study features
 </figcaption>
 </figure>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fraction_majority_class <span class="sc">+</span> cits <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>number_class <span class="sc">+</span> sample_size <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_layout</span>(<span class="at">axis_titles =</span> <span class="st">'collect_y'</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div id="fig-features2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-features2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -618,6 +990,246 @@ Figure&nbsp;4.4: Numeric study features
 </section>
 <section id="meta-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="meta-analysis">Meta-analysis</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># METHOD: Weighted: level 2 model</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="do">## pes: pooled effect size</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>pes.da  <span class="ot">&lt;-</span> <span class="fu">rma</span>(yi,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>               vi,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">data =</span> ies.da,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">method =</span> <span class="st">"REML"</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">test =</span> <span class="st">"t"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># METHOD: Weighted: Nested level 3model</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>pes.da.lvl3 <span class="ot">&lt;-</span> <span class="fu">rma.mv</span>(yi,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                      vi,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">data =</span> ies.da ,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">tdist =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>        <span class="co"># adding random effects at the study level and effect size </span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>                      <span class="at">random =</span> <span class="sc">~</span> <span class="dv">1</span> <span class="sc">|</span> AuthorYear <span class="sc">/</span> esid,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>                      <span class="at">method =</span> <span class="st">"REML"</span>,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>                      <span class="co"># recommendations from the function documentation:</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>                      <span class="at">test=</span><span class="st">"t"</span>,  </span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>                      <span class="at">dfs=</span><span class="st">"contain"</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>                    )</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co">#summary(pes.da.lvl3)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pes <span class="ot">&lt;-</span> <span class="fu">predict</span>(pes.da.lvl3, <span class="at">transf =</span> transf.ipft.hm, <span class="at">targ =</span> <span class="fu">list</span>(<span class="at">ni=</span><span class="dv">1</span><span class="sc">/</span>(pes.da.lvl3<span class="sc">$</span>se)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>pes.da.lvl3_I_squared <span class="ot">&lt;-</span> dmetar<span class="sc">::</span><span class="fu">var.comp</span>(pes.da.lvl3)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>pes.da.lvl3_CI <span class="ot">&lt;-</span> <span class="fu">confint</span>(pes.da.lvl3)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">theta =</span> pes<span class="sc">$</span>pred, </span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">ci_l =</span> pes<span class="sc">$</span>ci.lb,</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">ci_u =</span> pes<span class="sc">$</span>ci.ub,</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">sigma2.1 =</span> pes.da.lvl3<span class="sc">$</span>sigma2[<span class="dv">1</span>],</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">sigma2.2 =</span> pes.da.lvl3<span class="sc">$</span>sigma2[<span class="dv">2</span>],</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">df =</span> pes.da.lvl3<span class="sc">$</span>QEdf, </span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">Q =</span> pes.da.lvl3<span class="sc">$</span>QE, </span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">p =</span> pes.da.lvl3<span class="sc">$</span>QEp,</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">I_L2 =</span> pes.da.lvl3_I_squared<span class="sc">$</span>results<span class="sc">$</span>I2[<span class="dv">2</span>],  </span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">I_L3 =</span> pes.da.lvl3_I_squared<span class="sc">$</span>results<span class="sc">$</span>I2[<span class="dv">3</span>] </span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="fu">row.names</span>(results) <span class="ot">&lt;-</span><span class="st">"RE_lvl3"</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="co"># results$theta</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="co"># # same as</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="co"># v_bar &lt;- (pes.da.lvl3$se)^2</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="co"># t_bar &lt;- pes.da.lvl3$b[1]</span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="co"># (1/2 * (1 - sign(cos(2*t_bar)) *</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="co">#           sqrt(1 - (sin(2*t_bar)+(sin(2*t_bar)-1/sin(2*t_bar))/(1/v_bar))^2)))</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#profile likelihood plots of the variance components of the model</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#par(mfrow=c(2,1))</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#profile(pes.da.lvl3, sigma2=1)</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">#profile(pes.da.lvl3, sigma2=2)</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># METHOD 1.2:  </span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># multivariate parameterization model </span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co"># this is a multilvl rather than a nested model (if since the samples could be different data or countries this might be the better approch?)</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>pes.da.lvl3.mv <span class="ot">&lt;-</span> <span class="fu">rma.mv</span>(yi,</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>                      vi,</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>                      <span class="at">data =</span> ies.da,</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>                      <span class="at">random =</span> <span class="sc">~</span> esid<span class="sc">|</span>AuthorYear,</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>                      <span class="at">method =</span> <span class="st">"REML"</span>,</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>                      <span class="co"># recomendations from the function detains +Assink et.al:</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>                      <span class="at">tdist =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>                      <span class="at">test=</span><span class="st">"t"</span>,  </span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>                      <span class="at">dfs=</span><span class="st">"contain"</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>                    )</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="co"># should be exactly the same</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="co">#logLik(pes.da.lvl3)</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="co">#logLik(pes.da.lvl3.mv)</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="co"># future research look into different variance-covariance matrix structures</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>W <span class="ot">&lt;-</span> <span class="fu">weights</span>(pes.da.lvl3, <span class="at">type=</span><span class="st">"matrix"</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(pes.da.lvl3)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">cbind</span>(ies.da<span class="sc">$</span>yi)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> W <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> W <span class="sc">%*%</span> y</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co"># weights of pixel- vs weights of object- based studies </span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>ies.da<span class="sc">$</span>weights <span class="ot">&lt;-</span> <span class="fu">weights</span>(pes.da.lvl3, <span class="at">type =</span> <span class="st">"rowsum"</span>)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ies.da<span class="sc">$</span>weights)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ies.da, <span class="at">mapping =</span> <span class="fu">aes</span>(classification_type, weights))<span class="sc">+</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">colour =</span> AuthorYear), <span class="at">alpha =</span> <span class="fl">0.7</span>)</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(weights<span class="sc">~</span>classification_type, </span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>       <span class="co"># removing unclear</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> <span class="fu">subset</span>(ies.da, ies.da<span class="sc">$</span>classification_type <span class="sc">!=</span> <span class="st">"Unclear"</span>))</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>( <span class="fu">subset</span>(ies.da, ies.da<span class="sc">$</span>classification_type <span class="sc">!=</span> <span class="st">"Unclear"</span>),</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">mapping =</span> <span class="fu">aes</span>(classification_type, weights))<span class="sc">+</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># To visualize results aggregate model </span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="do">### assume that the effect sizes within studies are correlated with </span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>V <span class="ot">&lt;-</span> <span class="fu">vcalc</span>(vi, <span class="at">cluster=</span>AuthorYear, <span class="at">obs=</span>esid, <span class="at">data=</span>ies.da, <span class="at">rho=</span>pes.da.lvl3.mv<span class="sc">$</span>rho)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="do">### fit multilevel model using this approximate V matrix</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>pes_agg.da.lvl3 <span class="ot">&lt;-</span> <span class="fu">rma.mv</span>(yi, V, <span class="at">random =</span> <span class="sc">~</span> <span class="dv">1</span> <span class="sc">|</span> AuthorYear<span class="sc">/</span>esid, <span class="at">data=</span>ies.da)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>agg <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(ies.da, <span class="at">cluster=</span>AuthorYear, <span class="at">V=</span><span class="fu">vcov</span>(pes_agg.da.lvl3, <span class="at">type=</span><span class="st">"obs"</span>), <span class="at">addk=</span><span class="cn">TRUE</span>)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>agg.pes.da <span class="ot">&lt;-</span> <span class="fu">rma</span>(yi, vi, <span class="at">method=</span><span class="st">"EE"</span>, <span class="at">data=</span>agg, <span class="at">digits=</span><span class="dv">3</span>)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>agg.pes <span class="ot">&lt;-</span> <span class="fu">predict</span>(agg.pes.da , <span class="at">transf =</span> transf.ipft.hm, <span class="at">targ =</span><span class="fu">list</span>(<span class="at">ni=</span><span class="dv">1</span><span class="sc">/</span>(pes.da.lvl3<span class="sc">$</span>se)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co"># forest plot:</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>model_summary <span class="ot">&lt;-</span> <span class="fu">bquote</span>(<span class="fu">paste</span>(<span class="st">"RE (3-Level) Model "</span>,</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"(Q = "</span>,</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>                 .(<span class="fu">fmtx</span>(results<span class="sc">$</span>Q[<span class="dv">1</span>], <span class="at">digits=</span><span class="dv">0</span>)),</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>                 <span class="st">", df = "</span>, </span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>                 .(<span class="fu">fmtx</span>(results<span class="sc">$</span>df[<span class="dv">1</span>], <span class="at">digits=</span><span class="dv">0</span>)),</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>                 <span class="st">", p &lt;.001; "</span>, </span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>                 I<span class="sc">^</span><span class="dv">2</span>, <span class="st">" = 100% "</span>,</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>                       <span class="at">sep =</span> <span class="st">""</span>))</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="st">'forestplot_weighted.png'</span>, <span class="at">width =</span> <span class="dv">1000</span>, <span class="at">height =</span> <span class="dv">800</span>)</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a><span class="fu">forest</span>(agg.pes.da,<span class="at">addpred=</span><span class="cn">TRUE</span>, </span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="fl">2.5</span>),</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>       <span class="at">alim =</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>       <span class="at">transf =</span> transf.ipft.hm, <span class="at">targ =</span><span class="fu">list</span>(<span class="at">ni=</span><span class="dv">1</span><span class="sc">/</span>(pes.da.lvl3<span class="sc">$</span>se)<span class="sc">^</span><span class="dv">2</span>), </span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>       <span class="at">header=</span><span class="cn">TRUE</span>,</span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>       <span class="at">slab=</span>AuthorYear,</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>       <span class="at">order=</span><span class="st">"obs"</span>,</span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>       <span class="at">cex=</span><span class="fl">1.5</span>, </span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>       <span class="at">refline=</span><span class="cn">NA</span>,</span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>       <span class="at">digits =</span> <span class="dv">3</span>,</span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>       <span class="at">ilab=</span>ki, </span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>       <span class="at">mlab=</span> model_summary,</span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>       <span class="at">ilab.xpos=</span> <span class="sc">-</span>.<span class="dv">3</span>,</span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>       <span class="at">ilab.pos =</span> <span class="dv">2</span>, </span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>       <span class="co">#showweights = TRUE, </span></span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a>       <span class="at">shade=</span><span class="st">"zebra"</span></span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a>       )</span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="sc">-</span>.<span class="dv">5</span>, agg.pes.da<span class="sc">$</span>k<span class="sc">+</span><span class="dv">2</span>, <span class="st">"OA Count"</span>, <span class="at">cex=</span><span class="fl">1.5</span>, <span class="at">font=</span><span class="dv">2</span>)</span>
+<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fl">2.1</span>, agg.pes.da<span class="sc">$</span>k<span class="sc">+</span><span class="dv">3</span>, <span class="st">"Weighted"</span>, <span class="at">cex=</span><span class="fl">1.5</span>, <span class="at">font=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="do">########################</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># METHOD 2: UnWeighted</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># the mean of the yi should be the estimate of effect </span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>pes.da.lvl3_unweighted  <span class="ot">&lt;-</span> <span class="fu">rma.mv</span>(<span class="at">yi =</span> yi, </span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">V =</span> <span class="dv">1</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">random =</span> <span class="sc">~</span> <span class="dv">1</span> <span class="sc">|</span> AuthorYear <span class="sc">/</span> esid, <span class="co"># Nested random effects </span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">data =</span> ies.da, </span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">method =</span> <span class="st">"REML"</span>, </span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">tdist =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">test=</span><span class="st">"t"</span>, </span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">dfs=</span><span class="st">"contain"</span>)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">#summary(pes.da.lvl3_unweighted)</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">#mean(ies.da$yi)</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>pes_u <span class="ot">&lt;-</span> <span class="fu">predict</span>(pes.da.lvl3_unweighted, <span class="at">transf =</span> transf.ipft.hm, <span class="at">targ =</span> <span class="fu">list</span>(<span class="at">ni=</span><span class="dv">1</span><span class="sc">/</span>(pes.da.lvl3_unweighted<span class="sc">$</span>se)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>theta_u <span class="ot">&lt;-</span> <span class="fu">mean</span>(ies.da<span class="sc">$</span>OA_reported)</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>t_critical <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="dv">19</span>)</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="dv">86</span>)</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>results[<span class="st">"Unwei_rma.mv"</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>results[<span class="st">"Unwei_rma.mv"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span> ]<span class="ot">&lt;-</span> <span class="fu">c</span>(pes_u<span class="sc">$</span>pred, pes_u<span class="sc">$</span>ci.lb, pes_u<span class="sc">$</span>ci.ub)</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>results<span class="ot">&lt;-</span> results<span class="sc">|&gt;</span> <span class="fu">mutate_if</span>(is.numeric, round, <span class="at">digits=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># To visualize results aggregate model </span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="do">### assume that the effect sizes within studies are correlated with </span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>V <span class="ot">&lt;-</span> <span class="fu">vcalc</span>(vi, <span class="at">cluster=</span>AuthorYear, <span class="at">obs=</span>esid, <span class="at">data=</span>ies.da, <span class="at">rho=</span><span class="fl">0.6</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="do">### fit multilevel model using this approximate V matrix</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>pes_agg.unweighted <span class="ot">&lt;-</span> <span class="fu">rma.mv</span>(yi, V, <span class="at">random =</span> <span class="sc">~</span> <span class="dv">1</span> <span class="sc">|</span> AuthorYear<span class="sc">/</span>esid, <span class="at">data=</span>ies.da)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>agg <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(ies.da, <span class="at">cluster=</span>AuthorYear, <span class="at">V=</span><span class="fu">vcov</span>(pes_agg.unweighted, <span class="at">type=</span><span class="st">"obs"</span>), <span class="at">addk=</span><span class="cn">TRUE</span>)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>agg.pes.da <span class="ot">&lt;-</span> <span class="fu">rma</span>(yi, vi, <span class="at">method=</span><span class="st">"EE"</span>, <span class="at">data=</span>agg, <span class="at">digits=</span><span class="dv">3</span>)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>agg.pes <span class="ot">&lt;-</span> <span class="fu">predict</span>(agg.pes.da , <span class="at">transf =</span> transf.ipft.hm, <span class="at">targ =</span><span class="fu">list</span>(<span class="at">ni=</span><span class="dv">1</span><span class="sc">/</span>(pes.da.lvl3_unweighted<span class="sc">$</span>se)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co"># forest plot:</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="st">'forestplot_unweighted.png'</span>, <span class="at">width =</span> <span class="dv">1000</span>, <span class="at">height =</span> <span class="dv">800</span>)</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="fu">forest</span>(agg.pes.da,<span class="at">addpred=</span><span class="cn">TRUE</span>, </span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="fl">2.5</span>),</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">alim =</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">transf =</span> transf.ipft.hm, <span class="at">targ =</span><span class="fu">list</span>(<span class="at">ni=</span><span class="dv">1</span><span class="sc">/</span>(pes.da.lvl3_unweighted<span class="sc">$</span>se)<span class="sc">^</span><span class="dv">2</span>), </span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">header=</span><span class="cn">TRUE</span>,</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>       <span class="at">slab=</span>AuthorYear,</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">order=</span><span class="st">"obs"</span>,</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>       <span class="at">refline=</span><span class="cn">NA</span>,</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span>  <span class="st">"#001158"</span>,</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>       <span class="at">cex=</span><span class="fl">1.5</span>, </span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>       <span class="at">digits =</span> <span class="dv">3</span>,</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>       <span class="at">ilab=</span>ki, </span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>       <span class="at">mlab=</span> <span class="st">"Unweighted Model"</span>,</span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>       <span class="at">ilab.xpos=</span> <span class="sc">-</span>.<span class="dv">3</span>,</span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>       <span class="at">ilab.pos =</span> <span class="dv">2</span>, </span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>       <span class="co">#showweights = TRUE, </span></span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>       <span class="at">shade=</span><span class="st">"zebra"</span></span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>       )</span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="sc">-</span>.<span class="dv">5</span>, agg.pes.da<span class="sc">$</span>k<span class="sc">+</span><span class="dv">2</span>, <span class="st">"OA Count"</span>, <span class="at">cex=</span><span class="fl">1.5</span>, <span class="at">font=</span><span class="dv">2</span>)</span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fl">2.1</span>, agg.pes.da<span class="sc">$</span>k<span class="sc">+</span><span class="dv">3</span>, <span class="st">"Unweighted"</span>, <span class="at">cex=</span><span class="fl">1.5</span>, <span class="at">font=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 <div style="text-align: justify">
 <p>The forest plot below (<a href="#fig-forest" class="quarto-xref">Figure&nbsp;<span>4.5</span></a>) compares the overall accuracy effect size across studies using both weighted and unweighted models, with error bars which correspond to the weighted model — at this scale there is no discernible difference between the error bars of the two models. Each study is given with the number of estimates per study <span class="math inline">\(k_j\)</span>, and study average effect size (<span class="math inline">\(\kappa_j\)</span>), with 95% confidence intervals (CI), both for the weighted and unweighted model. Of the 20 primary studies included, six reported only one effect. Based on the unweighted model, the average accuracy of machine learning methods applied to remote sensing data is 0.90 (95% CI[0.85; 0.94]). While the three-level meta-analytic model produced an average accuracy of 0.89 (95% CI[0.85; 0.93]). This implies, that on average, the machine learning methods correctly classify around 90% of the time when applied to remote sensing data.</p>
 </div>
@@ -643,6 +1255,37 @@ Figure&nbsp;4.5: Forest plot for both the weighted and unweighted model. <span c
 <p>Using the multi-model inference function, a total of 31,298 models converged <!--# ADD -->. <a href="#fig-best" class="quarto-xref">Figure&nbsp;<span>4.6</span></a>, illustrates the predictor importance after evaluating all possible combinations of predictors to identify which combination provides the best fit and which predictors are most influential. Higher importance values indicate more consistent inclusion in high-weight models. The majority class proportion is the most important predictor, followed by the inclusion of ancillary data. Less influential predictors include used of indices, sample size, publication year, and the number of classes in the study. Meanwhile, factors such as classification type, SDG goal, machine learning group, spatial resolution, and citation count have minimal importance in the overall model performance (i.e., were not included in the models top performing models according to AIC).</p>
 </section>
 </div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>study_features <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"model_group"</span>, <span class="st">"indices"</span>, <span class="st">"SDG_theme"</span>, <span class="st">"classification_type"</span>,</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Confusion_matrix"</span>, <span class="st">"RS_device_type"</span>, <span class="st">"RS_device_group"</span>, <span class="st">"RS_spatital_res_grouped"</span>,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ancillary"</span>, <span class="st">"no_band_group"</span>, <span class="st">"Publication.Year"</span>, <span class="st">"total"</span>,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"globalCitationsCount"</span>, <span class="st">"number_classes"</span>, <span class="st">"fraction_majority_class"</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>ies.da<span class="sc">$</span>se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(ies.da<span class="sc">$</span>vi)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>multi_inf <span class="ot">&lt;-</span> <span class="fu">multimodel.inference</span>(<span class="at">TE =</span> <span class="st">"yi"</span>, </span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">seTE =</span> <span class="st">"se"</span>,</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">method=</span><span class="st">'REML'</span>, </span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>                     <span class="at">test=</span><span class="st">'t'</span>, </span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data =</span> ies.da,</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>                     <span class="at">predictors =</span> study_features,</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>                     <span class="at">interaction =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>                     <span class="at">seed=</span><span class="dv">357</span>)</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>multi_inf<span class="sc">$</span>predictor.importance.plot<span class="sc">+</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> feature_labels)<span class="sc">+</span></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, </span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Model-averaged predictor importance plot"</span> )<span class="sc">+</span></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_apa</span>()<span class="sc">+</span></span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>  common_theme</span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"figures/fig-best_mod.png"</span>, <span class="at">height =</span><span class="dv">4</span>, <span class="at">width =</span> <span class="dv">7</span>)</span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a><span class="co">#saveRDS(multi_inf, "../appendix/multimodel_inference_out.rda")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 <div style="text-align: justify">
 <div id="fig-best" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -658,6 +1301,23 @@ Figure&nbsp;4.6: Model-averaged predictor importance plot with a reference line 
 <div style="text-align: justify">
 <p>In the multimodel inference analysis, the five best-performing models were identified based on their AIC scores. The selected top models consistently included key predictors such as the majority-class proportion and the use of ancillary data. <a href="#tbl-multi_coef" class="quarto-xref">Table&nbsp;<span>4.2</span></a> shows the results of the multi-model inference. The significant study features are the majority-class proportion and the inclusion of ancillary data. Interestingly, the use of ancillary data has a negative effect on overall accuracy in the FT transformed scale. <a href="#tbl-compare" class="quarto-xref">Table&nbsp;<span>4.3</span></a> shows these best performing models and the intercept-only model (before adding the predictors), note that the AIC is very similar in among the top five.</p>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>multi_coef<span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"figures/summary_tables.xlsx"</span>, </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">sheet =</span> <span class="st">"multimodel_inference_results"</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  multi_coef,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">booktabs =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">linesep =</span> <span class="st">""</span>,</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Importance"</span>, <span class="st">"Feature (Referance Category)"</span>, </span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Comparison Category"</span>, <span class="st">"b"</span>, <span class="st">"SE"</span>, <span class="st">"z"</span>, <span class="st">"p"</span>),</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">|&gt;</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">kable_styling</span>(<span class="at">font_size =</span> <span class="fl">9.5</span>, </span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">full_width =</span> <span class="cn">FALSE</span>)<span class="sc">|&gt;</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">row_spec</span>(<span class="fu">c</span>(<span class="dv">0</span>),  <span class="at">bold =</span> <span class="cn">TRUE</span>)<span class="sc">|&gt;</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">footnote</span>(<span class="fu">c</span>(<span class="st">"Importace of each feature, the reference and combarsion categories given with their estimated coefficients (b), standard errors (SE) on the FT transformed scale with correstponding z- and p-values."</span>), <span class="at">threeparttable=</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div id="tbl-multi_coef" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-multi_coef-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -917,6 +1577,35 @@ Table&nbsp;4.2: Multi-model inference coefficients and feature importance.
 </div>
 </figure>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>multi_inf<span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"../appendix/multimodel_inference_out.rda"</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>models <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Model.no = c(42, 138, 10, 142, 16522, 1),</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Candidate models"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Ancillary Data + Majority-class Proportion + Indices"</span>, </span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Ancillary Data + Majority-class Proportion + Number of Spectral Bands"</span>, </span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Ancillary Data + Majority-class Proportion"</span>, </span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Ancillary Data + Confusion Matrix + Majority-class Proportion + Number of Spectral Bands"</span>, </span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Ancillary Data + Majority-class Proportion + Number of Spectral Bands + Sample Size"</span>, </span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"Intercept-Only"</span>), </span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"df"</span> <span class="ot">=</span>  <span class="fu">c</span>(multi_inf<span class="sc">$</span>top5.models<span class="sc">$</span>df, <span class="dv">2</span>), </span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">AICc =</span> <span class="fu">c</span>(multi_inf<span class="sc">$</span>top5.models<span class="sc">$</span>AICc, <span class="sc">-</span><span class="fl">41.93257</span>), </span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Akaike weights"</span> <span class="ot">=</span> <span class="fu">c</span>(multi_inf<span class="sc">$</span>top5.models<span class="sc">$</span>weight, <span class="fl">2.444007e-17</span>)</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>  models,</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">booktabs =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">escape =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">linesep =</span> <span class="fu">c</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">addlinespace </span><span class="sc">\\</span><span class="st">addlinespace"</span>),</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Candidate models"</span>, <span class="st">"df"</span>, <span class="st">"AIC$_c$"</span>, <span class="st">"Akaike weights"</span>),</span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">digits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">2</span>,<span class="dv">2</span>)</span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">|&gt;</span></span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">font_size =</span> <span class="fl">9.5</span>, </span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>                <span class="at">full_width =</span> <span class="cn">FALSE</span>)<span class="sc">|&gt;</span></span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a> <span class="fu">row_spec</span>(<span class="fu">c</span>(<span class="dv">0</span>),  <span class="at">bold =</span> <span class="cn">TRUE</span>)<span class="sc">|&gt;</span></span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">1</span>, <span class="at">width =</span> <span class="st">"9cm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div id="tbl-compare" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-compare-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -979,9 +1668,76 @@ Table&nbsp;4.3: Set of 5 best-ranked models and intercept only model ordered by 
 </div>
 </figure>
 </div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>meta_reg_42 <span class="ot">&lt;-</span> <span class="fu">rma.mv</span>(yi, vi,</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> ies.da ,</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">random =</span> <span class="sc">~</span> <span class="dv">1</span> <span class="sc">|</span> AuthorYear <span class="sc">/</span> esid,</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">tdist =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"REML"</span>,</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">test =</span> <span class="st">"t"</span>, </span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">dfs=</span><span class="st">"contain"</span>,</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">mods =</span> <span class="sc">~</span> fraction_majority_class<span class="sc">+</span>ancillary<span class="sc">+</span> indices</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 <div style="text-align: justify">
 <p><a href="#tbl-best_mod_coef" class="quarto-xref">Table&nbsp;<span>4.4</span></a> shows the estimated coefficients for the best-fit model — i.e., the model with the lowest AIC value among the candidate models. The coefficients are presented both in the FT-transformed scale (<strong>b</strong>) and on the natural (back-transformed) scale. The results highlight that the proportion of the majority class has the largest positive effect (<span class="math inline">\(b = 0.39\)</span>, <span class="math inline">\(b^{BT} = 0.15\)</span>, p &lt; .001). Suggesting that increasing the majority-class proportion significantly improves overall accuracy. While, the inclusion of ancillary data has a small negative effect on the FT-transformed scale (<span class="math inline">\(b = -0.11, p = 0.029\)</span>) but shows a slight positive effect once back-transformed (<span class="math inline">\(b^{BF} = 0.01\)</span>). The use of indices has a minimal and non-significant effect (<span class="math inline">\(p = 0.131\)</span>).</p>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>backtras.function<span class="ot">&lt;-</span> <span class="cf">function</span>(t_bar, se){</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  v_bar <span class="ot">&lt;-</span> (se)<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  (<span class="dv">1</span><span class="sc">/</span><span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">sign</span>(<span class="fu">cos</span>(<span class="dv">2</span><span class="sc">*</span>t_bar)) <span class="sc">*</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>           <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> (<span class="fu">sin</span>(<span class="dv">2</span><span class="sc">*</span>t_bar)<span class="sc">+</span>(<span class="fu">sin</span>(<span class="dv">2</span><span class="sc">*</span>t_bar)<span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="fu">sin</span>(<span class="dv">2</span><span class="sc">*</span>t_bar))<span class="sc">/</span>(<span class="dv">1</span><span class="sc">/</span>v_bar))<span class="sc">^</span><span class="dv">2</span>)))</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>ci.function <span class="ot">&lt;-</span> <span class="cf">function</span>(ci_l, ci_u, se){</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  back_ci_l <span class="ot">=</span> <span class="fu">backtras.function</span>(ci_l, se)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  back_ci_u <span class="ot">=</span> <span class="fu">backtras.function</span>(ci_u, se)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  out<span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"["</span>, <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(back_ci_l, <span class="dv">2</span>), <span class="at">nsmall =</span> <span class="dv">2</span>)), <span class="st">", "</span>, <span class="co"># must be a better way</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>               <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(back_ci_u,<span class="dv">2</span>), <span class="at">nsmall =</span> <span class="dv">2</span>)), <span class="st">"]"</span>)</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(out)</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>coef_bestmod <span class="ot">&lt;-</span> </span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>  meta_reg_42<span class="sc">|&gt;</span></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>() <span class="sc">|&gt;</span></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">estimate_back_transfromed =</span> <span class="fu">mapply</span>(backtras.function, meta_reg_42<span class="sc">$</span>b, meta_reg_42<span class="sc">$</span>se))<span class="sc">|&gt;</span></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">CI =</span> <span class="fu">mapply</span>(ci.function, meta_reg_42<span class="sc">$</span>ci.lb,meta_reg_42<span class="sc">$</span>ci.ub, meta_reg_42<span class="sc">$</span>se))<span class="sc">|&gt;</span></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(term, estimate, std.error, statistic,  p.value, estimate_back_transfromed, CI)</span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>coef_bestmod<span class="sc">$</span>term <span class="ot">&lt;-</span> <span class="fu">factor</span>(</span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>  coef_bestmod<span class="sc">$</span>term,</span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">levels =</span> <span class="fu">c</span>(</span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"intercept"</span>,</span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">"fraction_majority_class"</span>,</span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ancillaryAncillary Data Included"</span>,</span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"indicesUsed"</span></span>
+<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels =</span> <span class="fu">c</span>(</span>
+<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Intercept"</span>,</span>
+<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Majority-class Proportion"</span>,</span>
+<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Ancillary Data:  Included"</span>,</span>
+<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Indices:  Used"</span></span>
+<span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb22-35"><a href="#cb22-35" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-36"><a href="#cb22-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-37"><a href="#cb22-37" aria-hidden="true" tabindex="-1"></a>coef_bestmod<span class="sc">|&gt;</span></span>
+<span id="cb22-38"><a href="#cb22-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">booktabs =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb22-39"><a href="#cb22-39" aria-hidden="true" tabindex="-1"></a>        <span class="at">linesep =</span> <span class="st">""</span>,</span>
+<span id="cb22-40"><a href="#cb22-40" aria-hidden="true" tabindex="-1"></a>        <span class="at">escape =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb22-41"><a href="#cb22-41" aria-hidden="true" tabindex="-1"></a>        <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Predictor"</span>, <span class="st">"b"</span>, <span class="st">"SE"</span>, <span class="st">"t"</span>, <span class="st">"p"</span>, <span class="st">"b$^{B-FT}$"</span>, <span class="st">"CI"</span>), </span>
+<span id="cb22-42"><a href="#cb22-42" aria-hidden="true" tabindex="-1"></a>        <span class="at">digits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>), </span>
+<span id="cb22-43"><a href="#cb22-43" aria-hidden="true" tabindex="-1"></a>        <span class="at">align =</span> <span class="fu">c</span>(<span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>)</span>
+<span id="cb22-44"><a href="#cb22-44" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb22-45"><a href="#cb22-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">font_size =</span> <span class="dv">10</span>, </span>
+<span id="cb22-46"><a href="#cb22-46" aria-hidden="true" tabindex="-1"></a>                <span class="at">full_width =</span> <span class="cn">FALSE</span>)<span class="sc">|&gt;</span></span>
+<span id="cb22-47"><a href="#cb22-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_header_above</span>(<span class="fu">c</span>(<span class="st">" "</span>,<span class="st">""</span>,<span class="st">""</span>,<span class="st">""</span>,<span class="st">""</span>, <span class="st">"back-transfromed scale"</span> <span class="ot">=</span> <span class="dv">2</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb22-48"><a href="#cb22-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">row_spec</span>(<span class="fu">c</span>(<span class="dv">0</span>),  <span class="at">bold =</span> <span class="cn">TRUE</span>)<span class="sc">|&gt;</span></span>
+<span id="cb22-49"><a href="#cb22-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">1</span>, <span class="at">width =</span> <span class="st">"6cm"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb22-50"><a href="#cb22-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">footnote</span>(<span class="fu">c</span>(<span class="st">"The estimated coefficients (b), standard errors (SE) on the FT transformed scale, with correstponding t-statistics and p-values. Additionally, the coefficients ($b^{B-FT}$) and corresponding confidence intervals (CI) are shown on the back-transformed scale."</span>), <span class="at">escape =</span> <span class="cn">FALSE</span>, <span class="at">threeparttable=</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div id="tbl-best_mod_coef" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-best_mod_coef-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1063,6 +1819,112 @@ Table&nbsp;4.4: Table of estimated coefficients for the best-fit model.
 <div style="text-align: justify">
 <p>To assess the impact of the study features on the estimated heterogeneity the features included in the best-fit model are fitted as sole covariates. <a href="#tbl-hetro" class="quarto-xref">Table&nbsp;<span>4.5</span></a> shows the parameter estimates from the meta-analysis, comparing the intercept-only model with four mixed-effects models, one for each of the features in the best-fit model and best-fit model itself.</p>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>meta_reg_anc <span class="ot">&lt;-</span> <span class="fu">rma.mv</span>(yi, vi,</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">data =</span> ies.da,</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">random =</span> <span class="sc">~</span> <span class="dv">1</span> <span class="sc">|</span> AuthorYear <span class="sc">/</span> esid,</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">tdist =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">method =</span> <span class="st">"REML"</span>,</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">test =</span> <span class="st">"t"</span>, </span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>                       <span class="at">dfs=</span><span class="st">"contain"</span>, </span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>                       <span class="at">mods =</span> <span class="sc">~</span> ancillary)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>meta_reg_frac <span class="ot">&lt;-</span> <span class="fu">rma.mv</span>(yi, vi,</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>                       <span class="at">data =</span> ies.da,</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>                       <span class="at">random =</span> <span class="sc">~</span> <span class="dv">1</span> <span class="sc">|</span> AuthorYear <span class="sc">/</span> esid,</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>                       <span class="at">tdist =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>                       <span class="at">method =</span> <span class="st">"REML"</span>,</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>                       <span class="at">test =</span> <span class="st">"t"</span>, </span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>                       <span class="at">dfs=</span><span class="st">"contain"</span>, </span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>                       <span class="at">mods =</span> <span class="sc">~</span> fraction_majority_class)</span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>meta_reg_ind <span class="ot">&lt;-</span> <span class="fu">rma.mv</span>(yi, vi,</span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>                       <span class="at">data =</span> ies.da,</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>                       <span class="at">random =</span> <span class="sc">~</span> <span class="dv">1</span> <span class="sc">|</span> AuthorYear <span class="sc">/</span> esid,</span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>                       <span class="at">tdist =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>                       <span class="at">method =</span> <span class="st">"REML"</span>,</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>                       <span class="at">test =</span> <span class="st">"t"</span>, </span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>                       <span class="at">dfs=</span><span class="st">"contain"</span>, </span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>                       <span class="at">mods =</span> <span class="sc">~</span> indices)</span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>extract_parameters <span class="ot">&lt;-</span> <span class="cf">function</span>(model) {</span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a>  out <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">model =</span> <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(model<span class="sc">$</span>formula.mods)) <span class="fu">paste</span>(model<span class="sc">$</span>formula.mods)[<span class="dv">2</span>] <span class="cf">else</span> <span class="st">"Intercept Only"</span>,  </span>
+<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">sig_lvl2 =</span> <span class="fu">round</span>(model<span class="sc">$</span>sigma2[<span class="dv">2</span>], <span class="dv">3</span>), </span>
+<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">sig_lvl3 =</span> <span class="fu">round</span>(model<span class="sc">$</span>sigma2[<span class="dv">1</span>], <span class="dv">3</span>), </span>
+<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">QE =</span> <span class="fu">round</span>(model<span class="sc">$</span>QE,<span class="dv">0</span>), </span>
+<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">df_Q =</span> model<span class="sc">$</span>QEdf,</span>
+<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">p_Q =</span> <span class="fu">round</span>(model<span class="sc">$</span>QEp,<span class="dv">3</span>), </span>
+<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">f_test =</span> <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(model<span class="sc">$</span>formula.mods))</span>
+<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a>      <span class="fu">round</span>(model<span class="sc">$</span>QM, <span class="dv">0</span>)</span>
+<span id="cb23-38"><a href="#cb23-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb23-39"><a href="#cb23-39" aria-hidden="true" tabindex="-1"></a>      <span class="cn">NA</span>,</span>
+<span id="cb23-40"><a href="#cb23-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">df_F =</span> <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(model<span class="sc">$</span>formula.mods))</span>
+<span id="cb23-41"><a href="#cb23-41" aria-hidden="true" tabindex="-1"></a>      model<span class="sc">$</span>QMdf[<span class="dv">1</span>]</span>
+<span id="cb23-42"><a href="#cb23-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb23-43"><a href="#cb23-43" aria-hidden="true" tabindex="-1"></a>      <span class="cn">NA</span>,</span>
+<span id="cb23-44"><a href="#cb23-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">p_F =</span> <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(model<span class="sc">$</span>formula.mods))</span>
+<span id="cb23-45"><a href="#cb23-45" aria-hidden="true" tabindex="-1"></a>      <span class="fu">round</span>(model<span class="sc">$</span>QMp, <span class="dv">3</span>)</span>
+<span id="cb23-46"><a href="#cb23-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb23-47"><a href="#cb23-47" aria-hidden="true" tabindex="-1"></a>      <span class="cn">NA</span>,</span>
+<span id="cb23-48"><a href="#cb23-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">I2_lvl2 =</span> dmetar<span class="sc">::</span><span class="fu">var.comp</span>(model)<span class="sc">$</span>results[<span class="dv">2</span>, <span class="dv">2</span>],</span>
+<span id="cb23-49"><a href="#cb23-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">I2_lvl3 =</span> dmetar<span class="sc">::</span><span class="fu">var.comp</span>(model)<span class="sc">$</span>results[<span class="dv">3</span>, <span class="dv">2</span>],</span>
+<span id="cb23-50"><a href="#cb23-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">R2_lvl2 =</span> <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(model<span class="sc">$</span>formula.mods))</span>
+<span id="cb23-51"><a href="#cb23-51" aria-hidden="true" tabindex="-1"></a>      (<span class="fu">round</span>(<span class="dv">1</span> <span class="sc">-</span> (model<span class="sc">$</span>sigma2[<span class="dv">2</span>] <span class="sc">/</span> pes.da.lvl3<span class="sc">$</span>sigma2[<span class="dv">2</span>]), <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb23-52"><a href="#cb23-52" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb23-53"><a href="#cb23-53" aria-hidden="true" tabindex="-1"></a>      <span class="cn">NA</span>,</span>
+<span id="cb23-54"><a href="#cb23-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">R2_lvl3 =</span> <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(model<span class="sc">$</span>formula.mods))</span>
+<span id="cb23-55"><a href="#cb23-55" aria-hidden="true" tabindex="-1"></a>      (<span class="fu">round</span>(<span class="dv">1</span> <span class="sc">-</span> (model<span class="sc">$</span>sigma2[<span class="dv">1</span>] <span class="sc">/</span> pes.da.lvl3<span class="sc">$</span>sigma2[<span class="dv">1</span>]), <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb23-56"><a href="#cb23-56" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb23-57"><a href="#cb23-57" aria-hidden="true" tabindex="-1"></a>      <span class="cn">NA</span></span>
+<span id="cb23-58"><a href="#cb23-58" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb23-59"><a href="#cb23-59" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(out)</span>
+<span id="cb23-60"><a href="#cb23-60" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb23-61"><a href="#cb23-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-62"><a href="#cb23-62" aria-hidden="true" tabindex="-1"></a>heterogeneity_tbl <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="fu">extract_parameters</span>(pes.da.lvl3), </span>
+<span id="cb23-63"><a href="#cb23-63" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">extract_parameters</span>(meta_reg_frac), </span>
+<span id="cb23-64"><a href="#cb23-64" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">extract_parameters</span>(meta_reg_anc), </span>
+<span id="cb23-65"><a href="#cb23-65" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">extract_parameters</span>(meta_reg_ind),</span>
+<span id="cb23-66"><a href="#cb23-66" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">extract_parameters</span>(meta_reg_42))</span>
+<span id="cb23-67"><a href="#cb23-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-68"><a href="#cb23-68" aria-hidden="true" tabindex="-1"></a>heterogeneity_tbl<span class="sc">$</span>model <span class="ot">&lt;-</span> <span class="fu">factor</span>(heterogeneity_tbl<span class="sc">$</span>model, </span>
+<span id="cb23-69"><a href="#cb23-69" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Intercept Only"</span>, </span>
+<span id="cb23-70"><a href="#cb23-70" aria-hidden="true" tabindex="-1"></a>                                             <span class="st">"fraction_majority_class"</span>,</span>
+<span id="cb23-71"><a href="#cb23-71" aria-hidden="true" tabindex="-1"></a>                                             <span class="st">"ancillary"</span>,</span>
+<span id="cb23-72"><a href="#cb23-72" aria-hidden="true" tabindex="-1"></a>                                             <span class="st">"indices"</span>,</span>
+<span id="cb23-73"><a href="#cb23-73" aria-hidden="true" tabindex="-1"></a>                                             <span class="st">"fraction_majority_class + ancillary + indices"</span>), </span>
+<span id="cb23-74"><a href="#cb23-74" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Intercept Only"</span>, </span>
+<span id="cb23-75"><a href="#cb23-75" aria-hidden="true" tabindex="-1"></a>                                             <span class="st">"Majority-class Proportion"</span>,</span>
+<span id="cb23-76"><a href="#cb23-76" aria-hidden="true" tabindex="-1"></a>                                             <span class="st">"Ancillary Data"</span>,</span>
+<span id="cb23-77"><a href="#cb23-77" aria-hidden="true" tabindex="-1"></a>                                             <span class="st">"Indices"</span>,</span>
+<span id="cb23-78"><a href="#cb23-78" aria-hidden="true" tabindex="-1"></a>                                             <span class="st">"Combinded model$^{</span><span class="sc">\\</span><span class="st">text{a}}$"</span>))</span>
+<span id="cb23-79"><a href="#cb23-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-80"><a href="#cb23-80" aria-hidden="true" tabindex="-1"></a>heterogeneity_tbl<span class="sc">$</span>p_Q <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(heterogeneity_tbl<span class="sc">$</span>p_Q <span class="sc">&lt;</span><span class="fl">0.0001</span>,</span>
+<span id="cb23-81"><a href="#cb23-81" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"&lt;.0001"</span>,</span>
+<span id="cb23-82"><a href="#cb23-82" aria-hidden="true" tabindex="-1"></a>                                heterogeneity_tbl<span class="sc">$</span>p_Q)</span>
+<span id="cb23-83"><a href="#cb23-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-84"><a href="#cb23-84" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(</span>
+<span id="cb23-85"><a href="#cb23-85" aria-hidden="true" tabindex="-1"></a>  heterogeneity_tbl,</span>
+<span id="cb23-86"><a href="#cb23-86" aria-hidden="true" tabindex="-1"></a>  <span class="at">booktabs =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb23-87"><a href="#cb23-87" aria-hidden="true" tabindex="-1"></a>  <span class="at">escape =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb23-88"><a href="#cb23-88" aria-hidden="true" tabindex="-1"></a>  <span class="at">linesep =</span> <span class="st">""</span>, </span>
+<span id="cb23-89"><a href="#cb23-89" aria-hidden="true" tabindex="-1"></a>  <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Model"</span>,</span>
+<span id="cb23-90"><a href="#cb23-90" aria-hidden="true" tabindex="-1"></a>    <span class="st">"$</span><span class="sc">\\</span><span class="st">sigma^2_{</span><span class="sc">\\</span><span class="st">text{level2}}$"</span>, <span class="st">"$</span><span class="sc">\\</span><span class="st">sigma^2_{</span><span class="sc">\\</span><span class="st">text{level3}}$"</span>, </span>
+<span id="cb23-91"><a href="#cb23-91" aria-hidden="true" tabindex="-1"></a>    <span class="st">"$Q_E$"</span>, <span class="st">"df"</span>, <span class="st">"$p_Q$"</span>, <span class="st">"$F$"</span>, <span class="st">"df"</span>, <span class="st">"$p_F$"</span>, </span>
+<span id="cb23-92"><a href="#cb23-92" aria-hidden="true" tabindex="-1"></a>    <span class="st">"$I^2_{</span><span class="sc">\\</span><span class="st">text{level2}}$"</span>, <span class="st">"$I^2_{</span><span class="sc">\\</span><span class="st">text{level3}}$"</span>, </span>
+<span id="cb23-93"><a href="#cb23-93" aria-hidden="true" tabindex="-1"></a>    <span class="st">"$R^2_{</span><span class="sc">\\</span><span class="st">text{level2}}$"</span>, <span class="st">"$R^2_{</span><span class="sc">\\</span><span class="st">text{level3}}$"</span>), </span>
+<span id="cb23-94"><a href="#cb23-94" aria-hidden="true" tabindex="-1"></a>  <span class="at">align =</span> <span class="fu">c</span>(<span class="st">"l"</span>, <span class="st">"r"</span>,<span class="st">"r"</span>,<span class="st">"r"</span>,<span class="st">"r"</span>,<span class="st">"r"</span>,<span class="st">"r"</span>,  <span class="st">"r"</span>,<span class="st">"r"</span>,<span class="st">"r"</span>,<span class="st">"r"</span>,<span class="st">"r"</span>,<span class="st">"r"</span>)</span>
+<span id="cb23-95"><a href="#cb23-95" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">|&gt;</span></span>
+<span id="cb23-96"><a href="#cb23-96" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">font_size =</span> <span class="dv">9</span>, </span>
+<span id="cb23-97"><a href="#cb23-97" aria-hidden="true" tabindex="-1"></a>                <span class="at">full_width =</span> <span class="cn">FALSE</span>)<span class="sc">|&gt;</span></span>
+<span id="cb23-98"><a href="#cb23-98" aria-hidden="true" tabindex="-1"></a>  <span class="fu">row_spec</span>(<span class="fu">c</span>(<span class="dv">0</span>),  <span class="at">bold =</span> <span class="cn">TRUE</span>)<span class="sc">|&gt;</span></span>
+<span id="cb23-99"><a href="#cb23-99" aria-hidden="true" tabindex="-1"></a>  <span class="co">#column_spec(1, width = "4cm")|&gt;</span></span>
+<span id="cb23-100"><a href="#cb23-100" aria-hidden="true" tabindex="-1"></a>  <span class="co">#column_spec(c(2,3,10:13), width = "0.8cm")|&gt;</span></span>
+<span id="cb23-101"><a href="#cb23-101" aria-hidden="true" tabindex="-1"></a>  <span class="co">#column_spec(c(5,7,8), width = "0.1cm")|&gt;</span></span>
+<span id="cb23-102"><a href="#cb23-102" aria-hidden="true" tabindex="-1"></a>  <span class="fu">footnote</span>(<span class="at">general =</span> <span class="st">"Test statistic, degrees of freedom and respective p values are provide. This table allows heterogeneity at level 2 and 3 can be compared between the incetept only model, Majority-class Proportion and Adncillary Data only models, as well as the combinded model"</span>, </span>
+<span id="cb23-103"><a href="#cb23-103" aria-hidden="true" tabindex="-1"></a>           <span class="at">alphabet =</span> <span class="st">"Combinded model: Ancillary Data + Majority-class Proportion + Indices"</span>, <span class="at">threeparttable=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div id="tbl-hetro" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-hetro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1198,6 +2060,39 @@ Table&nbsp;4.5: Results for heterogeneity and covariates tests for intercept onl
 <div style="text-align: justify">
 <p><a href="#fig-bubble" class="quarto-xref">Figure&nbsp;<span>4.7</span></a> illustrates the relationship between the proportion of the majority class and overall accuracy of the individual studies included in the meta-analysis. The plot is based on the combined mixed-effects model, where the solid black line represents the fitted regression line, and the shaded area indicates the 95% confidence interval. Each point (or bubble) represents an individual study, with the size of each bubble proportional to the weight it received in the analysis (i.e., larger points represent studies that had more influence on the overall results). The plot demonstrates a clear trend: as the proportion of the majority class increases, overall accuracy tends to improve, indicating a positive correlation between these two variables.</p>
 </div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">brewer.pal</span>(<span class="dv">9</span>, <span class="st">"Pastel1"</span>), <span class="fu">brewer.pal</span>(<span class="dv">12</span>, <span class="st">"Set3"</span>))</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>authors <span class="ot">&lt;-</span> <span class="fu">unique</span>(ies.da<span class="sc">$</span>AuthorYear)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>author_colors <span class="ot">&lt;-</span> <span class="fu">setNames</span>(colors[<span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(authors)], authors)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>ies.da<span class="sc">$</span>color <span class="ot">&lt;-</span> author_colors[ies.da<span class="sc">$</span>AuthorYear]</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co"># labels</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>ies.da <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">rowid_to_column</span>(ies.da, <span class="st">"effectsizeID"</span>)</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>lowest_yi_per_author <span class="ot">&lt;-</span> ies.da <span class="sc">|&gt;</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(AuthorYear) <span class="sc">|&gt;</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(yi <span class="sc">==</span> <span class="fu">min</span>(yi)) <span class="sc">|&gt;</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(AuthorYear, effectsizeID)</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 level mod</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="st">"fig-bubble_lvl3.png"</span>, <span class="at">width=</span><span class="dv">700</span>, <span class="at">height=</span><span class="dv">800</span>)</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>bubble_plot_3lvl <span class="ot">&lt;-</span> <span class="fu">regplot</span>(meta_reg_42,</span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">mod =</span> <span class="st">"fraction_majority_class"</span>, </span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">transf =</span> transf.ipft.hm, <span class="at">targ =</span><span class="fu">list</span>(<span class="at">ni=</span><span class="dv">1</span><span class="sc">/</span>(meta_reg_42<span class="sc">$</span>se)<span class="sc">^</span><span class="dv">2</span>), </span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"Proportion of majority class"</span>, </span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">"Overall Accuracy"</span>,</span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">slab =</span> ies.da<span class="sc">$</span>AuthorYear, </span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">label =</span> lowest_yi_per_author<span class="sc">$</span>effectsizeID,</span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">labsize =</span> <span class="dv">1</span>, </span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">bg=</span>ies.da<span class="sc">$</span>color, </span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlim=</span><span class="fu">c</span>(<span class="fl">0.05</span>, <span class="fl">1.05</span>), </span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylim=</span><span class="fu">c</span>(<span class="fl">0.64</span>, <span class="dv">1</span>))</span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 <div id="fig-bubble" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bubble-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1211,6 +2106,37 @@ Figure&nbsp;4.7: Bubble plot showing the observed effect size, overall accuracy 
 <div style="text-align: justify">
 <p>The size of the points in the bubble plot illustrates the benefit of incorporating the structure of the data into meta-analytic weighting. Namely, that the difference in size of the bubbles are not exessive. <a href="#fig-weight" class="quarto-xref">Figure&nbsp;<span>4.8</span></a> highlights this by plotting the weights for each study from a fixed effect, random effect with two levels and the structure used here, the random effects with three levels. As shown, the fixed-effects model particularity as one study is heavily weighted, which can distort the overall results. In contrast, the two-level and three-level models distribute the weights more evenly across studies, reflecting the importance of accounting for between-study heterogeneity and within-study variation.</p>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fixed-effect model (only within-study variance)</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>FE_mod <span class="ot">&lt;-</span> <span class="fu">rma</span>(yi, vi, <span class="at">method =</span> <span class="st">"FE"</span>, <span class="at">data =</span> ies.da)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>ies.da<span class="sc">$</span>w_FE <span class="ot">&lt;-</span> <span class="fu">weights</span>(FE_mod)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 level meta analysis weights </span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>ies.da<span class="sc">$</span>w_RE2 <span class="ot">&lt;-</span> <span class="fu">weights</span>(pes.da)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 level meta analysis weights </span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>ies.da<span class="sc">$</span>w_RE3 <span class="ot">&lt;-</span> <span class="fu">weights</span>(pes.da.lvl3)</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ies.da, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(AuthorYear)))<span class="sc">+</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">y =</span> w_FE, <span class="at">size =</span> w_FE, <span class="at">colour =</span> <span class="st">"Fixed Effect Model"</span>), </span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">width =</span> <span class="dv">0</span>, <span class="at">height =</span> <span class="fl">0.1</span>)<span class="sc">+</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">y =</span> w_RE2, <span class="at">size =</span> w_RE2, <span class="at">colour =</span> <span class="st">"Two Level Random Effect Model"</span>), </span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">width =</span> <span class="dv">0</span>, <span class="at">height =</span> <span class="fl">0.1</span>)<span class="sc">+</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">y =</span> w_RE3, <span class="at">size =</span> w_RE3, <span class="at">colour =</span> <span class="st">"Three Level Random Effect Model"</span>), </span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">width =</span> <span class="dv">0</span>, <span class="at">height =</span> <span class="fl">0.1</span>)<span class="sc">+</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>   <span class="fu">scale_size_continuous</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>), <span class="at">breaks =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.8</span>, <span class="fl">1.1</span>, <span class="fl">1.4</span>,<span class="fl">1.5</span>, <span class="dv">2</span>))<span class="sc">+</span></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, </span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Weights"</span>, </span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Weights of different meta-analysis models"</span>) <span class="sc">+</span></span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">size =</span> <span class="st">"none"</span>)<span class="sc">+</span></span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>  common_theme<span class="sc">+</span></span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="co"># grid lines </span></span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major.y =</span> <span class="fu">element_line</span>(<span class="at">linewidth =</span> <span class="fl">0.1</span>, <span class="at">colour =</span> <span class="st">"grey80"</span>),</span>
+<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a>       <span class="co"># legend specs</span></span>
+<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">"bottom"</span>, </span>
+<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text=</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">8</span>, <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">l =</span> <span class="sc">-</span><span class="fl">0.3</span>, <span class="at">r =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">unit =</span> <span class="st">"cm"</span>))</span>
+<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a>       ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div id="fig-weight" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-weight-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1232,6 +2158,32 @@ Figure&nbsp;4.8: Intercept only models at three different levels plot to compare
 <div style="text-align: justify">
 <p>Lastly, <a href="#fig-preds" class="quarto-xref">Figure&nbsp;<span>4.9</span></a> is a plot of observed overall accuracy against the predicted overall accuracy from the combined mixed-effects model. The points are colored based on whether ancillary information was included in the primary study. As <a href="#fig-preds" class="quarto-xref">Figure&nbsp;<span>4.9</span></a> illustrates, the combined mixed-effects model tends to overestimate overall accuracy — the fitted regression line (in grey) lies above the line of perfect agreement (y = x, in black), indicating that the model’s predictions are generally higher than the observed accuracy values.</p>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>ies.da<span class="sc">$</span>preds <span class="ot">&lt;-</span> <span class="fu">predict</span>(meta_reg_42, <span class="at">transf =</span> transf.ipft.hm, <span class="at">targ =</span><span class="fu">list</span>(<span class="at">ni=</span><span class="dv">1</span><span class="sc">/</span>(meta_reg_42<span class="sc">$</span>se)<span class="sc">^</span><span class="dv">2</span>))<span class="sc">$</span>pred</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ies.da, <span class="fu">aes</span>(<span class="at">x =</span> OA_reported, <span class="at">y =</span> preds))<span class="sc">+</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">5</span>, <span class="fu">aes</span>(<span class="at">colour =</span> ancillary), <span class="at">alpha =</span> <span class="fl">0.7</span>)<span class="sc">+</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>,<span class="at">formula =</span> <span class="st">'y ~ x'</span>,  <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">colour =</span> <span class="st">"grey"</span>, <span class="at">linetype=</span> <span class="st">"dashed"</span>, <span class="at">linewidth =</span> <span class="fl">0.8</span>)<span class="sc">+</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># y = x line </span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_textabline</span>(<span class="at">label =</span> <span class="st">"y = x"</span>, <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>,<span class="at">hjust =</span> <span class="fl">0.2</span>,  <span class="at">linetype=</span> <span class="st">"longdash"</span>)<span class="sc">+</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>,</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>                      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Only Remote Sensing Data"</span>,<span class="st">"Addition of Ancillary Data"</span>))<span class="sc">+</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="fl">0.64</span>, <span class="dv">1</span>))<span class="sc">+</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="fl">0.64</span>,<span class="dv">1</span>))<span class="sc">+</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Reported Overall Accuracy"</span>, </span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Predicted Overall Accuracy"</span>, </span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Plot of Observed Agaist Predicted Accuracy"</span>)<span class="sc">+</span></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>), </span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.position =</span> <span class="st">"top"</span>) <span class="sc">+</span></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>  common_theme</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"fig-preds.png"</span>, <span class="at">width =</span> <span class="dv">15</span>,</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">height =</span> <span class="dv">10</span>,</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">units =</span> <span class="st">"cm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div id="fig-preds" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-preds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
