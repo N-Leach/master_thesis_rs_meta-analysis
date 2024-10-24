@@ -1,18 +1,14 @@
----
-linestretch: 1.25
----
-::: {format=pdf}
-# Acknowledgements {.unnumbered .unlisted}
+### Acknowledgements {.unnumbered .unlisted}
+::: {style="text-align: justify"}
+I am very grateful to everyone that has helped me through the process and completion of this thesis. First and foremost, my thesis supervisors at the CBS, Dr. Joep Burger and Dr. Jonas Klingwort. I would like to thank (and berate) them for giving me the freedom of choosing my topic. What a journey it led us through! I never thought I would refer to back and forth articles on the misconceptions of double arcsine back-transformations as drama, but here I am, waiting for the next episode (no spoilers). In all seriousness, I truly appreciate the time and effort they dedicated and the detailed and feedback they provided. I would also like to extend my thanks to my internal supervisor, Prof. Mark de Rooij, for his support and feedback throughout the process, and to my independent reader, Prof. E.M.L. Dusseldorp for stepping on short notice.  
 
-I am very grateful to everyone that has helped me through the process and completion of this thesis. First, my thesis supervisors at the CBS, Dr. Joep Burger and Dr. Jonas Klingwort. I would like to thank (and berate) them for giving me the freedom in choosing my topic. What a journey it lead us through: I never thought I would refer to back and forth papers on the limitations and misconceptions of double arcsine back-transformations as drama, but here I am, waiting for the next episode (no spoilers please). In all seriousness, I truly appreciate the time they invested and they're feedback. I would also like to thank my internal supervisor Prof. Mark de Rooij, for his feedback and support. Perhaps unconventionally, I would also like to Dr. Wolfgang Viechtbauer--- the statistician behind the `metafor` package --- when I grow up I want to write documentation like that.
+Perhaps unconventionally, I would like to acknowledge Dr. Wolfgang Viechtbauer ---the statistician behind the `Metafor` package. I aspire to write documentation like his when I "grow up". 
 
-To my friends and family, I can never thank them enough for responding to my self doubt and frustration with endless encouragement. Specifically, Bo for all the support and pretending to be interested in double arcsine drama. Lastly, a special thank you to Capo for almost never leaving my side and reminding me of the importance of taking breaks, which, of course, are essential because he needs my undivided attention.
-
-::: {layout-ncol="2"}
-![](images/helper2.png){width="305"}
-
-![](images/helper1.png){width="326"}
+A sincere thank you goes to my friends and family for their unwavering encouragement through all my self-doubt. Special thanks to Paul, Anka and (my favorite uncle) Mike for their proofreading and feedback, and to Bo for the continuous support and for pretending to be interested in the drama of double arcsines. Lastly, a special thank you to Capo for almost never leaving my side and reminding me of the importance of taking breaks, which, of course, are essential because he should have my undivided attention.
 :::
 
-To the reader, thank you for taking the time to read my thesis ---there is still time not to I won't know any different. If you are still here (supervisors, independent reader, mum?) I would like to appologise in advance for continuing the convention of inconsistent notation across meta-analysis research. I can only apologies for this behaviour and hope I have been consistent within my own work as its best not to change notations $\mu$-dstream.
+::: {layout-ncol="2"}
+![](images/helper1.png){fig-align="center" fig-width="7cm" fig-height="4.6cm" width="7cm"}
+
+![](images/helper2.png){fig-align="center" fig-width="7cm" fig-height="4.6cm" width="7cm"}
 :::

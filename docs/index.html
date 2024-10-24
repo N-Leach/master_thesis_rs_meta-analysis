@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Nina Maria Leach">
-<meta name="dcterms.date" content="2024-01-11">
+<meta name="dcterms.date" content="2024-11-13">
 
 <title>Evaluating the Performance of Machine Learning Models in Remote Sensing for Sustainable Development Goals: A Meta-Analysis</title>
 <style>
@@ -32,7 +32,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./frontmatter/abstract.html" rel="next">
+<link href="./chapters/intro.html" rel="next">
+<link href="./frontmatter/abstract.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -68,7 +69,45 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+  </script>
+  <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -81,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Forward</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Foreword</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -114,20 +153,14 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Forward</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./frontmatter/abstract.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Abstract</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./frontmatter/abbreviations_notation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Table of Notation</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Foreword</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -162,10 +195,39 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./frontmatter/acknowledgement.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Acknowledgements</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix/app1-paper_selection/app1-paper_selection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Paper selection</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix/app2-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Data wrangling</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -201,7 +263,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 11, 2024</p>
+      <p class="date">November 13, 2024</p>
     </div>
   </div>
   
@@ -213,11 +275,14 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="forward" class="level1 unnumbered unlisted">
-<h1 class="unnumbered unlisted">Forward</h1>
-<p>The following research is a meta-analysis on performace of machine learning models remote sensing monitoring of Sustainable Development Goals. This was an expository research assessing if study feastures can explain variation in study results. To my knowledge there is currently no published research using weighted meta-analysis techniques in this context. The research tried to follow the PRISMA guidlines where possible, but because of exposporitory nature of this research, both in terms of the research itself but also my own understanding and exporation into meta-analysis methods pre-registration was not done.</p>
-<p>This thesis was predominatly redered directly from Quarto into PDF format, with only minor stylistic adjustments made at the end. Therefore, the code to rereder the entre project is avaliable on <a href="https://github.com/N-Leach/master_thesis_rs_meta-analysis">github</a>. A HTML (link) version is also available, where code chunks are displayed in-line with the corresponding sections, offering a seamless integration of the analysis and narrative. The data analysis and appendixes are also available in this format This interactive format allows readers to engage with the code directly in the context of the research findings.</p>
-<p>In addition, the official Leiden University template has been fully integrated into the Quarto book format used for this thesis. Future students and researchers can easily reuse this template, streamlining the formatting and presentation process for their own work.</p>
+<section id="foreword" class="level1 unnumbered unlisted">
+<h1 class="unnumbered unlisted">Foreword</h1>
+<div style="text-align: justify">
+<p>The aim of this research was to assess whether study features can explain variations in results across studies. To my knowledge, this is the first study to apply weighted meta-analysis techniques to examining the performance of machine learning models in remote sensing. While I intended to adhere to PRISMA guidelines, the exploratory nature of the topic—and my own learning journey—meant pre-registration was ultimately not conducted, and with data extraction carried out solely by myself, there is a degree of subjectivity and potential for error there. But I’m giving away spoilers for the discussion, so I’ll stop myself there!</p>
+<p>I have succeeded in building this manuscript using Quarto, with minimal stylistic adjustments after rendering. The entire code for this project is available on <a href="https://github.com/N-Leach/master_thesis_rs_meta-analysis">GitHub</a>, and an HTML version with integrated code chunks can be accessed on <a href="https://n-leach.github.io/master_thesis_rs_meta-analysis/">GitHub Pages website</a>. The data processing and paper selection analysis scripts are all available on the GitHub-hosted site under the appendix (more details about the file organisation are available on the GitHub page). I have also integrated the Leiden University master thesis cover format into the Quarto book, so if any future student would like to reuse it please do! I toyed with the idea of creating a Quarto book template but that is a project for another day.</p>
+<p>One last thing, in the discussion of this thesis I suggest that journals should begin requesting data submissions alongside the manuscript to enable active, ongoing meta-analyses. In support of this idea, I developed a <a href="https://n-leach.github.io/meta-analysis_rs/">small pilot website</a> to demonstrate how such a system might work. If anyone feels inclined to add to the dataset, there are instructions on how to do that there.</p>
+<p>To the reader: thank you for taking the time to read my thesis— there’s still time to stop reading, and I won’t know any different! If you’ve made it this far —hi supervisors, independent reader (and mum)— I would like to apologize in advance for continuing the convention of inconsistent notation across meta-analysis research. I can only hope I have been consistent within my own work as its best not to change notations <span class="math inline">\(\mu\)</span>-dstream.</p>
+</div>
 
 
 </section>
@@ -645,10 +710,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./frontmatter/abstract.html" class="pagination-link" aria-label="Abstract">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Abstract</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./frontmatter/abstract.html" class="pagination-link" aria-label="Abstract">
-        <span class="nav-page-text">Abstract</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./chapters/intro.html" class="pagination-link" aria-label="Introduction">
+        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

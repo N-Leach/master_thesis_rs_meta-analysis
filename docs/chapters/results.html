@@ -87,6 +87,15 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+  </script>
+  <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
 <script src="../site_libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
@@ -164,20 +173,14 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Forward</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../frontmatter/abstract.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Abstract</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../frontmatter/abbreviations_notation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Table of Notation</span></a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Foreword</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -212,10 +215,39 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../frontmatter/acknowledgement.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Acknowledgements</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/app1-paper_selection/app1-paper_selection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Paper selection</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/app2-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Data wrangling</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -256,51 +288,41 @@ window.Quarto = {
 <section id="descriptive-statistics" class="level2">
 <h2 class="anchored" data-anchor-id="descriptive-statistics">Descriptive Statistics</h2>
 <div style="text-align: justify">
-<p>A total of <span class="math inline">\(n = 20\)</span> studies with <span class="math inline">\(k = 86\)</span> effect sizes were included in this analysis, with each primary study reported between one and 27 results (<span class="math inline">\(1 \leq k_j \leq 27\)</span>). The research area of these studies span 18 countries, <a href="#fig-subfig-map" class="quarto-xref">Figure&nbsp;<span>4.1 (a)</span></a> shows a map indicating the location of each effect size. These primary studies were grouped into three different SDG goals: SDG 2 (Zero Hunger), SDG 11 (Sustainable Cities), and SDG 15 (Life on Land).</p>
+<p>A total of <span class="math inline">\(n = 20\)</span> studies with <span class="math inline">\(k = 86\)</span> effect sizes were included in this analysis, with each primary study reported between one and 27 results (<span class="math inline">\(1 \leq k_j \leq 27\)</span>). The research area of these studies span 18 countries, <a href="#fig-map_range" class="quarto-xref">Figure&nbsp;<span>4.1</span></a> shows a map indicating the location of each effect size. These primary studies were grouped into three different SDG goals: SDG 2 Zero Hunger, SDG 11 Sustainable Cities, and SDG 15 Life on Land.</p>
 </div>
-<div id="fig-charts" class="quarto-layout-panel">
+<div id="fig-map_range" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-charts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="fig-map_range-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
-<div class="cell fig-cap-location-top quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-charts" style="flex-basis: 100.0%;justify-content: flex-start;">
-<div class="cell-output-display quarto-layout-cell-subref" data-ref-parent="fig-charts">
-<div id="fig-subfig-map" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="top">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-fig" id="fig-subfig-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(a) Map of researched locations
-</figcaption>
-<div aria-describedby="fig-subfig-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="results_files/figure-html/fig-subfig-map-1.png" class="img-fluid figure-img" data-ref-parent="fig-charts" width="480">
-</div>
+<div class="cell quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="results_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="480"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
 <div class="quarto-layout-row">
-<div class="cell fig-cap-location-top quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-charts" style="flex-basis: 100.0%;justify-content: flex-start;">
-<div class="cell-output-display quarto-layout-cell-subref" data-ref-parent="fig-charts">
-<div id="fig-subfig-oa" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="top">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-fig" id="fig-subfig-oa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(b) Reported overall accuracy by study
-</figcaption>
-<div aria-describedby="fig-subfig-oa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="results_files/figure-html/fig-subfig-oa-1.png" class="img-fluid figure-img" data-ref-parent="fig-charts" width="672">
-</div>
+<div class="cell quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="results_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-charts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4.1: Study location and range of reported overall accuracy, colour-coded by SDG goal. Individual outcomes shown as points and mean overall accuracy represented by triangles.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-map_range-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.1: Top, shows primary study location map and bottom the range of reported overall accuracy. With individual overall accuracies shown as points and mean overall accuracy represented by triangles. Both the map and points are colour-coded by SDG goal.
 </figcaption>
 </figure>
 </div>
 <div style="text-align: justify">
-<p><a href="#fig-subfig-oa" class="quarto-xref">Figure&nbsp;<span>4.1 (b)</span></a> and <a href="#tbl-sum" class="quarto-xref">Table&nbsp;<span>4.1</span></a> (bellow) show, the reported overall accuracies are not centered around 0.5. Therefore, a transformation is required. <a href="#fig-transfrom" class="quarto-xref">Figure&nbsp;<span>4.2</span></a> shows the distribution of observed overall accuracy as well as the logit and FT transformation values. FT visually performs better than the Logit transformation. However the Shapiro-Wilk Normality Test shows that the distribution of the FT transformed overall accuracy still departed significantly from normality (<span class="math inline">\(W =\)</span> 0.93, p-value &lt; 0.01). Nevertheless, conducting a meta-analysis remains justified, as these statistical models are generally robust against violations of normality <span class="citation" data-cites="mcculloch2012">(<a href="../references.html#ref-mcculloch2012" role="doc-biblioref">McCulloch &amp; Neuhaus, 2011</a>)</span>.</p>
+<p>@#fig-map_range <strong>(b)</strong> and <a href="#tbl-sum" class="quarto-xref">Table&nbsp;<span>4.1</span></a> (bellow) show, the reported overall accuracies are not centered around 0.5. Therefore, a transformation is required. <a href="#fig-transfrom" class="quarto-xref">Figure&nbsp;<span>4.2</span></a> shows the distribution of observed overall accuracy as well as the logit and FT transformation values. FT visually performs better than the Logit transformation. However the Shapiro-Wilk Normality test shows that the distribution of the FT transformed overall accuracy still departed significantly from normality (<span class="math inline">\(W =\)</span> 0.93, p-value &lt; 0.01). Nevertheless, conducting a meta-analysis remains justified, as these statistical models are generally robust against violations of normality <span class="citation" data-cites="mcculloch2012">(<a href="../references.html#ref-mcculloch2012" role="doc-biblioref">McCulloch &amp; Neuhaus, 2011</a>)</span>.</p>
 </div>
 <div id="fig-transfrom" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -332,236 +354,225 @@ Table&nbsp;4.1: Summary table
 <div aria-describedby="tbl-sum-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
 <div class="cell-output-display">
-<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">Feature</th>
-<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold;">Statistic</th>
-</tr>
-</thead>
+<table class="table" style="font-size: 9px; width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
+ <thead>
+  <tr>
+   <th style="text-align:left;font-weight: bold;"> Feature </th>
+   <th style="text-align:center;font-weight: bold;"> Statistic </th>
+  </tr>
+ </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left; width: 7cm;">Overall Accuracy</td>
-<td style="text-align: center; width: 6cm;">0.90 (0.65 - 1.00)</td>
-</tr>
-<tr class="even" data-grouplength="23">
-<td colspan="2" style="text-align: left; border-bottom: 1px solid;"><strong>Study Features</strong></td>
-</tr>
-<tr class="odd" data-grouplength="4">
-<td colspan="2" style="text-align: left; border-bottom: 1px solid;"><strong>Numeric b</strong></td>
-</tr>
-<tr class="even">
-<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Sample Size</td>
-<td style="text-align: center; width: 6cm;">6,401,352.08 (259.00 - 75,782,016.00)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Number of Citations</td>
-<td style="text-align: center; width: 6cm;">14.84 (2.00 - 68.00)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Number of Classes</td>
-<td style="text-align: center; width: 6cm;">3.71 (2.00 - 13.00)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Majority-class Proportion</td>
-<td style="text-align: center; width: 6cm;">0.72 (0.14 - 1.00)</td>
-</tr>
-<tr class="even" data-grouplength="41">
-<td colspan="2" style="text-align: left; border-bottom: 1px solid;"><strong>Categorical c</strong></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Publication Year</td>
-<td style="text-align: center; width: 6cm;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left; padding-left: 6em; width: 7cm;" data-indentlevel="3">2018</td>
-<td style="text-align: center; width: 6cm;">7 (8.1%)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding-left: 6em; width: 7cm;" data-indentlevel="3">2019</td>
-<td style="text-align: center; width: 6cm;">4 (4.7%)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left; padding-left: 6em; width: 7cm;" data-indentlevel="3">2020</td>
-<td style="text-align: center; width: 6cm;">30 (35%)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding-left: 6em; width: 7cm;" data-indentlevel="3">2021</td>
-<td style="text-align: center; width: 6cm;">6 (7.0%)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left; padding-left: 6em; width: 7cm;" data-indentlevel="3">2022</td>
-<td style="text-align: center; width: 6cm;">13 (15%)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding-left: 6em; width: 7cm;" data-indentlevel="3">2023</td>
-<td style="text-align: center; width: 6cm;">26 (30%)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">SDG Theme</td>
-<td style="text-align: center; width: 6cm;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding-left: 6em; width: 7cm;" data-indentlevel="3">SDG11: Sustainable Cities</td>
-<td style="text-align: center; width: 6cm;">38 (44%)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left; padding-left: 6em; width: 7cm;" data-indentlevel="3">SDG15: Life on Land</td>
-<td style="text-align: center; width: 6cm;">37 (43%)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding-left: 6em; width: 7cm;" data-indentlevel="3">SDG2: Zero Hunger</td>
-<td style="text-align: center; width: 6cm;">11 (13%)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Classification Type</td>
-<td style="text-align: center; width: 6cm;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding-left: 6em; width: 7cm;" data-indentlevel="3">Object-level</td>
-<td style="text-align: center; width: 6cm;">46 (53%)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left; padding-left: 6em; width: 7cm;" data-indentlevel="3">Pixel-level</td>
-<td style="text-align: center; width: 6cm;">36 (42%)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding-left: 6em; width: 7cm;" data-indentlevel="3">Unclear</td>
-<td style="text-align: center; width: 6cm;">4 (4.7%)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Model Group</td>
-<td style="text-align: center; width: 6cm;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding-left: 6em; width: 7cm;" data-indentlevel="3">Neural Networks</td>
-<td style="text-align: center; width: 6cm;">41 (48%)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left; padding-left: 6em; width: 7cm;" data-indentlevel="3">Other</td>
-<td style="text-align: center; width: 6cm;">6 (7.0%)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding-left: 6em; width: 7cm;" data-indentlevel="3">Tree-Based Models</td>
-<td style="text-align: center; width: 6cm;">39 (45%)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left; padding-left: 2em; width: 7cm;" data-indentlevel="1">Ancillary Data</td>
-<td style="text-align: center; width: 6cm;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Remote Sensing Only</td>
-<td style="text-align: center; width: 6cm;">71 (83%)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Ancillary Data Included</td>
-<td style="text-align: center; width: 6cm;">15 (17%)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding-left: 2em; width: 7cm;" data-indentlevel="1">Indices</td>
-<td style="text-align: center; width: 6cm;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Not Used</td>
-<td style="text-align: center; width: 6cm;">23 (27%)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Used</td>
-<td style="text-align: center; width: 6cm;">63 (73%)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left; padding-left: 2em; width: 7cm;" data-indentlevel="1">Remote Sensing Type</td>
-<td style="text-align: center; width: 6cm;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Active</td>
-<td style="text-align: center; width: 6cm;">11 (13%)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Combined</td>
-<td style="text-align: center; width: 6cm;">7 (8.1%)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Not Reported</td>
-<td style="text-align: center; width: 6cm;">7 (8.1%)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Passive</td>
-<td style="text-align: center; width: 6cm;">61 (71%)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding-left: 2em; width: 7cm;" data-indentlevel="1">Device Group</td>
-<td style="text-align: center; width: 6cm;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Landsat</td>
-<td style="text-align: center; width: 6cm;">15 (17%)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Not Reported</td>
-<td style="text-align: center; width: 6cm;">7 (8.1%)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Other</td>
-<td style="text-align: center; width: 6cm;">44 (51%)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Sentinel</td>
-<td style="text-align: center; width: 6cm;">20 (23%)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left; padding-left: 2em; width: 7cm;" data-indentlevel="1">Number of Spectral Bands</td>
-<td style="text-align: center; width: 6cm;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Low</td>
-<td style="text-align: center; width: 6cm;">18 (21%)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Mid</td>
-<td style="text-align: center; width: 6cm;">26 (30%)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">Not Reported</td>
-<td style="text-align: center; width: 6cm;">42 (49%)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left; padding-left: 2em; width: 7cm;" data-indentlevel="1">Spatial Resolution</td>
-<td style="text-align: center; width: 6cm;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding-left: 4em; width: 7cm;" data-indentlevel="2">&gt;1 metres</td>
-<td style="text-align: center; width: 6cm;">7 (8.1%)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left; width: 7cm; padding-left: 3em;" data-indentlevel="1">10-30 metres</td>
-<td style="text-align: center; width: 6cm;">39 (45%)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; width: 7cm; padding-left: 3em;" data-indentlevel="1">Not Reported</td>
-<td style="text-align: center; width: 6cm;">40 (47%)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left; width: 7cm;">Confusion Matrix</td>
-<td style="text-align: center; width: 6cm;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; width: 7cm;">Not Reported</td>
-<td style="text-align: center; width: 6cm;">23 (27%)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left; width: 7cm;">Reported</td>
-<td style="text-align: center; width: 6cm;">63 (73%)</td>
-</tr>
-</tbody><tfoot>
-<tr class="odd">
-<td style="text-align: left; padding: 0;"><sup>a</sup> Effect size of interest, b. Numeric: mean (min - max), c. Categorical variables: number of effect sizes (%)</td>
-<td style="text-align: center;"></td>
-</tr>
-</tfoot>
-
+  <tr>
+   <td style="text-align:left;width: 7cm; "> Overall Accuracy </td>
+   <td style="text-align:center;width: 6cm; "> 0.90 (0.65 - 1.00) </td>
+  </tr>
+  <tr grouplength="45"><td colspan="2" style="border-bottom: 1px solid;"><strong>Study Features</strong></td></tr>
+<tr grouplength="4"><td colspan="2" style="border-bottom: 1px solid;"><strong>Numeric$^b$</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 4em;width: 7cm; " indentlevel="2"> Sample Size </td>
+   <td style="text-align:center;width: 6cm; "> 6,401,352 (259 - 75,782,016) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 4em;width: 7cm; " indentlevel="2"> Number of Citations </td>
+   <td style="text-align:center;width: 6cm; "> 15 (2 - 68) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 4em;width: 7cm; " indentlevel="2"> Number of Classes </td>
+   <td style="text-align:center;width: 6cm; "> 4 (2 - 13) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 4em;width: 7cm; " indentlevel="2"> Majority-class Proportion </td>
+   <td style="text-align:center;width: 6cm; "> 0.72 (0.14 - 1.00) </td>
+  </tr>
+  <tr grouplength="41"><td colspan="2" style="border-bottom: 1px solid;"><strong>Categorical$^c$</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 4em;width: 7cm; " indentlevel="2"> Publication Year </td>
+   <td style="text-align:center;width: 6cm; ">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 6em;width: 7cm; " indentlevel="3"> 2018 </td>
+   <td style="text-align:center;width: 6cm; "> 7 (8.1%) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 6em;width: 7cm; " indentlevel="3"> 2019 </td>
+   <td style="text-align:center;width: 6cm; "> 4 (4.7%) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 6em;width: 7cm; " indentlevel="3"> 2020 </td>
+   <td style="text-align:center;width: 6cm; "> 30 (35%) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 6em;width: 7cm; " indentlevel="3"> 2021 </td>
+   <td style="text-align:center;width: 6cm; "> 6 (7.0%) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 6em;width: 7cm; " indentlevel="3"> 2022 </td>
+   <td style="text-align:center;width: 6cm; "> 13 (15%) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 6em;width: 7cm; " indentlevel="3"> 2023 </td>
+   <td style="text-align:center;width: 6cm; "> 26 (30%) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 4em;width: 7cm; " indentlevel="2"> SDG Theme </td>
+   <td style="text-align:center;width: 6cm; ">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 6em;width: 7cm; " indentlevel="3"> SDG11: Sustainable Cities </td>
+   <td style="text-align:center;width: 6cm; "> 38 (44%) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 6em;width: 7cm; " indentlevel="3"> SDG15: Life on Land </td>
+   <td style="text-align:center;width: 6cm; "> 37 (43%) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 6em;width: 7cm; " indentlevel="3"> SDG2: Zero Hunger </td>
+   <td style="text-align:center;width: 6cm; "> 11 (13%) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 4em;width: 7cm; " indentlevel="2"> Classification Type </td>
+   <td style="text-align:center;width: 6cm; ">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 6em;width: 7cm; " indentlevel="3"> Object-level </td>
+   <td style="text-align:center;width: 6cm; "> 46 (53%) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 6em;width: 7cm; " indentlevel="3"> Pixel-level </td>
+   <td style="text-align:center;width: 6cm; "> 36 (42%) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 6em;width: 7cm; " indentlevel="3"> Unclear </td>
+   <td style="text-align:center;width: 6cm; "> 4 (4.7%) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 4em;width: 7cm; " indentlevel="2"> Model Group </td>
+   <td style="text-align:center;width: 6cm; ">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 6em;width: 7cm; " indentlevel="3"> Neural Networks </td>
+   <td style="text-align:center;width: 6cm; "> 41 (48%) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 6em;width: 7cm; " indentlevel="3"> Other </td>
+   <td style="text-align:center;width: 6cm; "> 6 (7.0%) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 6em;width: 7cm; " indentlevel="3"> Tree-Based Models </td>
+   <td style="text-align:center;width: 6cm; "> 39 (45%) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 4em;width: 7cm; " indentlevel="2"> Ancillary Data </td>
+   <td style="text-align:center;width: 6cm; ">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 6em;width: 7cm; " indentlevel="3"> Remote Sensing Only </td>
+   <td style="text-align:center;width: 6cm; "> 71 (83%) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 6em;width: 7cm; " indentlevel="3"> Ancillary Data Included </td>
+   <td style="text-align:center;width: 6cm; "> 15 (17%) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 4em;width: 7cm; " indentlevel="2"> Indices </td>
+   <td style="text-align:center;width: 6cm; ">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 6em;width: 7cm; " indentlevel="3"> Not Used </td>
+   <td style="text-align:center;width: 6cm; "> 23 (27%) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 6em;width: 7cm; " indentlevel="3"> Used </td>
+   <td style="text-align:center;width: 6cm; "> 63 (73%) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 4em;width: 7cm; " indentlevel="2"> Remote Sensing Type </td>
+   <td style="text-align:center;width: 6cm; ">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 6em;width: 7cm; " indentlevel="3"> Active </td>
+   <td style="text-align:center;width: 6cm; "> 11 (13%) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 6em;width: 7cm; " indentlevel="3"> Combined </td>
+   <td style="text-align:center;width: 6cm; "> 7 (8.1%) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 6em;width: 7cm; " indentlevel="3"> Not Reported </td>
+   <td style="text-align:center;width: 6cm; "> 7 (8.1%) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 6em;width: 7cm; " indentlevel="3"> Passive </td>
+   <td style="text-align:center;width: 6cm; "> 61 (71%) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 4em;width: 7cm; " indentlevel="2"> Device Group </td>
+   <td style="text-align:center;width: 6cm; ">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 6em;width: 7cm; " indentlevel="3"> Landsat </td>
+   <td style="text-align:center;width: 6cm; "> 15 (17%) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 6em;width: 7cm; " indentlevel="3"> Not Reported </td>
+   <td style="text-align:center;width: 6cm; "> 7 (8.1%) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 6em;width: 7cm; " indentlevel="3"> Other </td>
+   <td style="text-align:center;width: 6cm; "> 44 (51%) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 6em;width: 7cm; " indentlevel="3"> Sentinel </td>
+   <td style="text-align:center;width: 6cm; "> 20 (23%) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 4em;width: 7cm; " indentlevel="2"> Number of Spectral Bands </td>
+   <td style="text-align:center;width: 6cm; ">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 6em;width: 7cm; " indentlevel="3"> Low </td>
+   <td style="text-align:center;width: 6cm; "> 18 (21%) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 6em;width: 7cm; " indentlevel="3"> Mid </td>
+   <td style="text-align:center;width: 6cm; "> 26 (30%) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 6em;width: 7cm; " indentlevel="3"> Not Reported </td>
+   <td style="text-align:center;width: 6cm; "> 42 (49%) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 4em;width: 7cm; " indentlevel="2"> Spatial Resolution </td>
+   <td style="text-align:center;width: 6cm; ">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 6em;width: 7cm; " indentlevel="3"> &lt;1 metre </td>
+   <td style="text-align:center;width: 6cm; "> 7 (8.1%) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 7cm; padding-left: 3em;" indentlevel="1"> 10-30 metres </td>
+   <td style="text-align:center;width: 6cm; "> 39 (45%) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 7cm; padding-left: 3em;" indentlevel="1"> Not Reported </td>
+   <td style="text-align:center;width: 6cm; "> 40 (47%) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 7cm; "> Confusion Matrix </td>
+   <td style="text-align:center;width: 6cm; ">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 7cm; "> Not Reported </td>
+   <td style="text-align:center;width: 6cm; "> 23 (27%) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 7cm; "> Reported </td>
+   <td style="text-align:center;width: 6cm; "> 63 (73%) </td>
+  </tr>
+</tbody>
+<tfoot><tr><td style="padding: 0; " colspan="100%">
+<sup>a</sup> Effect size of interest. $^a$For numeric predictors: mean (min - max) and $^b$ for categorical variables number of effect sizes (%)</td></tr></tfoot>
 </table>
-
 
 </div>
 </div>
@@ -624,16 +635,19 @@ Figure&nbsp;4.5: Forest plot for both the weighted and unweighted model. <span c
 </div>
 <div style="text-align: justify">
 <p>The heterogeneity metrics Cochran’s Q indicate significant heterogeneity of the reported overall acccuracies. The percentage of the variance attribution is <span class="math inline">\(I^2_{\text{level3}}\)</span> = 63.62% which is the fraction of the variation that can be attributed to between-study, and <span class="math inline">\(I^2_{\text{level2}}\)</span> = 36.38% which is within-study heterogeneity, with negligible fixed effect variance (variance due to sampling error). The <span class="math inline">\(I^2\)</span> value of 100% indicates that all the observed variability in effect sizes across studies is due to heterogeneity rather than sampling error, suggesting substantial differences between the studies and a high degree of variation in their results.</p>
+</div>
+<div style="text-align: justify">
+<div style="page-break-after: always;"></div>
 <section id="model-selection" class="level4">
 <h4 class="anchored" data-anchor-id="model-selection">Model Selection</h4>
-<p>Using the multi-model inference function, a total of 31,298 models were fitted. <a href="#fig-best" class="quarto-xref">Figure&nbsp;<span>4.6</span></a>, illustrates the predictor importance after evaluating all possible combinations of predictors to identify which combination provides the best fit and which predictors are most influential. Higher importance values indicate more consistent inclusion in high-weight models. The majority class proportion is the most important predictor, followed by the inclusion of ancillary data. Less influential predictors include used of indices, sample size, publication year, and the number of classes in the study. Meanwhile, factors such as classification type, SDG goal, machine learning group, spatial resolution, and citation count have minimal importance in the overall model performance (i.e., where not included in the models top performing models according to AIC).</p>
+<p>Using the multi-model inference function, a total of 31,298 models converged <!--# ADD -->. <a href="#fig-best" class="quarto-xref">Figure&nbsp;<span>4.6</span></a>, illustrates the predictor importance after evaluating all possible combinations of predictors to identify which combination provides the best fit and which predictors are most influential. Higher importance values indicate more consistent inclusion in high-weight models. The majority class proportion is the most important predictor, followed by the inclusion of ancillary data. Less influential predictors include used of indices, sample size, publication year, and the number of classes in the study. Meanwhile, factors such as classification type, SDG goal, machine learning group, spatial resolution, and citation count have minimal importance in the overall model performance (i.e., were not included in the models top performing models according to AIC).</p>
 </section>
 </div>
 <div style="text-align: justify">
 <div id="fig-best" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-best-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/fig-best_mod.png" class="img-fluid figure-img" width="697">
+<img src="figures/fig-best_mod.png" class="img-fluid figure-img" style="width:17.5cm">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-best-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;4.6: Model-averaged predictor importance plot with a reference line at 0.8 a commonly used as a threshold to indicate important predictors.
@@ -641,412 +655,324 @@ Figure&nbsp;4.6: Model-averaged predictor importance plot with a reference line 
 </figure>
 </div>
 </div>
-<p><a href="#tbl-multi_coef" class="quarto-xref">Table&nbsp;<span>4.2</span></a> shows the results of the multi-model inference. The significant study features are the Majority-class Proportion and the inclusion of ancillary data. Interestingly, the use of ancillary data has a negative effect on overall accuracy.</p>
+<div style="text-align: justify">
+<p>In the multimodel inference analysis, the five best-performing models were identified based on their AIC scores. The selected top models consistently included key predictors such as the majority-class proportion and the use of ancillary data. <a href="#tbl-multi_coef" class="quarto-xref">Table&nbsp;<span>4.2</span></a> shows the results of the multi-model inference. The significant study features are the majority-class proportion and the inclusion of ancillary data. Interestingly, the use of ancillary data has a negative effect on overall accuracy in the FT transformed scale. <a href="#tbl-compare" class="quarto-xref">Table&nbsp;<span>4.3</span></a> shows these best performing models and the intercept-only model (before adding the predictors), note that the AIC is very similar in among the top five.</p>
+</div>
 <div id="tbl-multi_coef" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-multi_coef-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;4.2: Multimodel inference coefficients and feature importance. The estimated coefficients (b) and standard error (SE) are in FT transformed scale.
+Table&nbsp;4.2: Multi-model inference coefficients and feature importance.
 </figcaption>
 <div aria-describedby="tbl-multi_coef-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
 <div class="cell-output-display">
-<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">Feature</th>
-<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">Category</th>
-<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">Importance</th>
-<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">b</th>
-<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">SE</th>
-<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">z.value</th>
-<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">p</th>
-</tr>
-</thead>
+<table class="table" style="font-size: 9.5px; width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
+ <thead>
+  <tr>
+   <th style="text-align:right;font-weight: bold;"> Importance </th>
+   <th style="text-align:left;font-weight: bold;"> Feature (Referance Category) </th>
+   <th style="text-align:left;font-weight: bold;"> Comparison Category </th>
+   <th style="text-align:right;font-weight: bold;"> b </th>
+   <th style="text-align:right;font-weight: bold;"> SE </th>
+   <th style="text-align:right;font-weight: bold;"> z </th>
+   <th style="text-align:right;font-weight: bold;"> p </th>
+  </tr>
+ </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;">Intercept</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">1.29</td>
-<td style="text-align: left;">7.85</td>
-<td style="text-align: left;">0.16</td>
-<td style="text-align: left;">0.869</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Majority-class Proportion</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">0.47</td>
-<td style="text-align: left;">0.08</td>
-<td style="text-align: left;">6.15</td>
-<td style="text-align: left;">&lt; .0001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Ancillary Data</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">0.92</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Remote Sensing Only</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">-0.12</td>
-<td style="text-align: left;">0.05</td>
-<td style="text-align: left;">2.33</td>
-<td style="text-align: left;">0.02</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Indices</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">0.39</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Used</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">0.03</td>
-<td style="text-align: left;">0.04</td>
-<td style="text-align: left;">0.67</td>
-<td style="text-align: left;">0.5</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Number of Spectral Bands</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">0.38</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Mid</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">0.05</td>
-<td style="text-align: left;">0.06</td>
-<td style="text-align: left;">0.72</td>
-<td style="text-align: left;">0.471</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Not Reported</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">0.02</td>
-<td style="text-align: left;">0.04</td>
-<td style="text-align: left;">0.55</td>
-<td style="text-align: left;">0.581</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Confusion Matrix</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">0.16</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Reported</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">0.01</td>
-<td style="text-align: left;">0.02</td>
-<td style="text-align: left;">0.29</td>
-<td style="text-align: left;">0.776</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Sample Size</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">0.13</td>
-<td style="text-align: left;">0</td>
-<td style="text-align: left;">0</td>
-<td style="text-align: left;">0.1</td>
-<td style="text-align: left;">0.922</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Number of Classes</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">0.11</td>
-<td style="text-align: left;">0</td>
-<td style="text-align: left;">0</td>
-<td style="text-align: left;">0.19</td>
-<td style="text-align: left;">0.846</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Publication Year</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">0.1</td>
-<td style="text-align: left;">0</td>
-<td style="text-align: left;">0</td>
-<td style="text-align: left;">0.06</td>
-<td style="text-align: left;">0.952</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Remote Sensing Type</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">0.03</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Combined</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">0.01</td>
-<td style="text-align: left;">0.03</td>
-<td style="text-align: left;">0.17</td>
-<td style="text-align: left;">0.869</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Not Reported</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">0</td>
-<td style="text-align: left;">0.02</td>
-<td style="text-align: left;">0.04</td>
-<td style="text-align: left;">0.971</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Passive</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">0</td>
-<td style="text-align: left;">0.02</td>
-<td style="text-align: left;">0.16</td>
-<td style="text-align: left;">0.87</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Spatial Resolution</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">0.02</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">10-30 metres</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">0</td>
-<td style="text-align: left;">0.07</td>
-<td style="text-align: left;">0.01</td>
-<td style="text-align: left;">0.99</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Not Reported</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">0</td>
-<td style="text-align: left;">0.07</td>
-<td style="text-align: left;">0</td>
-<td style="text-align: left;">0.996</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">SDG Theme</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">0.02</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">SDG15: Life on Land</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">0</td>
-<td style="text-align: left;">0.01</td>
-<td style="text-align: left;">0.1</td>
-<td style="text-align: left;">0.924</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">SDG2: Zero Hunger</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">0</td>
-<td style="text-align: left;">0.01</td>
-<td style="text-align: left;">0.08</td>
-<td style="text-align: left;">0.939</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Classification Type</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">0.02</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Pixel-level</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">0</td>
-<td style="text-align: left;">0.01</td>
-<td style="text-align: left;">0.06</td>
-<td style="text-align: left;">0.955</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Unclear</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">0</td>
-<td style="text-align: left;">0.01</td>
-<td style="text-align: left;">0.05</td>
-<td style="text-align: left;">0.958</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Model Group</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">0.01</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Other</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">0</td>
-<td style="text-align: left;">0.01</td>
-<td style="text-align: left;">0.04</td>
-<td style="text-align: left;">0.965</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Tree-Based Models</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">0</td>
-<td style="text-align: left;">0.01</td>
-<td style="text-align: left;">0.05</td>
-<td style="text-align: left;">0.961</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Device Group</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">0</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Not Reported</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">0</td>
-<td style="text-align: left;">0.01</td>
-<td style="text-align: left;">0.05</td>
-<td style="text-align: left;">0.956</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Other</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">0</td>
-<td style="text-align: left;">0</td>
-<td style="text-align: left;">0.05</td>
-<td style="text-align: left;">0.963</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Sentinel</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">0</td>
-<td style="text-align: left;">0.01</td>
-<td style="text-align: left;">0.05</td>
-<td style="text-align: left;">0.959</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Number of Citations</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">0</td>
-<td style="text-align: left;">0</td>
-<td style="text-align: left;">0</td>
-<td style="text-align: left;">0.01</td>
-<td style="text-align: left;">0.995</td>
-</tr>
+  <tr>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> Intercept </td>
+   <td style="text-align:left;"> na </td>
+   <td style="text-align:right;"> 1.29 </td>
+   <td style="text-align:right;"> 7.85 </td>
+   <td style="text-align:right;"> 0.16 </td>
+   <td style="text-align:right;"> 0.869 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1.00 </td>
+   <td style="text-align:left;"> Majority-class Proportion </td>
+   <td style="text-align:left;"> na </td>
+   <td style="text-align:right;"> 0.47 </td>
+   <td style="text-align:right;"> 0.08 </td>
+   <td style="text-align:right;"> 6.15 </td>
+   <td style="text-align:right;"> 0.000 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 0.92 </td>
+   <td style="text-align:left;"> Ancillary Data (Remote Sensing Only) </td>
+   <td style="text-align:left;"> Ancillary Data Included </td>
+   <td style="text-align:right;"> -0.12 </td>
+   <td style="text-align:right;"> 0.05 </td>
+   <td style="text-align:right;"> 2.33 </td>
+   <td style="text-align:right;"> 0.020 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 0.39 </td>
+   <td style="text-align:left;"> Indices (Not Used) </td>
+   <td style="text-align:left;"> Used </td>
+   <td style="text-align:right;"> 0.03 </td>
+   <td style="text-align:right;"> 0.04 </td>
+   <td style="text-align:right;"> 0.67 </td>
+   <td style="text-align:right;"> 0.500 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 0.38 </td>
+   <td style="text-align:left;"> Number of Spectral Bands  (Low) </td>
+   <td style="text-align:left;"> Mid </td>
+   <td style="text-align:right;"> 0.05 </td>
+   <td style="text-align:right;"> 0.06 </td>
+   <td style="text-align:right;"> 0.72 </td>
+   <td style="text-align:right;"> 0.471 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> na </td>
+   <td style="text-align:left;"> Not Reported </td>
+   <td style="text-align:right;"> 0.02 </td>
+   <td style="text-align:right;"> 0.04 </td>
+   <td style="text-align:right;"> 0.55 </td>
+   <td style="text-align:right;"> 0.581 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 0.16 </td>
+   <td style="text-align:left;"> Confusion Matrix (Not reported) </td>
+   <td style="text-align:left;"> Reported </td>
+   <td style="text-align:right;"> 0.01 </td>
+   <td style="text-align:right;"> 0.02 </td>
+   <td style="text-align:right;"> 0.29 </td>
+   <td style="text-align:right;"> 0.776 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 0.13 </td>
+   <td style="text-align:left;"> Sample Size </td>
+   <td style="text-align:left;"> na </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.10 </td>
+   <td style="text-align:right;"> 0.922 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 0.11 </td>
+   <td style="text-align:left;"> Number of Classes </td>
+   <td style="text-align:left;"> na </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.19 </td>
+   <td style="text-align:right;"> 0.846 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 0.10 </td>
+   <td style="text-align:left;"> Publication Year </td>
+   <td style="text-align:left;"> na </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.06 </td>
+   <td style="text-align:right;"> 0.952 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 0.03 </td>
+   <td style="text-align:left;"> Remote Sensing Type (Active) </td>
+   <td style="text-align:left;"> Passive </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.02 </td>
+   <td style="text-align:right;"> 0.16 </td>
+   <td style="text-align:right;"> 0.870 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> na </td>
+   <td style="text-align:left;"> Combined </td>
+   <td style="text-align:right;"> 0.01 </td>
+   <td style="text-align:right;"> 0.03 </td>
+   <td style="text-align:right;"> 0.17 </td>
+   <td style="text-align:right;"> 0.869 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> na </td>
+   <td style="text-align:left;"> Not Reported </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.02 </td>
+   <td style="text-align:right;"> 0.04 </td>
+   <td style="text-align:right;"> 0.971 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 0.02 </td>
+   <td style="text-align:left;"> Spatial Resolution ( &lt;1 metre) </td>
+   <td style="text-align:left;"> 10-30 metres </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.07 </td>
+   <td style="text-align:right;"> 0.01 </td>
+   <td style="text-align:right;"> 0.990 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> na </td>
+   <td style="text-align:left;"> Not Reported </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.07 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.996 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 0.02 </td>
+   <td style="text-align:left;"> SDG Theme (SDG11:Sustainable Cities) </td>
+   <td style="text-align:left;"> SDG2: Zero Hunger </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.01 </td>
+   <td style="text-align:right;"> 0.08 </td>
+   <td style="text-align:right;"> 0.939 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> na </td>
+   <td style="text-align:left;"> SDG15: Life on Land </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.01 </td>
+   <td style="text-align:right;"> 0.10 </td>
+   <td style="text-align:right;"> 0.924 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 0.02 </td>
+   <td style="text-align:left;"> Classification Type (Object-level) </td>
+   <td style="text-align:left;"> Pixel-level </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.01 </td>
+   <td style="text-align:right;"> 0.06 </td>
+   <td style="text-align:right;"> 0.955 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> na </td>
+   <td style="text-align:left;"> Unclear </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.01 </td>
+   <td style="text-align:right;"> 0.05 </td>
+   <td style="text-align:right;"> 0.958 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 0.01 </td>
+   <td style="text-align:left;"> Model Group (Neural Networks) </td>
+   <td style="text-align:left;"> Tree-Based Models </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.01 </td>
+   <td style="text-align:right;"> 0.05 </td>
+   <td style="text-align:right;"> 0.961 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> na </td>
+   <td style="text-align:left;"> Other </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.01 </td>
+   <td style="text-align:right;"> 0.04 </td>
+   <td style="text-align:right;"> 0.965 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:left;"> Device Group (Landsat) </td>
+   <td style="text-align:left;"> Sentinel </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.01 </td>
+   <td style="text-align:right;"> 0.05 </td>
+   <td style="text-align:right;"> 0.959 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> na </td>
+   <td style="text-align:left;"> Not Reported </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.01 </td>
+   <td style="text-align:right;"> 0.05 </td>
+   <td style="text-align:right;"> 0.956 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> na </td>
+   <td style="text-align:left;"> Other </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.05 </td>
+   <td style="text-align:right;"> 0.963 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:left;"> Number of Citations </td>
+   <td style="text-align:left;"> na </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.01 </td>
+   <td style="text-align:right;"> 0.995 </td>
+  </tr>
 </tbody>
+<tfoot>
+<tr><td style="padding: 0; " colspan="100%"><span style="font-style: italic;">Note: </span></td></tr>
+<tr><td style="padding: 0; " colspan="100%">
+<sup></sup> Importace of each feature, the reference and combarsion categories given with their estimated coefficients (b), standard errors (SE) on the FT transformed scale with correstponding z- and p-values.</td></tr>
+</tfoot>
 </table>
-
 
 </div>
 </div>
 </div>
 </figure>
 </div>
-<div>
-<p>Multimodel inference something about best 5 models and comparing AIC</p>
-</div>
 <div id="tbl-compare" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-compare-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;4.3: Set of 5 best-ranked models and intercept only model ordered by AIC<span class="math inline">\(_c\)</span>
+Table&nbsp;4.3: Set of 5 best-ranked models and intercept only model ordered by AIC<span class="math inline">\(_c\)</span>. <!--# make it clear that Are these weights computed using only these 5 models or all 31,298 models  -->
 </figcaption>
 <div aria-describedby="tbl-compare-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
 <div class="cell-output-display">
-<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">Candidate models</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">df</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">AIC_c</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Akaike weights</th>
-</tr>
-</thead>
+<table class="table" style="font-size: 9.5px; width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;font-weight: bold;"> Candidate models </th>
+   <th style="text-align:right;font-weight: bold;"> df </th>
+   <th style="text-align:right;font-weight: bold;"> AIC$_c$ </th>
+   <th style="text-align:right;font-weight: bold;"> Akaike weights </th>
+  </tr>
+ </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left; width: 8.5cm;">Ancillary Data + Majority-class Proportion + Indices</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">-115.46</td>
-<td style="text-align: right;">0.39</td>
-</tr>
-<tr class="even">
-<td style="text-align: left; width: 8.5cm;">Ancillary Data + Majority-class Proportion + Number of Spectral Bands</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">-114.42</td>
-<td style="text-align: right;">0.23</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; width: 8.5cm;">Ancillary Data + Majority-class Proportion</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">-114.13</td>
-<td style="text-align: right;">0.20</td>
-</tr>
-<tr class="even">
-<td style="text-align: left; width: 8.5cm;">Ancillary Data + Confusion Matrix + Majority-class Proportion + Number of Spectral Bands</td>
-<td style="text-align: right;">7</td>
-<td style="text-align: right;">-113.08</td>
-<td style="text-align: right;">0.12</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; width: 8.5cm;">Ancillary Data + Majority-class Proportion + Number of Spectral Bands + Sample Size</td>
-<td style="text-align: right;">7</td>
-<td style="text-align: right;">-111.65</td>
-<td style="text-align: right;">0.06</td>
-</tr>
-<tr class="even">
-<td style="text-align: left; width: 8.5cm;">Intercept-Only</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">-41.93</td>
-<td style="text-align: right;">0.00</td>
-</tr>
+  <tr>
+   <td style="text-align:left;width: 9cm; "> Ancillary Data + Majority-class Proportion + Indices </td>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> -115.46 </td>
+   <td style="text-align:right;"> 0.39 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 9cm; "> Ancillary Data + Majority-class Proportion + Number of Spectral Bands </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> -114.42 </td>
+   <td style="text-align:right;"> 0.23 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 9cm; "> Ancillary Data + Majority-class Proportion </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> -114.13 </td>
+   <td style="text-align:right;"> 0.20 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 9cm; "> Ancillary Data + Confusion Matrix + Majority-class Proportion + Number of Spectral Bands </td>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> -113.08 </td>
+   <td style="text-align:right;"> 0.12 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 9cm; "> Ancillary Data + Majority-class Proportion + Number of Spectral Bands + Sample Size </td>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> -111.65 </td>
+   <td style="text-align:right;"> 0.06 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 9cm; "> Intercept-Only </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> -41.93 </td>
+   <td style="text-align:right;"> 0.00 </td>
+  </tr>
 </tbody>
 </table>
-
 
 </div>
 </div>
@@ -1054,112 +980,88 @@ Table&nbsp;4.3: Set of 5 best-ranked models and intercept only model ordered by 
 </figure>
 </div>
 <div style="text-align: justify">
-<p><a href="#tbl-best_mod_coef" class="quarto-xref">Table&nbsp;<span>4.4</span></a> shows the estimated coefficients for the best fit model (lowest AIC), both in the FT transformed scale (b) and on the natural scale (b back-transformed). This shows that the proportion of majority class has the largest positive impact on the model’s outcome (b = 0.39, p &lt; .001), while the inclusion of ancillary data has a small negative effect (b = -0.11, p = 0.029) but a small but positive effect when back-transfored . The use of indices has a minimal and non-significant effect (b = 0.06, p = 0.131).</p>
+<p><a href="#tbl-best_mod_coef" class="quarto-xref">Table&nbsp;<span>4.4</span></a> shows the estimated coefficients for the best-fit model — i.e., the model with the lowest AIC value among the candidate models. The coefficients are presented both in the FT-transformed scale (<strong>b</strong>) and on the natural (back-transformed) scale. The results highlight that the proportion of the majority class has the largest positive effect (<span class="math inline">\(b = 0.39\)</span>, <span class="math inline">\(b^{BT} = 0.15\)</span>, p &lt; .001). Suggesting that increasing the majority-class proportion significantly improves overall accuracy. While, the inclusion of ancillary data has a small negative effect on the FT-transformed scale (<span class="math inline">\(b = -0.11, p = 0.029\)</span>) but shows a slight positive effect once back-transformed (<span class="math inline">\(b^{BF} = 0.01\)</span>). The use of indices has a minimal and non-significant effect (<span class="math inline">\(p = 0.131\)</span>).</p>
 </div>
 <div id="tbl-best_mod_coef" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-best_mod_coef-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;4.4: Results of the best fit model.
+Table&nbsp;4.4: Table of estimated coefficients for the best-fit model.
 </figcaption>
 <div aria-describedby="tbl-best_mod_coef-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
 <div class="cell-output-display">
-<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
-<colgroup>
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-</colgroup>
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th" style="text-align: left; empty-cells: hide; border-bottom: hidden;"></th>
-<th data-quarto-table-cell-role="th" style="text-align: right; empty-cells: hide; border-bottom: hidden;"></th>
-<th data-quarto-table-cell-role="th" style="text-align: right; empty-cells: hide; border-bottom: hidden;"></th>
-<th data-quarto-table-cell-role="th" style="text-align: right; empty-cells: hide; border-bottom: hidden;"></th>
-<th data-quarto-table-cell-role="th" style="text-align: right; empty-cells: hide; border-bottom: hidden;"></th>
-<th colspan="2" data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-back-transfromed scale
-</div></th>
+<table class="table" style="font-size: 10px; width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
+ <thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1"></th>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1"></th>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1"></th>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1"></th>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1"></th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">back-transfromed scale</div></th>
 </tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">Predictor</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">b</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">SE</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">t</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">p</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">b_BT</th>
-<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">CI</th>
-</tr>
-</thead>
+  <tr>
+   <th style="text-align:left;font-weight: bold;"> Predictor </th>
+   <th style="text-align:right;font-weight: bold;"> b </th>
+   <th style="text-align:right;font-weight: bold;"> SE </th>
+   <th style="text-align:right;font-weight: bold;"> t </th>
+   <th style="text-align:right;font-weight: bold;"> p </th>
+   <th style="text-align:right;font-weight: bold;"> b$^{B-FT}$ </th>
+   <th style="text-align:right;font-weight: bold;"> CI </th>
+  </tr>
+ </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left; width: 6cm;">intercept</td>
-<td style="text-align: right;">0.99</td>
-<td style="text-align: right;">0.06</td>
-<td style="text-align: right;">17.22</td>
-<td style="text-align: right;">0.000</td>
-<td style="text-align: right;">0.70</td>
-<td style="text-align: left;">[0.58, 0.8]</td>
-</tr>
-<tr class="even">
-<td style="text-align: left; width: 6cm;">fraction_majority_class</td>
-<td style="text-align: right;">0.39</td>
-<td style="text-align: right;">0.08</td>
-<td style="text-align: right;">4.93</td>
-<td style="text-align: right;">0.000</td>
-<td style="text-align: right;">0.15</td>
-<td style="text-align: left;">[0.05, 0.27]</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; width: 6cm;">ancillaryAncillary Data Included</td>
-<td style="text-align: right;">-0.11</td>
-<td style="text-align: right;">0.05</td>
-<td style="text-align: right;">-2.22</td>
-<td style="text-align: right;">0.029</td>
-<td style="text-align: right;">0.01</td>
-<td style="text-align: left;">[0.04, 0]</td>
-</tr>
-<tr class="even">
-<td style="text-align: left; width: 6cm;">indicesUsed</td>
-<td style="text-align: right;">0.06</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">1.53</td>
-<td style="text-align: right;">0.131</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: left;">[0, 0.02]</td>
-</tr>
-</tbody><tfoot>
-<tr class="even">
-<td style="text-align: left; padding: 0;"><span style="font-style: italic;">Note: </span></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding: 0;"><sup></sup> The estimated coefficients (b), standard errors (SE) on the FT transformed scale, t-statistics, and p-values. Additionally, the coefficients (b) and their confidence intervals (CI) are shown on the back-transformed scale.</td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: left;"></td>
-</tr>
+  <tr>
+   <td style="text-align:left;width: 6cm; "> Intercept </td>
+   <td style="text-align:right;"> 0.99 </td>
+   <td style="text-align:right;"> 0.06 </td>
+   <td style="text-align:right;"> 17.22 </td>
+   <td style="text-align:right;"> 0.000 </td>
+   <td style="text-align:right;"> 0.70 </td>
+   <td style="text-align:right;"> [0.58, 0.80] </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 6cm; "> Majority-class Proportion </td>
+   <td style="text-align:right;"> 0.39 </td>
+   <td style="text-align:right;"> 0.08 </td>
+   <td style="text-align:right;"> 4.93 </td>
+   <td style="text-align:right;"> 0.000 </td>
+   <td style="text-align:right;"> 0.15 </td>
+   <td style="text-align:right;"> [0.05, 0.27] </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 6cm; "> Ancillary Data:  Included </td>
+   <td style="text-align:right;"> -0.11 </td>
+   <td style="text-align:right;"> 0.05 </td>
+   <td style="text-align:right;"> -2.22 </td>
+   <td style="text-align:right;"> 0.029 </td>
+   <td style="text-align:right;"> 0.01 </td>
+   <td style="text-align:right;"> [0.04, 0.00] </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 6cm; "> Indices:  Used </td>
+   <td style="text-align:right;"> 0.06 </td>
+   <td style="text-align:right;"> 0.04 </td>
+   <td style="text-align:right;"> 1.53 </td>
+   <td style="text-align:right;"> 0.131 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> [0.00, 0.02] </td>
+  </tr>
+</tbody>
+<tfoot>
+<tr><td style="padding: 0; " colspan="100%"><span style="font-style: italic;">Note: </span></td></tr>
+<tr><td style="padding: 0; " colspan="100%">
+<sup></sup> The estimated coefficients (b), standard errors (SE) on the FT transformed scale, with correstponding t-statistics and p-values. Additionally, the coefficients ($b^{B-FT}$) and corresponding confidence intervals (CI) are shown on the back-transformed scale.</td></tr>
 </tfoot>
-
 </table>
-
 
 </div>
 </div>
 </div>
 </figure>
+</div>
+<div style="text-align: justify">
+<p>To assess the impact of the study features on the estimated heterogeneity the features included in the best-fit model are fitted as sole covariates. <a href="#tbl-hetro" class="quarto-xref">Table&nbsp;<span>4.5</span></a> shows the parameter estimates from the meta-analysis, comparing the intercept-only model with four mixed-effects models, one for each of the features in the best-fit model and best-fit model itself.</p>
 </div>
 <div id="tbl-hetro" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -1169,155 +1071,166 @@ Table&nbsp;4.5: Results for heterogeneity and covariates tests for intercept onl
 <div aria-describedby="tbl-hetro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
 <div class="cell-output-display">
-<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
-<colgroup>
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-</colgroup>
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th" style="text-align: left; empty-cells: hide; border-bottom: hidden;"></th>
-<th colspan="4" data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px; font-weight: bold;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Model
-</div></th>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">Paramter</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Intercept Only</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Majority-class Proportion</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Ancillary Data</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Ancillary Data + Majority-class Proportion + Indices</th>
-</tr>
-</thead>
+<table class="table" style="font-size: 9px; width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
+ <thead>
+  <tr>
+   <th style="text-align:left;font-weight: bold;"> Model </th>
+   <th style="text-align:right;font-weight: bold;"> $\sigma^2_{\text{level2}}$ </th>
+   <th style="text-align:right;font-weight: bold;"> $\sigma^2_{\text{level3}}$ </th>
+   <th style="text-align:right;font-weight: bold;"> $Q_E$ </th>
+   <th style="text-align:right;font-weight: bold;"> df </th>
+   <th style="text-align:right;font-weight: bold;"> $p_Q$ </th>
+   <th style="text-align:right;font-weight: bold;"> $F$ </th>
+   <th style="text-align:right;font-weight: bold;"> df </th>
+   <th style="text-align:right;font-weight: bold;"> $p_F$ </th>
+   <th style="text-align:right;font-weight: bold;"> $I^2_{\text{level2}}$ </th>
+   <th style="text-align:right;font-weight: bold;"> $I^2_{\text{level3}}$ </th>
+   <th style="text-align:right;font-weight: bold;"> $R^2_{\text{level2}}$ </th>
+   <th style="text-align:right;font-weight: bold;"> $R^2_{\text{level3}}$ </th>
+  </tr>
+ </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left; width: 1.5cm;">sig_lvl2</td>
-<td style="text-align: right; width: 2cm;">0.01</td>
-<td style="text-align: right; width: 2.5cm;">0.009</td>
-<td style="text-align: right; width: 2cm;">0.01</td>
-<td style="text-align: right; width: 5.5cm;">0.009</td>
+  <tr>
+   <td style="text-align:left;"> Intercept Only </td>
+   <td style="text-align:right;"> 0.010 </td>
+   <td style="text-align:right;"> 0.017 </td>
+   <td style="text-align:right;"> 12161784 </td>
+   <td style="text-align:right;"> 85 </td>
+   <td style="text-align:right;"> &lt;.0001&gt;
+   </td><td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 36.38 </td>
+   <td style="text-align:right;"> 63.62 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  <!--.0001-->
+
 </tr>
-<tr class="even">
-<td style="text-align: left; width: 1.5cm;">sig_lvl3</td>
-<td style="text-align: right; width: 2cm;">0.017</td>
-<td style="text-align: right; width: 2.5cm;">0.007</td>
-<td style="text-align: right; width: 2cm;">0.015</td>
-<td style="text-align: right; width: 5.5cm;">0.005</td>
+  <tr>
+   <td style="text-align:left;"> Majority-class Proportion </td>
+   <td style="text-align:right;"> 0.009 </td>
+   <td style="text-align:right;"> 0.007 </td>
+   <td style="text-align:right;"> 11458055 </td>
+   <td style="text-align:right;"> 84 </td>
+   <td style="text-align:right;"> &lt;.0001&gt;
+   </td><td style="text-align:right;"> 27 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 0.000 </td>
+   <td style="text-align:right;"> 57.29 </td>
+   <td style="text-align:right;"> 42.71 </td>
+   <td style="text-align:right;"> 7.8 </td>
+   <td style="text-align:right;"> 60.7 </td>
+  <!--.0001-->
+
 </tr>
-<tr class="odd">
-<td style="text-align: left; width: 1.5cm;">QE</td>
-<td style="text-align: right; width: 2cm;">12161784</td>
-<td style="text-align: right; width: 2.5cm;">11458055</td>
-<td style="text-align: right; width: 2cm;">12035286</td>
-<td style="text-align: right; width: 5.5cm;">11440331</td>
+  <tr>
+   <td style="text-align:left;"> Ancillary Data </td>
+   <td style="text-align:right;"> 0.010 </td>
+   <td style="text-align:right;"> 0.015 </td>
+   <td style="text-align:right;"> 12035286 </td>
+   <td style="text-align:right;"> 84 </td>
+   <td style="text-align:right;"> &lt;.0001&gt;
+   </td><td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 0.117 </td>
+   <td style="text-align:right;"> 40.47 </td>
+   <td style="text-align:right;"> 59.53 </td>
+   <td style="text-align:right;"> -1.4 </td>
+   <td style="text-align:right;"> 14.7 </td>
+  <!--.0001-->
+
 </tr>
-<tr class="even">
-<td style="text-align: left; width: 1.5cm;">df_Q</td>
-<td style="text-align: right; width: 2cm;">85</td>
-<td style="text-align: right; width: 2.5cm;">84</td>
-<td style="text-align: right; width: 2cm;">84</td>
-<td style="text-align: right; width: 5.5cm;">82</td>
+  <tr>
+   <td style="text-align:left;"> Indices </td>
+   <td style="text-align:right;"> 0.010 </td>
+   <td style="text-align:right;"> 0.018 </td>
+   <td style="text-align:right;"> 11986674 </td>
+   <td style="text-align:right;"> 84 </td>
+   <td style="text-align:right;"> &lt;.0001&gt;
+   </td><td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 0.100 </td>
+   <td style="text-align:right;"> 34.26 </td>
+   <td style="text-align:right;"> 65.74 </td>
+   <td style="text-align:right;"> 3.6 </td>
+   <td style="text-align:right;"> -5.8 </td>
+  <!--.0001-->
+
 </tr>
-<tr class="odd">
-<td style="text-align: left; width: 1.5cm;">p_Q</td>
-<td style="text-align: right; width: 2cm;">0</td>
-<td style="text-align: right; width: 2.5cm;">0</td>
-<td style="text-align: right; width: 2cm;">0</td>
-<td style="text-align: right; width: 5.5cm;">0</td>
+  <tr>
+   <td style="text-align:left;"> Combinded model$^{\text{a}}$ </td>
+   <td style="text-align:right;"> 0.009 </td>
+   <td style="text-align:right;"> 0.005 </td>
+   <td style="text-align:right;"> 11440331 </td>
+   <td style="text-align:right;"> 82 </td>
+   <td style="text-align:right;"> &lt;.0001&gt;
+   </td><td style="text-align:right;"> 13 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 0.000 </td>
+   <td style="text-align:right;"> 63.46 </td>
+   <td style="text-align:right;"> 36.54 </td>
+   <td style="text-align:right;"> 8.6 </td>
+   <td style="text-align:right;"> 69.9 </td>
+  <!--.0001-->
+
 </tr>
-<tr class="even">
-<td style="text-align: left; width: 1.5cm;">F</td>
-<td style="text-align: right; width: 2cm;">NA</td>
-<td style="text-align: right; width: 2.5cm;">27</td>
-<td style="text-align: right; width: 2cm;">3</td>
-<td style="text-align: right; width: 5.5cm;">13</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; width: 1.5cm;">df_F</td>
-<td style="text-align: right; width: 2cm;">NA</td>
-<td style="text-align: right; width: 2.5cm;">1</td>
-<td style="text-align: right; width: 2cm;">1</td>
-<td style="text-align: right; width: 5.5cm;">3</td>
-</tr>
-<tr class="even">
-<td style="text-align: left; width: 1.5cm;">p_F</td>
-<td style="text-align: right; width: 2cm;">NA</td>
-<td style="text-align: right; width: 2.5cm;">0</td>
-<td style="text-align: right; width: 2cm;">0.117</td>
-<td style="text-align: right; width: 5.5cm;">0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; width: 1.5cm;">I2_lvl2</td>
-<td style="text-align: right; width: 2cm;">36.38</td>
-<td style="text-align: right; width: 2.5cm;">57.29</td>
-<td style="text-align: right; width: 2cm;">40.47</td>
-<td style="text-align: right; width: 5.5cm;">63.46</td>
-</tr>
-<tr class="even">
-<td style="text-align: left; width: 1.5cm;">I2_lvl3</td>
-<td style="text-align: right; width: 2cm;">63.62</td>
-<td style="text-align: right; width: 2.5cm;">42.71</td>
-<td style="text-align: right; width: 2cm;">59.53</td>
-<td style="text-align: right; width: 5.5cm;">36.54</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; width: 1.5cm;">R2_lvl2</td>
-<td style="text-align: right; width: 2cm;">NA</td>
-<td style="text-align: right; width: 2.5cm;">7.8</td>
-<td style="text-align: right; width: 2cm;">-1.4</td>
-<td style="text-align: right; width: 5.5cm;">8.6</td>
-</tr>
-<tr class="even">
-<td style="text-align: left; width: 1.5cm;">R2_lvl3</td>
-<td style="text-align: right; width: 2cm;">NA</td>
-<td style="text-align: right; width: 2.5cm;">60.7</td>
-<td style="text-align: right; width: 2cm;">14.7</td>
-<td style="text-align: right; width: 5.5cm;">69.9</td>
-</tr>
-</tbody><tfoot>
-<tr class="even">
-<td style="text-align: left; padding: 0;"><span style="font-style: italic;">Note: </span></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding: 0;"><sup></sup> Test statistic, degrees of freedom and respective p values are provide. This table allows heterogeneity at level 2 and 3 can be compared between the incetept only model, Majority-class Proportion and Adncillary Data only models, as well as the combinded model</td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-</tr>
+</tbody>
+<tfoot>
+<tr><td style="padding: 0; " colspan="100%"><span style="font-style: italic;">Note: </span></td></tr>
+<tr><td style="padding: 0; " colspan="100%">
+<sup></sup> Test statistic, degrees of freedom and respective p values are provide. This table allows heterogeneity at level 2 and 3 can be compared between the incetept only model, Majority-class Proportion and Adncillary Data only models, as well as the combinded model</td></tr>
+<tr><td style="padding: 0; " colspan="100%">
+<sup>a</sup> Combinded model: Ancillary Data + Majority-class Proportion + Indices</td></tr>
 </tfoot>
-
 </table>
-
 
 </div>
 </div>
 </div>
 </figure>
 </div>
-<p><a href="#tbl-hetro" class="quarto-xref">Table&nbsp;<span>4.5</span></a> shows the parameter estimates of the meta-analysis comparing the intercept only and three mixed effects models: (1) with the Majority-class Proportion as the only covariate, (2) use Ancillary Data only, and (3) the best fit model (from <a href="#tbl-best_mod_coef" class="quarto-xref">Table&nbsp;<span>4.4</span></a>). Majority-class Proportion explains more of the between study heterogeneity, as shown by the difference in <span class="math inline">\(\sigma^2_{\text{level2}}\)</span> between the intercept only and the Majority-class Proportion. The use of Ancillary Data explains relatively little between study heterogeneity and negligible within study heterogeneity. The combined model explains the most heterogeneity. This shift is also reflect in the <span class="math inline">\(I^2\)</span>. The total <span class="math inline">\(I^2\)</span> consistently being 100% in both models indicates that almost none of the variation between effect sizes can be attributed to sampling error, this might suggest that the included studies are too different from each to compare (see discussion for apples and oranges problem). All models show significant heterogeneity (Cochran’s Q, p &lt; 0.001) results. The <span class="math inline">\(R^2\)</span>values show that the covariates in the combined mixed effects model explain 69.9% of the variance at level 3 and 8.6% at level 2.</p>
 <div style="text-align: justify">
-<p><a href="#fig-bubble" class="quarto-xref">Figure&nbsp;<span>4.7</span></a> illustrates the relationship between the proportion of the majority class and overall accuracy of the individual studies included in the meta-analysis. The plot is based on combined mixed effects model, with the solid black line representing the fitted regression line and the shaded area indicating the 95% confidence interval. Each point (bubble) represents a study, with its size proportional to the weight it received in the analysis (larger points indicate studies with more influence). The plot shows that as the proportion of the majority class increases, overall accuracy tends to improve.</p>
+<p>As shown in <a href="#tbl-hetro" class="quarto-xref">Table&nbsp;<span>4.5</span></a>, the Majority-class Proportion explains a greater proportion of the between-study heterogeneity, as indicated by the reduction in <span class="math inline">\(\sigma^2_{\text{level2}}\)</span> between the intercept-only model and the model with the Majority-class Proportion. In contrast, the use of Ancillary Data explains relatively little between-study heterogeneity and negligible within-study heterogeneity.</p>
+<p>The combined model (best-fit model) explains the most heterogeneity overall, as reflected in the shift in <span class="math inline">\(I^2\)</span> values. The total <span class="math inline">\(I^2\)</span>, consistently at 100% across all models, suggests that nearly all the variation in effect sizes is due to differences between the studies, rather than sampling error. This observation raises the possibility of an “apples and oranges” problem (see the discussion section), where the included studies may be too heterogeneous to be meaningfully compared.</p>
+<p>All models show significant heterogeneity, with Cochran’s Q test results being significant (p &lt; 0.001). The <span class="math inline">\(R^2\)</span> values indicate that the covariates in the combined mixed-effects model account for 69.9% of the variance at level 3 (between-study level) and 8.6% of the variance at level 2 (within-study level).</p>
+</div>
+<div style="text-align: justify">
+<p><a href="#fig-bubble" class="quarto-xref">Figure&nbsp;<span>4.7</span></a> illustrates the relationship between the proportion of the majority class and overall accuracy of the individual studies included in the meta-analysis. The plot is based on the combined mixed-effects model, where the solid black line represents the fitted regression line, and the shaded area indicates the 95% confidence interval. Each point (or bubble) represents an individual study, with the size of each bubble proportional to the weight it received in the analysis (i.e., larger points represent studies that had more influence on the overall results). The plot demonstrates a clear trend: as the proportion of the majority class increases, overall accuracy tends to improve, indicating a positive correlation between these two variables.</p>
 </div>
 <div id="fig-bubble" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bubble-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/fig-bubble.png" class="img-fluid figure-img" width="673">
+<img src="figures/fig-bubble_lvl3.png" class="img-fluid figure-img" width="569">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bubble-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4.7: Bubble plot showing the observed effect size, overall accuracy of the individual studies plotted against a the proportion of the majority class. Based on the mixed-effects meta-regression model, the overall accuracy as a function of proportion of the majority with corresponding 95% confidence interval bounds. The size of the points are proportional to the weight that the observation received in the analysis, while the color of the points is unique to each study, with the lowest overall actuary from each study labeled with the first author and publication year.
+Figure&nbsp;4.7: Bubble plot showing the observed effect size, overall accuracy of the individual studies plotted against a the proportion of the majority class. Based on the mixed-effects model, the overall accuracy as a function of proportion of the majority with corresponding 95% confidence interval bounds. The size of the points are proportional to the weight that the observation received in the analysis, while the color of the points is unique to each study, with the lowest overall actuary from each study labeled with the first author and publication year. <!--# paul:So as a general rule i'd say all your information must be contained within the plot, including the colors. You should be able to read it without the description  -->
 </figcaption>
 </figure>
 </div>
 <div style="text-align: justify">
-<p><a href="#fig-preds" class="quarto-xref">Figure&nbsp;<span>4.8</span></a> shows the observed overall accuracy against the predicted overall accuracy’s made by combined mixed effects model. The points are coloured by the addition of ancillary information in the primary study. It appears that the addition of ancillary information leads to a lower overall accuracy, however, this could be due to a number of unmeasured factors, such as study’s with more complicated classifications (more similar classes) adding accuracy data. As <a href="#fig-preds" class="quarto-xref">Figure&nbsp;<span>4.8</span></a> shows Model 2 over estimates the overall accuracy — the fit regression line (in grey) is above the line of perfect agreement (<span class="math inline">\(y = x\)</span>, in black).</p>
+<p>The size of the points in the bubble plot illustrates the benefit of incorporating the structure of the data into meta-analytic weighting. Namely, that the difference in size of the bubbles are not exessive. <a href="#fig-weight" class="quarto-xref">Figure&nbsp;<span>4.8</span></a> highlights this by plotting the weights for each study from a fixed effect, random effect with two levels and the structure used here, the random effects with three levels. As shown, the fixed-effects model particularity as one study is heavily weighted, which can distort the overall results. In contrast, the two-level and three-level models distribute the weights more evenly across studies, reflecting the importance of accounting for between-study heterogeneity and within-study variation.</p>
+</div>
+<div id="fig-weight" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-weight-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="results_files/figure-html/weights-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-weight-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.8: Intercept only models at three different levels plot to compare weighting.
+</figcaption>
+</figure>
+</div>
+<div style="text-align: justify">
+<p>Lastly, <a href="#fig-preds" class="quarto-xref">Figure&nbsp;<span>4.9</span></a> is a plot of observed overall accuracy against the predicted overall accuracy from the combined mixed-effects model. The points are colored based on whether ancillary information was included in the primary study. As <a href="#fig-preds" class="quarto-xref">Figure&nbsp;<span>4.9</span></a> illustrates, the combined mixed-effects model tends to overestimate overall accuracy — the fitted regression line (in grey) lies above the line of perfect agreement (y = x, in black), indicating that the model’s predictions are generally higher than the observed accuracy values.</p>
 </div>
 <div id="fig-preds" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1333,7 +1246,7 @@ Figure&nbsp;4.7: Bubble plot showing the observed effect size, overall accuracy 
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-preds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4.8: Observed and predicted overall accuracy. The colour indicates whether the addition of ancillary data in the primary study’s model. The line of perfect agreement <span class="math inline">\(y = x\)</span> is in black and fit regression of the points in grey.
+Figure&nbsp;4.9: Observed and predicted overall accuracy. The colour indicates whether the addition of ancillary data in the primary study’s model. The line of perfect agreement <span class="math inline">\(y = x\)</span> is in black and fit regression of the points in grey. <!--# add expalintion of reg line and that it is based on the mixed effect -->
 </figcaption>
 </figure>
 </div>

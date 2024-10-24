@@ -51,7 +51,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../chapters/background.html" rel="next">
-<link href="../frontmatter/abbreviations_notation.html" rel="prev">
+<link href="../index.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -87,6 +87,15 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+  </script>
+  <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
 
 
 </head>
@@ -133,20 +142,14 @@ div.csl-indent {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Forward</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../frontmatter/abstract.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Abstract</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../frontmatter/abbreviations_notation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Table of Notation</span></a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Foreword</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -181,10 +184,39 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../frontmatter/acknowledgement.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Acknowledgements</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/app1-paper_selection/app1-paper_selection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Paper selection</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/app2-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Data wrangling</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -216,11 +248,11 @@ div.csl-indent {
 
 
 <div style="text-align: justify">
-<p>In 2015, all United Nations member states adopted the Sustainable Development Goals (SDGs) to address global challenges such as climate change, environmental degradation, poverty, and inequality <span class="citation" data-cites="un_desa_sustainable_2023 un-ggim2019">(<a href="../references.html#ref-un_desa_sustainable_2023" role="doc-biblioref">UN DESA, 2023</a>; <a href="../references.html#ref-un-ggim2019" role="doc-biblioref">UN-GGIM:Europe, 2019</a>)</span>. This international plan outlines 17 global goals to achieve a better and more sustainable future <span class="citation" data-cites="un_desa_sustainable_2023 un-ggim2019 unitednations2024">(<a href="../references.html#ref-un_desa_sustainable_2023" role="doc-biblioref">UN DESA, 2023</a>; <a href="../references.html#ref-un-ggim2019" role="doc-biblioref">UN-GGIM:Europe, 2019</a>; <a href="../references.html#ref-unitednations2024" role="doc-biblioref">United Nations, 2024</a>)</span>. Having passed the midpoint of the SDGs’ timeline with significant setbacks, the critical role of timely and high-quality data has never been more apparent <span class="citation" data-cites="unitednations2024 un_desa_sustainable_2023">(<a href="../references.html#ref-un_desa_sustainable_2023" role="doc-biblioref">UN DESA, 2023</a>; <a href="../references.html#ref-unitednations2024" role="doc-biblioref">United Nations, 2024</a>)</span>. These data are vital to identifying challenges, formulating evidence-based solutions, monitoring the implementation of solutions, and making essential course corrections <span class="citation" data-cites="un-ggim2019">(<a href="../references.html#ref-un-ggim2019" role="doc-biblioref">UN-GGIM:Europe, 2019</a>)</span>. However, despite this necessity for high-quality data, traditional monitoring approaches, such as household- or field-level surveys (ground-acquired data), remain the primary source of data collection for key indicators of SDGs by National Statistical Institutes (NSIs) <span class="citation" data-cites="burke2021 un-ggim2019">(<a href="../references.html#ref-burke2021" role="doc-biblioref">Burke et al., 2021</a>; <a href="../references.html#ref-un-ggim2019" role="doc-biblioref">UN-GGIM:Europe, 2019</a>)</span>. These methods are expensive and time-consuming to conduct <span class="citation" data-cites="burke2021">(<a href="../references.html#ref-burke2021" role="doc-biblioref">Burke et al., 2021</a>)</span>. As a result, the frequency of ground-acquired data varies significantly around the world; for example, the most recent agricultural census for 24% of the world’s countries was more than 15 years ago <span class="citation" data-cites="burke2021">(<a href="../references.html#ref-burke2021" role="doc-biblioref">Burke et al., 2021</a>)</span>. Recognizing this challenge, both the United Nations SDG Report <span class="citation" data-cites="un_desa_sustainable_2023">(<a href="../references.html#ref-un_desa_sustainable_2023" role="doc-biblioref">2023, p. 49</a>)</span> and the Global Working Group on Big Data for Official Statistics underscore the importance of innovative methodology and data sources, including remote sensing and machine learning, to enhance the monitoring and implementation of the SDGs <span class="citation" data-cites="un-ggim2019 unitednations2017">(<a href="../references.html#ref-un-ggim2019" role="doc-biblioref">UN-GGIM:Europe, 2019</a>; <a href="../references.html#ref-unitednations2017" role="doc-biblioref">United Nations, 2017</a>)</span>. &nbsp;</p>
+<p>In 2015, all United Nations member states adopted the Sustainable Development Goals (SDGs) to address global challenges such as climate change, environmental degradation, poverty, and inequality <span class="citation" data-cites="un_desa_sustainable_2023 un-ggim2019">(<a href="../references.html#ref-un_desa_sustainable_2023" role="doc-biblioref">UN DESA, 2023</a>; <a href="../references.html#ref-un-ggim2019" role="doc-biblioref">UN-GGIM:Europe, 2019</a>)</span>. This international plan outlines 17 global goals to achieve a better and more sustainable future <span class="citation" data-cites="un_desa_sustainable_2023 un-ggim2019 unitednations2024">(<a href="../references.html#ref-un_desa_sustainable_2023" role="doc-biblioref">UN DESA, 2023</a>; <a href="../references.html#ref-un-ggim2019" role="doc-biblioref">UN-GGIM:Europe, 2019</a>; <a href="../references.html#ref-unitednations2024" role="doc-biblioref">United Nations, 2024</a>)</span>. Having passed the midpoint of the SDGs’ timeline with significant setbacks, the critical role of timely and high-quality data has never been more apparent <span class="citation" data-cites="unitednations2024 un_desa_sustainable_2023">(<a href="../references.html#ref-un_desa_sustainable_2023" role="doc-biblioref">UN DESA, 2023</a>; <a href="../references.html#ref-unitednations2024" role="doc-biblioref">United Nations, 2024</a>)</span>. These data are vital to identifying challenges, formulating evidence-based solutions, monitoring the implementation of solutions, and making essential course corrections <span class="citation" data-cites="un-ggim2019">(<a href="../references.html#ref-un-ggim2019" role="doc-biblioref">UN-GGIM:Europe, 2019</a>)</span>. However, despite this necessity for high-quality data, traditional monitoring approaches, such as household- or field-level surveys (ground-acquired data), remain the primary source of data collection for key indicators of SDGs by National Statistical Institutes (NSIs) <span class="citation" data-cites="burke2021 un-ggim2019">(<a href="../references.html#ref-burke2021" role="doc-biblioref">Burke et al., 2021</a>; <a href="../references.html#ref-un-ggim2019" role="doc-biblioref">UN-GGIM:Europe, 2019</a>)</span>. These methods are expensive and time-consuming to conduct <span class="citation" data-cites="burke2021">(<a href="../references.html#ref-burke2021" role="doc-biblioref">Burke et al., 2021</a>)</span>. As a result, the frequency of ground-acquired data varies significantly around the world; for example, the most recent agricultural census for 24% of the world’s countries was more than 15 years ago <span class="citation" data-cites="burke2021">(<a href="../references.html#ref-burke2021" role="doc-biblioref">Burke et al., 2021</a>)</span>. Recognizing this challenge, both the United Nations SDG Report <span class="citation" data-cites="un_desa_sustainable_2023">(<a href="../references.html#ref-un_desa_sustainable_2023" role="doc-biblioref">2023, p. 49</a>)</span> and the Global Working Group on Big Data for Official Statistics underscore the importance of innovative methodology and data sources, including remote sensing and machine learning, to enhance the monitoring and implementation of the SDGs <span class="citation" data-cites="un-ggim2019 unitednations2017">(<a href="../references.html#ref-un-ggim2019" role="doc-biblioref">UN-GGIM:Europe, 2019</a>; <a href="../references.html#ref-unitednations2017" role="doc-biblioref">United Nations, 2017</a>)</span>.</p>
 <p>Remote sensing — data collected from a distance via satellite, aircraft, or drones — offers a cost-effective approach for monitoring wide-ranging geographic areas <span class="citation" data-cites="un-ggim2019 zhao_overview_2022 maso2023 khatami2016">(<a href="../references.html#ref-khatami2016" role="doc-biblioref">Khatami et al., 2016</a>; <a href="../references.html#ref-maso2023" role="doc-biblioref">Maso et al., 2023</a>; <a href="../references.html#ref-un-ggim2019" role="doc-biblioref">UN-GGIM:Europe, 2019</a>; <a href="../references.html#ref-zhao_overview_2022" role="doc-biblioref">Zhao et al., 2022</a>)</span>. Remote sensing imagery has been limited to agricultural and socioeconomic applications for decades <span class="citation" data-cites="zhang_review_2022 burke2021 lavallin_machine_2021">(<a href="../references.html#ref-burke2021" role="doc-biblioref">Burke et al., 2021</a>; <a href="../references.html#ref-lavallin_machine_2021" role="doc-biblioref">Lavallin &amp; Downs, 2021</a>; <a href="../references.html#ref-zhang_review_2022" role="doc-biblioref">Zhang et al., 2022</a>)</span>. For instance, the Laboratory for Applications of Remote Sensing (LARS) has utilized satellite data and machine learning methods for crop identification since the 1960s <span class="citation" data-cites="holloway_statistical_2018">(<a href="../references.html#ref-holloway_statistical_2018" role="doc-biblioref">Holloway &amp; Mengersen, 2018</a>)</span>. However, in recent years, there has been a considerable increase in the spatial, spectral, and temporal resolution of remote sensing data, alongside a significant increase in free sensor data and computational power for complex data analysis <span class="citation" data-cites="zhang_review_2022 burke2021 thapa_deep_2023">(<a href="../references.html#ref-burke2021" role="doc-biblioref">Burke et al., 2021</a>; <a href="../references.html#ref-thapa_deep_2023" role="doc-biblioref">Thapa et al., 2023</a>; <a href="../references.html#ref-zhang_review_2022" role="doc-biblioref">Zhang et al., 2022</a>)</span>. The magnitude of possible applications and increased availability of remote sensing data have rapidly increased the number of published research papers in this field <span class="citation" data-cites="khatami2016 burke2021">(<a href="../references.html#ref-burke2021" role="doc-biblioref">Burke et al., 2021</a>; <a href="../references.html#ref-khatami2016" role="doc-biblioref">Khatami et al., 2016</a>)</span>. Earth observation satellites alone can measure 42% of the SDG targets <span class="citation" data-cites="zhang_review_2022">(<a href="../references.html#ref-zhang_review_2022" role="doc-biblioref">Zhang et al., 2022</a>)</span>.</p>
-<p>Despite the increased research, machine learning and remote sensing for SDG monitoring, there is still a lack of comprehensive understanding regarding the factors that determine the performance of these models across different contexts. The success of machine learning models in remote sensing depends on various factors, including the quality and resolution of input data, the choice of algorithm, the sample’s representativeness, and the complexity of the landscape <span class="citation" data-cites="heydari2018 lu2007">(<a href="../references.html#ref-heydari2018" role="doc-biblioref">Heydari &amp; Mountrakis, 2018</a>; <a href="../references.html#ref-lu2007" role="doc-biblioref">Lu &amp; Weng, 2007</a>)</span>. Additionally, model performance is often evaluated using localized datasets, which can limit the generalisability of findings and the ability to apply these models in broader contexts <span class="citation" data-cites="burke2021 khatami2016 unitednations2017">(<a href="../references.html#ref-burke2021" role="doc-biblioref">Burke et al., 2021</a>; <a href="../references.html#ref-khatami2016" role="doc-biblioref">Khatami et al., 2016</a>; <a href="../references.html#ref-unitednations2017" role="doc-biblioref">United Nations, 2017</a>)</span>.</p>
-<p>Although the uptake of remote sensing data by NSIs has been slow, many NSIs are now capitalizing on the potential of using new and consistent data sources and methodologies to support and inform official statistics <span class="citation" data-cites="unitednations2017">(<a href="../references.html#ref-unitednations2017" role="doc-biblioref">United Nations, 2017</a>)</span>. These can be generated by combining geospatial information, RS, and other big data sources, allowing for the filling of data gaps, providing information where no measurements were previously made, and improving the temporal and spatial resolutions of data (e.g., daily updates on crop area and yield statistics). Despite these advances, this paradigm shift from traditional statistical methods—such as counting and measuring by humans—towards estimation from sensors, simulation, and modeling, presents challenges <span class="citation" data-cites="unitednations2017">(<a href="../references.html#ref-unitednations2017" role="doc-biblioref">United Nations, 2017</a>)</span>. It requires convincing, statistically sound results, rigorous validation, and a significant shift in resources within institutions to adapt to the higher spatial and temporal resolutions necessary to address emerging policy questions <span class="citation" data-cites="unitednations2017">(<a href="../references.html#ref-unitednations2017" role="doc-biblioref">United Nations, 2017</a>)</span>.</p>
-<p>A meta-analysis statistically combines the body of evidence on a specific topic, aiming to produce unbiased summaries of evidence <span class="citation" data-cites="iliescu2022">(<a href="../references.html#ref-iliescu2022" role="doc-biblioref">Iliescu et al., 2022</a>)</span>. There are many potential methods to choose from to combine results. One choice that is made when conducting a meta-analysis is whether to use the study’s sample size to weigh the result of each study (sample-weighted estimate) or an unweighted approach, which treats all results equally, disregarding sample size <span class="citation" data-cites="hall2018">(<a href="../references.html#ref-hall2018" role="doc-biblioref">Hall &amp; Rosenthal, 2018</a>)</span>. The current standard in meta-analysis research is to use the sample-weighted estimate <span class="citation" data-cites="hall2018">(<a href="../references.html#ref-hall2018" role="doc-biblioref">Hall &amp; Rosenthal, 2018</a>)</span>. The literature examined in this study found that previous meta-analyses investigating the performance of machine learning models on remote sensing data have predominantly relied on unweighted approaches. This meta-analysis is performed on peer-reviewed research articles that use machine learning methods and remote sensing data to monitor SDGs. This study aims to: (1) estimate the average performance (summary effect size); (2) determine the degree of heterogeneity within and across studies; (3) assess whether specific study features influence model performance; and (4) compare the sample-weighted and unweighted estimate summary effect.</p>
+<p>Despite the increased research and availability the uptake of remote sensing data by NSIs has been slow. However, many NSIs are now capitalizing on the potential of using new and consistent data sources and methodologies to support and inform official statistics <span class="citation" data-cites="unitednations2017">(<a href="../references.html#ref-unitednations2017" role="doc-biblioref">United Nations, 2017</a>)</span>. These can be generated by combining geospatial information, remote sensing, and other big data sources, allowing for the filling of data gaps, providing information where no measurements were previously made, and improving the temporal and spatial resolutions of data (e.g., daily updates on crop area and yield statistics). This paradigm shift from traditional statistical methods—such as counting and measuring by humans—towards estimation from sensors, simulation, and modelling, presents challenges, and requires convincing, statistically sound results, rigorous validation, and a significant shift in resources within institutions to adapt to the higher spatial and temporal resolutions necessary to address emerging policy questions <span class="citation" data-cites="unitednations2017">(<a href="../references.html#ref-unitednations2017" role="doc-biblioref">United Nations, 2017</a>)</span>.</p>
+<p>Given the wide variety of methodologies and contexts in previous studies, a critical question arises: <em>What factors influence the performance of machine learning models using remote sensing data for SDG monitoring?</em> A meta-analysis statistically combines the body of evidence on a specific topic, aiming to produce unbiased summaries of evidence <span class="citation" data-cites="iliescu2022">(<a href="../references.html#ref-iliescu2022" role="doc-biblioref">Iliescu et al., 2022</a>)</span>. There are many potential methods to choose from to combine results. One choice that is made when conducting a meta-analysis is whether to use the study’s sample size to weigh the result of each study (sample-weighted estimate) or an unweighted approach, which treats all results equally, disregarding sample size <span class="citation" data-cites="hall2018">(<a href="../references.html#ref-hall2018" role="doc-biblioref">Hall &amp; Rosenthal, 2018</a>)</span>. The current standard in meta-analysis research is to use the sample-weighted estimate <span class="citation" data-cites="hall2018">(<a href="../references.html#ref-hall2018" role="doc-biblioref">Hall &amp; Rosenthal, 2018</a>)</span>. However, the previous meta-analyses investigating the performance of machine learning models on remote sensing data have exclusively relied on unweighted approaches. While these studies have found that certain models, such as Support Vector Machines (SVM) and deep learning methods, often outperform traditional classifiers, the magnitude of these differences can vary across applications. For example, <span class="citation" data-cites="khatami2016">Khatami et al. (<a href="../references.html#ref-khatami2016" role="doc-biblioref">2016</a>)</span> selected studies with more than one model, and by making pairwise comparisons they concluded that SVM consistently outperformed other classification models. However, these meta-analyses relied on unweighted approaches, potentially overlooking if these variations in results are due to differences in sample sizes, which could affect the reliability and precision of the findings, as larger studies generally provide more accurate estimates.</p>
+<p>Therefore, this study seeks to address the question of how machine learning models perform when applied to remote sensing data for SDG monitoring. By conducting a meta-analysis on peer-reviewed research articles in this domain, the study aims to; (1) estimate the average performance (summary effect size), (2) determine the degree of heterogeneity within and across studies, (3) assess whether specific study features influence model performance, and (4) compare the sample-weighted and unweighted estimate summary effect.</p>
 </div>
 
 
@@ -230,9 +262,6 @@ Burke, M., Driscoll, A., Lobell, D. B., &amp; Ermon, S. (2021). Using satellite 
 </div>
 <div id="ref-hall2018" class="csl-entry" role="listitem">
 Hall, J. A., &amp; Rosenthal, R. (2018). Choosing between random effects models in meta-analysis: Units of analysis and the generalizability of obtained results. <em>Social and Personality Psychology Compass</em>, <em>12</em>(10), e12414. <a href="https://doi.org/10.1111/spc3.12414">https://doi.org/10.1111/spc3.12414</a>
-</div>
-<div id="ref-heydari2018" class="csl-entry" role="listitem">
-Heydari, S. S., &amp; Mountrakis, G. (2018). Effect of classifier selection, reference sample size, reference class distribution and scene heterogeneity in per-pixel classification accuracy using 26 Landsat sites. <em>Remote Sensing of Environment</em>, <em>204</em>, 648–658. <a href="https://doi.org/10.1016/j.rse.2017.09.035">https://doi.org/10.1016/j.rse.2017.09.035</a>
 </div>
 <div id="ref-holloway_statistical_2018" class="csl-entry" role="listitem">
 Holloway, J., &amp; Mengersen, K. (2018). Statistical <span>Machine</span> <span>Learning</span> <span>Methods</span> and <span>Remote</span> <span>Sensing</span> for <span>Sustainable</span> <span>Development</span> <span>Goals</span>: <span>A</span> <span>Review</span>. <em>Remote Sensing</em>, <em>10</em>(9), 1365. <a href="https://doi.org/10.3390/rs10091365">https://doi.org/10.3390/rs10091365</a>
@@ -245,9 +274,6 @@ Khatami, R., Mountrakis, G., &amp; Stehman, S. V. (2016). A meta-analysis of rem
 </div>
 <div id="ref-lavallin_machine_2021" class="csl-entry" role="listitem">
 Lavallin, A., &amp; Downs, J. A. (2021). Machine learning in geography–<span>Past</span>, present, and future. <em>Geography Compass</em>, <em>15</em>(5), e12563. <a href="https://doi.org/10.1111/gec3.12563">https://doi.org/10.1111/gec3.12563</a>
-</div>
-<div id="ref-lu2007" class="csl-entry" role="listitem">
-Lu, D., &amp; Weng, Q. (2007). A survey of image classification methods and techniques for improving classification performance. <em>International Journal of Remote Sensing</em>, <em>28</em>(5), 823–870. <a href="https://doi.org/10.1080/01431160600746456">https://doi.org/10.1080/01431160600746456</a>
 </div>
 <div id="ref-maso2023" class="csl-entry" role="listitem">
 Maso, J., Zabala, A., &amp; Serral, I. (2023). Earth Observations for Sustainable Development Goals. <em>Remote Sensing</em>, <em>15</em>(10), 2570. <a href="https://doi.org/10.3390/rs15102570">https://doi.org/10.3390/rs15102570</a>
@@ -698,8 +724,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../frontmatter/abbreviations_notation.html" class="pagination-link" aria-label="Table of Notation">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Table of Notation</span>
+      <a href="../index.html" class="pagination-link" aria-label="Foreword">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Foreword</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
