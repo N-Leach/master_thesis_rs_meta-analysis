@@ -1,3 +1,10 @@
+---
+execute:
+  message: false
+  warning: false
+  enabled: true
+---
+
 # Methods {#sec-methods style="text-align: justify"}
 
 ```{r setup_methods}
