@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -286,12 +320,49 @@ window.Quarto = {
 </header>
 
 
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"../appendix/packages.R"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"../appendix/feature_labels.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 <p>This chapter provides an overview of the concepts and methodologies analysed in this research. It provides a brief introduction to remote sensing, machine learning techniques, and their applications in land cover mapping and SDG monitoring.</p>
 <section id="remote-sensing" class="level2">
 <h2 class="anchored" data-anchor-id="remote-sensing">Remote Sensing</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data for the number of satellites</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>UCS_Satellite_Database <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"figures/UCS-Satellite-Database_5-1-2023.csv"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>UCS_Satellite_Database_EarthObs <span class="ot">&lt;-</span> </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  UCS_Satellite_Database <span class="sc">|&gt;</span> </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Date_Launch =</span> <span class="fu">as.Date</span>(Date_Launch, <span class="at">format =</span> <span class="st">"%Y-%m-%d"</span>))<span class="sc">|&gt;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"Military"</span>, Users))<span class="sc">|&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">"Earth"</span>,Purpose ))</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>prop_after_2020<span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">year</span>(UCS_Satellite_Database_EarthObs<span class="sc">$</span>Date_Launch)<span class="sc">&gt;=</span><span class="dv">2020</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                      <span class="at">na.rm =</span> <span class="cn">TRUE</span>)<span class="sc">/</span> <span class="fu">nrow</span>(UCS_Satellite_Database_EarthObs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 <div style="text-align: justify">
 <p>In the broadest sense, remote sensing involves acquiring information about an object or phenomenon without direct contact <span class="citation" data-cites="campbell2011">(<a href="../references.html#ref-campbell2011" role="doc-biblioref">Campbell &amp; Wynne, 2011</a>)</span>. More specifically, remote sensing refers to gathering data about land or water surfaces using sensors mounted on aerial or satellite platforms that record electromagnetic radiation reflected or emitted from the Earth’s surface <span class="citation" data-cites="campbell2011">(<a href="../references.html#ref-campbell2011" role="doc-biblioref">Campbell &amp; Wynne, 2011, p. 6</a>)</span>. The origins of remote sensing lie with the development of photography in the 19th century, with the earliest aerial or Earth Observation photographs taken with cameras mounted on balloons, kites, pigeons, and aeroplanes. <span class="citation" data-cites="campbell2011 burke2021">(<a href="../references.html#ref-burke2021" role="doc-biblioref">Burke et al., 2021</a>; <a href="../references.html#ref-campbell2011" role="doc-biblioref">Campbell &amp; Wynne, 2011, p. 7</a>)</span>. The first mass use of remote sensing was during World War I with aerial photography. The modern era of satellite-based remote sensing started with the launch of Landsat 1 in 1972, the first satellite specifically designed for Earth Observation <span class="citation" data-cites="campbell2011">(<a href="../references.html#ref-campbell2011" role="doc-biblioref">Campbell &amp; Wynne, 2011, p. 15</a>)</span>. Today, remote sensing technology enables frequent and systematic collection of data about the Earth’s surface with global coverage, revolutionizing our ability to monitor and analyze the Earth’s surface <span class="citation" data-cites="burke2021 nasa2019">(<a href="../references.html#ref-burke2021" role="doc-biblioref">Burke et al., 2021</a>; <a href="../references.html#ref-nasa2019" role="doc-biblioref">NASA, 2019</a>)</span>. As of May 2023, roughly 1039 active nonmilitary Earth Observation satellites are in orbit; 51% were launched in 2020 <span class="citation" data-cites="unionofconcernedscientists">(<a href="../references.html#ref-unionofconcernedscientists" role="doc-biblioref">UCS, 2021</a>)</span>.</p>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> UCS_Satellite_Database_EarthObs<span class="sc">|&gt;</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>         <span class="fu">group_by</span>(<span class="at">week =</span> lubridate<span class="sc">::</span><span class="fu">floor_date</span>(Date_Launch, <span class="st">'week'</span>))<span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>         <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> week, <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">cumsum</span>(n)), <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"5 years"</span>, <span class="at">date_labels =</span> <span class="st">"%Y"</span>) <span class="sc">+</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Number of Satellite"</span>, <span class="at">x =</span> <span class="st">"Year"</span>, </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Number of Satellites Launched Over Time"</span>) <span class="sc">+</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  common_theme</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div id="fig-UCS" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-UCS-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -343,6 +414,18 @@ Figure&nbsp;2.3: Spectral signatures of soil, green vegetation, and water across
 <p>Machine learning techniques such as neural networks, random forests, and support vector machines have long been applied for spatial data analysis and geographic modelling <span class="citation" data-cites="lavallin_machine_2021 haddaway_evidence_2022">(<a href="../references.html#ref-haddaway_evidence_2022" role="doc-biblioref">Haddaway et al., 2022</a>; <a href="../references.html#ref-lavallin_machine_2021" role="doc-biblioref">Lavallin &amp; Downs, 2021</a>)</span>. Compared to using indices alone, machine learning techniques enhance the accuracy and efficiency of data analysis and interpretation processes, making it possible to analyze large volumes of data effectively. This is particularly useful for handling the high complexity and dimensionality of remote sensing data. In recent years, the application of machine learning techniques in remote sensing has surged, driven by the increasing availability of large datasets and advancements in computational power <span class="citation" data-cites="un-ggim2019 zhang_review_2022">(<a href="../references.html#ref-un-ggim2019" role="doc-biblioref">UN-GGIM:Europe, 2019</a>; <a href="../references.html#ref-zhang_review_2022" role="doc-biblioref">Y. Zhang et al., 2022</a>)</span>.</p>
 <p>These machine learning models can be grouped into four main types according to the aims of analyses: classification, clustering, regression, and dimension reduction. <a href="#tbl-models" class="quarto-xref">Table&nbsp;<span>2.1</span></a> describes this grouping and gives examples. It is important to note that recent trends in machine learning and remote sensing analyses use hybrid or ensemble approaches using a combination of these groups, for a thorough review of these methods see <span class="citation" data-cites="un-ggim2019">UN-GGIM:Europe (<a href="../references.html#ref-un-ggim2019" role="doc-biblioref">2019</a>)</span>.</p>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_excel</span>(<span class="st">"figures/summary_tables.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"ML_cat"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">booktabs =</span> <span class="cn">TRUE</span>, <span class="at">linesep =</span> <span class="st">""</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">font_size =</span> <span class="dv">10</span>, </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">full_width =</span> <span class="cn">FALSE</span>)<span class="sc">|&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">1</span>, <span class="at">width =</span> <span class="st">"2cm"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">2</span>, <span class="at">width =</span> <span class="st">"14cm"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">footnote</span>(<span class="fu">c</span>(<span class="st">"Adapted from UN-GGIM:Europe (2019) and Haddaway et al.(2022)."</span>), </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">threeparttable=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div id="tbl-models" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align: justify">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-models-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -391,6 +474,31 @@ Table&nbsp;2.1: Categories of machine learning methods grouped according to the 
 <div style="text-align: justify">
 <p>Performance metrics are used to verify these analyses, which for classification tasks involve creating a confusion matrix — a cross-tabulation of class labels assigned to model predictions and reference data (ground truth). In a confusion matrix, the correctly classified instances are on the diagonal, and the off-diagonal cells indicate which classes are confused (i.e., incorrectly classified). In remote sensing applications, accuracy assessments are undertaken on a pixel, group of pixels (e.g.&nbsp;block), or an object level <span class="citation" data-cites="stehman2019">(<a href="../references.html#ref-stehman2019" role="doc-biblioref">Stehman &amp; Foody, 2019</a>)</span>.</p>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>confusion <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Reference =</span> <span class="fu">c</span>(<span class="st">"Class 1"</span>,<span class="st">"Class 2"</span>,<span class="st">"Class 3"</span>,<span class="st">"Class 4"</span>, <span class="st">"Total"</span>, <span class="st">"User's accuracy"</span>), </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Predictions </span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">c1 =</span> <span class="fu">c</span>(<span class="st">"$m_{11}$"</span>, <span class="st">"$m_{21}$"</span>, <span class="st">"$m_{31}$"</span>, <span class="st">"$m_{41}$"</span>, <span class="st">"$m_{.1}$"</span>, <span class="st">"$m_{11}/m_{.1}$"</span>),</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">c2 =</span> <span class="fu">c</span>(<span class="st">"$m_{12}$"</span>, <span class="st">"$m_{22}$"</span>, <span class="st">"$m_{32}$"</span>, <span class="st">"$m_{42}$"</span>, <span class="st">"$m_{.2}$"</span>, <span class="st">"$m_{22}/m_{.2}$"</span>),</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">c3 =</span> <span class="fu">c</span>(<span class="st">"$m_{13}$"</span>, <span class="st">"$m_{23}$"</span>, <span class="st">"$m_{33}$"</span>, <span class="st">"$m_{43}$"</span>, <span class="st">"$m_{.3}$"</span>, <span class="st">"$m_{33}/m_{.3}$"</span>),</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">c4 =</span> <span class="fu">c</span>(<span class="st">"$m_{14}$"</span>, <span class="st">"$m_{24}$"</span>, <span class="st">"$m_{33}$"</span>, <span class="st">"$m_{44}$"</span>, <span class="st">"$m_{.4}$"</span>, <span class="st">"$m_{44}/m_{.4}$"</span>),</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">total =</span> <span class="fu">c</span>(<span class="st">"$m_{1.}$"</span>, <span class="st">"$m_{2.}$"</span>, <span class="st">"$m_{3.}$"</span>, <span class="st">"$m_{4.}$"</span>, <span class="st">"$m$"</span>, <span class="st">""</span>),</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">pa =</span> <span class="fu">c</span>(<span class="st">"$m_{11}/m_{1.}$"</span>, <span class="st">"$m_{22}/m_{2.}$"</span>,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>         <span class="st">"$m_{33}/m_{3.}$"</span>, <span class="st">"$m_{44}/m_{4.}$"</span>, <span class="st">""</span>, <span class="st">""</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>confusion<span class="sc">|&gt;</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">booktabs =</span> <span class="cn">TRUE</span>, <span class="at">linesep =</span> <span class="st">""</span>, <span class="at">escape =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Reference"</span>,<span class="st">"Class 1"</span>,<span class="st">"Class 2"</span>,<span class="st">"Class 3"</span>,<span class="st">"Class 4"</span>, <span class="st">"Total"</span>, <span class="st">"Producer's accuracy"</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">|&gt;</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">font_size =</span> <span class="dv">10</span>, </span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>                <span class="at">full_width =</span> <span class="cn">FALSE</span>)<span class="sc">|&gt;</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_header_above</span>(<span class="fu">c</span>(<span class="st">""</span>, <span class="st">"Predictions"</span> <span class="ot">=</span> <span class="dv">6</span>), <span class="at">bold =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">row_spec</span>(<span class="dv">0</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>)<span class="sc">|&gt;</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">1</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>)<span class="sc">|&gt;</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">footnote</span>(<span class="fu">c</span>(<span class="st">"The rows ($r$) represent the reference (observed) classification and the columns ($c$) represent the predicted classes. $m_{rc}$ is the number of instances in reference (observered) class $r$ and predicted class $c$, and $m$ is the total number of instances (i.e., the number of pixels/objects classified)."</span>), </span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>           <span class="at">threeparttable=</span><span class="cn">TRUE</span>, <span class="at">escape=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div id="tbl-confusion" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align: justify">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-confusion-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
